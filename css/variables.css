@@ -1,0 +1,56 @@
+:root {
+    /*
+    * Fonts
+    */
+    --font-family: sans-serif;
+    --font-lineheight: 1.5em;
+
+    /*
+    * Button
+    */
+    --button-background-color: #1e90ff;
+    --button-text-color: #ffffff;
+    --button-border-color: #cdcdcd;
+    --button-border-radius: 2px;
+    --button-disabled-background-color: #ececec;
+    --button-disabled-text-color: #686868;
+    --button-disabled-border-color: #cdcdcd;
+    --button-active-background-color: #1e90ff;
+    --button-active-text-color: #fff;
+    --button-active-border-color: #1e90ff;
+
+    /*
+    * Dropdown
+    */
+    --dropdown-background-color: #1e90ff;
+    --dropdown-text-color: #383838;
+    --dropdown-border-color: #cdcdcd;
+    --dropdown-border-radius: 2px;
+    --dropdown-disabled-background-color: #ececec;
+    --dropdown-disabled-text-color: #686868;
+    --dropdown-disabled-border-color: #cdcdcd;
+    --dropdown-active-background-color: #1e90ff;
+    --dropdown-active-text-color: #fff;
+    --dropdown-active-border-color: #1e90ff;
+    
+    /*
+    * List
+    */
+    --list-border-color: #cdcdcd;
+    --list-active-background-color: #1e90ff;
+    --list-active-text-color: #fff;
+    --list-active-border-color: #1e90ff;
+    
+}
+
+html,
+body {
+  font-family: var(--font-family);
+  font-weight: 300;
+  line-height: var(--font-lineheight);
+  -webkit-font-smoothing: antialiased;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}

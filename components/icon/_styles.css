@@ -1,0 +1,23 @@
+.sezy-svg-{
+    &s2{
+        width: 0.25rem;
+    }
+    &s1{
+        width: 0.5rem;
+    }
+    &s{
+        width: 0.75rem;
+    }
+    &m{
+        width: 1rem;
+    }
+    &l{
+        width: 1.25rem;
+    }
+    &l1{
+        width: 1.5rem;
+    }
+    &l2{
+        width: 1.75rem;
+    }
+}

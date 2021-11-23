@@ -8,7 +8,7 @@ import Icon,{IconIProps} from "../icon/index";
 interface IProps {
   // type: 'link' | 'external' | 'logo' | "breadcrumbs",
   // type?: 'link' | 'link-external' | 'link-logo' | 'link-breadcrumbs',
-  size?: 's1' | 's' | 'm' | 'l' | 'l1',
+  size?: 's' | 'm' | 'l',
   href?: string,
   label?: string,
   isExternal?: boolean,
@@ -23,7 +23,7 @@ const Link = ({
   href = '',
   size = 'm',
   label,
-  isExternal = false,
+  isExternal = true,
   $icon,
   classes,
   onClick,
@@ -35,10 +35,8 @@ const Link = ({
     ...otherProps,
     className:Classnames(
       // styles['sezy-'+type],
-      // styles['sezy-link-'+size],
+      styles['sezy-link-'+size],
       classes,
-      sizeClass[size],
-      'cursor-pointer',
     ),
     onClick,
    ...( href ? { href } : {}),
@@ -52,13 +50,6 @@ const Link = ({
   )
 }
 
-const sizeClass = {
-  s1: 'fs-0.75',
-  s: 'fs-0.875',
-  m: 'fs',
-  l: 'fs-1.125',
-  l1: 'fs-1.25',
-}
 
 export default Link
 export {

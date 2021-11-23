@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Classnames from 'classnames';
-import styles from './_styles.css';
 import { IconIProps} from './';
 import {Classes}from '../_base';
 
@@ -15,10 +14,6 @@ export default (props: IconIProps) => {
     
     
     const svgProps = {
-        className:Classnames(
-            styles['svg-'+ size],
-            classes,
-        ),
         style: {
             fill: fill,
         },

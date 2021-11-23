@@ -1,79 +1,58 @@
 @import '../../css/variables.css';
 
-.sezy-list{
-    &>*{
-        display:block;
-        user-select: none;
-    }
-    &>*:last-child{
-        border-bottom: none;
-    }
-    &>*:hover{
-
-    }
+.sezy-list {
+  & > * {
+    display: block;
+    user-select: none;
+  }
+  & > *:last-child {
+    border-bottom: none;
+  }
+  & > *:hover {
+  }
 }
-.sezy-list-default{
-    &{
-        box-sizing:border-box;
-        border:1px solid var(--list-border-color);
-    }
-    &>*{
-        border-bottom:1px solid var(--list-border-color);
-    }
-    &>*:last-child{
-        border-bottom: none;
-    }
+.sezy-list-default {
+  & {
+    box-sizing: border-box;
+    border: 1px solid var(--list-border-color);
+  }
+  & > * {
+    border-bottom: 1px solid var(--list-border-color);
+  }
+  & > *:last-child {
+    border-bottom: none;
+  }
 }
-.sezy-list-outline{
-    &{
-        box-sizing:border-box;
-    }
-    &>*{
-        border-bottom:1px solid var(--list-border-color);
-    }
+.sezy-list-outline {
+  & {
+    box-sizing: border-box;
+  }
+  & > * {
+    border-bottom: 1px solid var(--list-border-color);
+  }
 }
-.sezy-list-flat{
-    &{
-        box-sizing:border-box;
-    }
-    &>*{
-        border-bottom:1px solid var(--list-border-color);
-    }
+.sezy-list-flat {
+  & {
+    box-sizing: border-box;
+  }
+  & > * {
+    border-bottom: 1px solid var(--list-border-color);
+  }
 }
 
 /* Size */
-.sezy-list-s1 > *{
-    height: 20px;
-    line-height: 20px;
-    padding-left: 8px;
-    padding-right: 8px;
-    font-size: 10px;
+.sezy-list-s > * {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
-.sezy-list-s > *{
-    height: 30px;
-    line-height: 30px;
-    padding-left: 12px;
-    padding-right: 12px;
-    font-size: 12.5px;
+.sezy-list-m > * {
+  padding: 0.375rem 1rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
-.sezy-list-m > *{
-    height: 40px;
-    line-height: 40px;
-    padding-left: 18px;
-    padding-right: 18px;
-    font-size: 15px;
-}
-.sezy-list-l > *{
-    height: 50px;
-    line-height: 50px;
-    padding-left: 22px;
-    padding-right: 22px;
-    font-size: 18px;
-}
-.sezy-list-l1 > *{
-    height: 60px;
-    line-height: 60px;
-    padding-left: 25px;
-    padding-right: 25px;
-    font-size: 22px;
+.sezy-list-l > * {
+  padding: 0.625rem 1rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }

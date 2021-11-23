@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Classnames from 'classnames';
 import styles from './_styles.css';
-import {Classes}from '../_base';
+import { Classes } from '../_base';
 import List from '../list';
 import { useClickOutside, useForceRender } from '../../hooks';
 
@@ -21,33 +21,33 @@ interface IProps {
 }
 
 const Dropdown = ({
-    type = 'default',
-    size = 'm',
-    label,
-    isDisabled = false,
-    href = '',
-    isLoading = false,
-    leftIcon,
-    caretIconName,
-    placement = 'bf',
-    classes,
-    onClick,
-    children,
-    ...otherProps
-  }: IProps) => {
-  
+  type = 'default',
+  size = 'm',
+  label,
+  isDisabled = false,
+  href = '',
+  isLoading = false,
+  leftIcon,
+  caretIconName,
+  placement = 'bf',
+  classes,
+  onClick,
+  children,
+  ...otherProps
+}: IProps) => {
+
   const {
     ref,
     clickData,
   } = useClickOutside();
-  
+
   const dropdownProps = {
     ...otherProps,
-    className:Classnames(
+    className: Classnames(
       styles['sezy-dropdown'],
       // styles['sezy-dropdown-'+type],
-      styles['sezy-dropdown-size-'+size],
-      styles['sezy-dropdown-placement-'+placement],
+      styles['sezy-dropdown-size-' + size],
+      styles['sezy-dropdown-placement-' + placement],
       styles[isDisabled ? 'sezy-dropdown-disabled' : ''],
       classes,
     ),
@@ -56,39 +56,34 @@ const Dropdown = ({
 
   const CaretIcon = caretIconName && require('../icon/' + caretIconName).default;
 
-  const listClasses:string[] = ['zindex-500', 'bg-white'];
-  (isDisabled || clickData.isOutside) && listClasses.push('hidden');
-  listClasses.push(Classes(
-    // styles['sezy-dropdown'],
-    // styles['sezy-dropdown-'+type],
-    // styles['sezy-dropdown-'+size],
-    // styles[isDisabled ? 'sezy-dropdown-disabled' : ''],
-    // classes,
-  ))
   return (
     <div {...dropdownProps}>
       <div
         ref={ref}
-        className='sezy-dropdown-button cursor-pointer'
+        className={Classnames(styles['sezy-dropdown-button'])}
       >
         {leftIcon}
         {label}
         {
-        caretIconName && 
-          <CaretIcon 
-            classes='sezy-dropdown-caret ml-2'
-          />
+          caretIconName &&
+          <div className={Classnames(styles['sezy-dropdown-caret'])}>
+            <CaretIcon size={dropdownSizeToCaretSize[size]} />
+          </div>
         }
       </div>
       <List size={size}
-        classes={listClasses.join(' ')}
+        {...((isDisabled || clickData.isOutside) && { style: { display: 'none' } })}
       >
         {children}
       </List>
     </div>
   )
 }
-
+const dropdownSizeToCaretSize = {
+  s: 's1',
+  m: 's',
+  l: 'm',
+}
 export default Dropdown
 export {
   IProps as DropdownIProps,

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Classnames from 'classnames';
-import styles from './_styles.css';
 import { IconIProps} from './';
 import {Classes}from '../_base';
 
@@ -22,10 +21,6 @@ export default ({
 
     
     const svgProps = {
-        className:Classnames(
-            styles['sezy-svg-'+ size],
-            classes,
-        ),
         style: {
             transform: `rotate(${rotateDegObj[direction]}deg)`,
             transformOrigin: '50% 50%',

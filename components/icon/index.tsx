@@ -2,7 +2,9 @@
 //   SOLID = 'solid',
 //   LIGHT = 'light',
 // } 
+import Classnames from 'classnames';
 import React from 'react';
+import styles from './_styles.css';
 
 interface IProps {
   type?: 'solid' | 'light',
@@ -17,11 +19,18 @@ interface IProps {
 
 const Icon = ({
   name,
+  size = 'm',
+  classes,
   ...otherProps
 }: IProps): React.ReactElement => {
   if (name) {
     const Icon = require('./' + name).default;
-    return <Icon {...otherProps} />;
+    return <Icon
+      className={Classnames(
+        styles['sezy-svg-' + size],
+        classes,
+      )}
+      {...otherProps} />;
   }
   return <></>
 }

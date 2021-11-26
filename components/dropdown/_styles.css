@@ -41,7 +41,7 @@
     top: 50%;
     transform: translateY(-50%);
   }
-  &:has(> svg){
+  &:has(> ){
     text-align:center;
   }
 }

@@ -1,29 +1,10 @@
 import * as React from 'react';
-import Classnames from 'classnames';
-import { IconIProps} from './';
-import {Classes}from '../_base';
+import { IconIProps, IconWrapper } from '../';
 
 export default (props: IconIProps) => {
-    const {
-        type = 'light',
-        size = 'm',
-        fill,
-        classes,
-        ...otherProps
-    } = props;
-
-    
-    const svgProps = {
-        style: {
-            fill: fill,
-        },
-        ...otherProps
-    }
-
-    return (
+    return IconWrapper(undefined, props,
         <svg
             viewBox="0 0 24 24"
-            {...svgProps}
         >
             <path d="M12,0C5.373,0,0,5.373,0,12s5.373,12,12,12s12-5.373,12-12S18.627,0,12,0z M12,19.66
             c-0.938,0-1.58-0.723-1.58-1.66c0-0.964,0.669-1.66,1.58-1.66c0.963,0,1.58,0.696,1.58,1.66C13.58,18.938,12.963,19.66,12,19.66z

@@ -1,3 +1,5 @@
+@import '../../css/variables.css';
+
 .sezy-row{
   display: flex;
   flex-flow: row wrap;

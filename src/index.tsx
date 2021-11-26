@@ -1,3 +1,6 @@
+
+import "../css/default.css";
+
 import React from "react";
 import ReactDOM from "react-dom";
 import Button from '../components/button'
@@ -8,9 +11,9 @@ import Breadcrumb from '../components/breadcrumb'
 import Link from "../components/link";
 import Row from "../components/row";
 import Col from "../components/col";
-
+import UserIcon from "../components/icon/solid/user";
 const App = (): React.ReactElement => {
-  const backgroundStyle = { style: { background: '#49d5ff' } }
+  const backgroundStyle = { style: { background: '#49d5ff' } };
   return (
     <>
       <div>---Row---</div>
@@ -32,15 +35,26 @@ const App = (): React.ReactElement => {
       <Col grid={6} {...backgroundStyle}>6</Col>
 
       <div>---Button---</div>
-      <Button
-        label='aaaa'
-        type='flat'
-        round={true}
-      // isDisabled={true}
-      />
+      <Button label='Button size s' round={true} size='s' />
+      <br />
+      <Button label='Button size m' round={true} />
+      <br />
+      <Button label='Button size l' round={true} size='l' />
+      <br />
+      <Button label='Button Flat' type='flat' round={true} />
+      <br />
+      <Button label='Button Outline' type='outline' round={true} />
+      <br />
+      <Button label='Button disabled' round={true} isDisabled={true} />
+      <br />
+      <Button label='Button Loading' round={true} isLoading={true} />
 
       <div>---Link---</div>
-      <Link $icon={{name:'documentCheck'}} label='aaaaaaaaaaa'/>
+      <Link label='Link size s' size='s' />
+      <br />
+      <Link label='Link size m' />
+      <br />
+      <Link label='Link size l' size='l' />
 
       <div>---List---</div>
       <List>
@@ -51,13 +65,37 @@ const App = (): React.ReactElement => {
       </List>
 
       <div>---Dropdown---</div>
-      <Dropdown
-        caretIconName='caret'
-        label='label'
-        type='flat'
-        classes='margin-20'
-        {...backgroundStyle}
-      >
+      <Dropdown label='Dropdown S' size='s'>
+        <div>aaaa s fse fdsf</div>
+        <div>aaaa</div>
+        <div>aaaa</div>
+        <a href="google.com">aaaa</a>
+      </Dropdown>
+      <Dropdown label='Dropdown M'>
+        <div>aaaa s fse fdsf</div>
+        <div>aaaa</div>
+        <div>aaaa</div>
+        <a href="google.com">aaaa</a>
+      </Dropdown>
+      <Dropdown label='Dropdown L' size='l'>
+        <div>aaaa s fse fdsf</div>
+        <div>aaaa</div>
+        <div>aaaa</div>
+        <a href="google.com">aaaa</a>
+      </Dropdown>
+      <Dropdown label='Dropdown Flat' type='flat'>
+        <div>aaaa s fse fdsf</div>
+        <div>aaaa</div>
+        <div>aaaa</div>
+        <a href="google.com">aaaa</a>
+      </Dropdown>
+      <Dropdown label='Dropdown Click' trigger='click'>
+        <div>aaaa s fse fdsf</div>
+        <div>aaaa</div>
+        <div>aaaa</div>
+        <a href="google.com">aaaa</a>
+      </Dropdown>
+      <Dropdown label='Dropdown Loading' isLoading={true}>
         <div>aaaa s fse fdsf</div>
         <div>aaaa</div>
         <div>aaaa</div>
@@ -65,13 +103,22 @@ const App = (): React.ReactElement => {
       </Dropdown>
 
       <div>---Input---</div>
-      <Input placeholder="aaaa" errorText='Hasdasd' />
+      <Input placeholder="Input S" size='s' />
+      <Input placeholder="Input M" />
+      <Input placeholder="Input L" size='l' />
+      <Input placeholder="Input" errorText='Error' />
+      <Input placeholder="Input With Clear S" canClear={true} ref={React.useRef(null)} size='s' />
+      <Input placeholder="Input With Clear M" canClear={true} ref={React.useRef(null)} />
+      <Input placeholder="Input With Clear L" canClear={true} ref={React.useRef(null)} size='l' />
+      <Input placeholder="Input With Prefix Postfix S" prefix={<UserIcon size='s' />} postfix={<UserIcon size='s' />} size='s' />
+      <Input placeholder="Input With Prefix Postfix M" prefix={<UserIcon />} postfix={<UserIcon />} />
+      <Input placeholder="Input With Prefix Postfix L" prefix={<UserIcon size='l' />} postfix={<UserIcon size='l' />} size='l' />
+      <Input placeholder="Input With Prefix" postfix={<UserIcon />} canClear={true} ref={React.useRef(null)} />
 
       <div>---Breadcrumb---</div>
-      <Breadcrumb 
-          mapper={breadcrumbsMapper}
-        />
-
+      <Breadcrumb
+        mapper={breadcrumbsMapper}
+      />
     </>
   )
 }

@@ -5,7 +5,7 @@ import {Classes}from '../_base';
 import { Link } from "react-router-dom";
 
 interface IProps {
-  type?: 'default' | 'outline' | 'flat',
+  type?: 'outline' | 'flat',
   size?: 's' | 'm' | 'l',
   href?: string,
   isLoading?: boolean,
@@ -15,7 +15,7 @@ interface IProps {
 }
 
 const List = ({
-    type = 'default',
+    type = 'flat',
     size,
     href = '',
     isLoading = false,
@@ -24,7 +24,7 @@ const List = ({
     children,
     ...otherProps
   }: IProps) => {
-
+    console.log(classes);
   const childrenSize = React.Children.count(children);
   
   const listProps = {

@@ -4,90 +4,109 @@
   & {
     position: relative;
     user-select: none;
+    box-sizing: border-box;
   }
   & > .sezy-list {
-    background: white;
+    transition: max-height .3s cubic-bezier(0, 1, 0, 1);
+    background: #fff;
     z-index: 500;
     min-width: 100%;
+    visibility:hidden;
+    border-top: none;
+    max-height:0;
+    overflow:hidden;
   }
   & > .sezy-list > * {
     white-space: nowrap;
     cursor: pointer;
   }
+  & > .sezy-list > *:hover {
+    background-color: #00000018;
+  }
 }
+
+.sezy-dropdown-hover:hover > .sezy-list {
+  visibility:visible;
+  max-height: 1000px;
+  transition: max-height 1s ease-in-out;
+}
+
 .sezy-dropdown-button {
   & {
     cursor: pointer;
+    transition: opacity 0.5s, background-color 0.5s, color 0.3s, box-shadow 0.5s;
   }
   & > .sezy-dropdown-caret {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
   }
-}
-.sezy-dropdown-button:hover {
-}
-
-.sezy-dropdown-default {
-  & > .sezy-dropdown-button {
-    border: 1px solid var(--dropdown-border-color);
+  &:has(> svg){
+    text-align:center;
   }
 }
 
 .sezy-dropdown-outline {
   & > .sezy-dropdown-button {
-    border: 1px solid var(--dropdown-border-color);
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+  }
+  &:hover > .sezy-dropdown-button {
+    border: 1px solid 0px 0px 0px 1px var(--border-active-color);
+    box-shadow: 0px 0px 2px 1px var(--border-active-color) 88;
+    z-index: 1;
+  }
+}
+.sezy-dropdown-flat {
+  & > .sezy-dropdown-button {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: 1px solid var(--border-color);
+  }
+  &:hover > .sezy-dropdown-button {
+    /* background-color: var(--bg-active-color); */
+    border: 1px solid var(--border-active-color);
+    color: var(--button-active-text-color);
+    box-shadow: 0px 0px 2px 1px var(--border-active-color) 88;
+    z-index: 1;
   }
 }
 
-.sezy-dropdown-flat > .sezy-dropdown-button {
-  /* background-color: var(--dropdown-active-background-color); */
-  /* border:1px solid var(--dropdown-active-border-color); */
-  color: var(--dropdown-text-color);
-}
-
-.sezy-dropdown-active,
-.sezy-dropdown-default:hover,
-.sezy-dropdown-flat:hover {
-  /* background-color: var(--dropdown-active-background-color);
-    border:1px solid var(--dropdown-active-border-color);
-    color: var(--dropdown-active-text-color); */
-}
-
 /* Size */
-.sezy-dropdown-size-s > {
+.sezy-dropdown-size-s {
   & > .sezy-dropdown-button {
     & {
       padding: 0.25rem 0.5rem;
-      font-size: 0.875rem;
-      line-height: 1.25rem;
+      font-size: 0.75rem;
+      line-height: 1rem;
     }
     & > .sezy-dropdown-caret {
-      right: 0.4rem;
+      right: 0.5rem;
     }
   }
 }
 .sezy-dropdown-size-m {
   & > .sezy-dropdown-button {
     & {
-      padding: 0.375rem 1rem;
-      font-size: 1rem;
-      line-height: 1.5rem;
+      padding: 0.375rem 0.6rem;
+      font-size: 0.9rem;
+      line-height: 1.1rem;
     }
     & > .sezy-dropdown-caret {
-      right: 0.8rem;
+      right: 0.6rem;
     }
   }
 }
 .sezy-dropdown-size-l {
   & > .sezy-dropdown-button {
     & {
-      padding: 0.625rem 1rem;
-      font-size: 1.125rem;
-      line-height: 1.75rem;
+      padding: 0.625rem 0.7rem;
+      font-size: 1.05rem;
+      line-height: 1.2rem;
     }
     & > .sezy-dropdown-caret {
-      right: 1.2rem;
+      right: 0.7rem;
     }
   }
 }
@@ -159,8 +178,15 @@
 }
 
 .sezy-dropdown-disabled {
-  background-color: var(--dropdown-disabled-background-color);
-  border: 1px solid var(--dropdown-disabled-border-color);
-  color: var(--dropdown-disabled-text-color);
-  cursor: not-allowed;
+  & > .sezy-dropdown-button {
+    background-color: var(--background-disabled-color);
+    border: 1px solid var(--border-disabled-color);
+    color: var(--text-disabled-color);
+    cursor: not-allowed;
+  }
+  &:hover > .sezy-dropdown-button {
+    background-color: var(--background-disabled-color);
+    border: 1px solid var(--border-disabled-color);
+    color: var(--text-disabled-color);
+  }
 }

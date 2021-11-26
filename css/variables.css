@@ -1,56 +1,41 @@
+
+
+/* @media (prefers-color-scheme: dark) { */
 :root {
-    /*
-    * Fonts
-    */
-    --font-family: sans-serif;
-    --font-lineheight: 1.5em;
+  --font-family: sans-serif;
+  --font-lineheight: 1.5em;
 
-    /*
-    * Button
-    */
-    --button-background-color: #49d5ff;
-    --button-text-color: #383838;
-    --button-border-color: #cdcdcd;
-    --button-border-radius: 2px;
-    --button-disabled-background-color: #ececec;
-    --button-disabled-text-color: #686868;
-    --button-disabled-border-color: #cdcdcd;
-    --button-active-background-color: #1e90ff;
-    --button-active-text-color: #fff;
-    --button-active-border-color: #1e90ff;
+  --primary-color: #49d5ff;
+  --secondary-color: #1e90ff;
 
-    /*
-    * Dropdown
-    */
-    --dropdown-background-color: #1e90ff;
-    --dropdown-text-color: #383838;
-    --dropdown-border-color: #cdcdcd;
-    --dropdown-border-radius: 2px;
-    --dropdown-disabled-background-color: #ececec;
-    --dropdown-disabled-text-color: #686868;
-    --dropdown-disabled-border-color: #cdcdcd;
-    --dropdown-active-background-color: #1e90ff;
-    --dropdown-active-text-color: #fff;
-    --dropdown-active-border-color: #1e90ff;
-    
-    /*
-    * List
-    */
-    --list-border-color: #cdcdcd;
-    --list-active-background-color: #1e90ff;
-    --list-active-text-color: #fff;
-    --list-active-border-color: #1e90ff;
-    
-}
+  --text-color: #383838;
+  --active-text-color: #fff;
+  --disabled-text-color: #686868;
 
-html,
-body {
-  font-family: var(--font-family);
-  font-weight: 300;
-  line-height: var(--font-lineheight);
-  -webkit-font-smoothing: antialiased;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
+  --background-color: #fff;
+  --active-background-color: #fff;
+  --disabled-background-color: #ececec;
+
+
+  
+  --text-color: #383838;
+  --text-active-color: #383838;
+  --text-disabled-color: #686868;
+  
+  
+  --text-secondary-color: #383838;
+  --text-secondary-active-color: #383838;
+  --text-secondary-disabled-color: #686868;
+
+  --bg-color: #fff;
+  --bg-active-color: #1e90ff;
+  --bg-disabled-color: #ececec;
+
+  --border-color: #cdcdcd;
+  --border-active-color: #1e90ff;
+  --border-disabled-color: #cdcdcd;
+  
+  --border-radius: 0.075rem;
+
+  --link-color: #0000ef;
 }

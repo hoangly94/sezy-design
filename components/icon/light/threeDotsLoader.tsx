@@ -1,28 +1,9 @@
 import * as React from 'react';
-import Classnames from 'classnames';
-import { IconIProps} from './';
-import {Classes}from '../_base';
+import { IconIProps, IconWrapper } from '../';
 
 export default (props: IconIProps) => {
-    const {
-        type = 'light',
-        size = 'm',
-        fill,
-        classes,
-        ...otherProps
-    } = props;
-    
-    
-    const svgProps = {
-        style: {
-            fill: fill,
-        },
-        ...otherProps
-    }
-
-    return (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 30" 
-            {...svgProps}>
+    return IconWrapper(undefined, props,
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 30" >
             <circle cx="15" cy="15" r="15" >
                 <animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear" repeatCount="indefinite" />
                 <animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.5;1" calcMode="linear" repeatCount="indefinite" />

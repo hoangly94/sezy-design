@@ -1,38 +1,16 @@
 import * as React from 'react';
-import Classnames from 'classnames';
-import { IconIProps} from './';
-import {Classes}from '../_base';
+import { IconIProps, IconWrapper } from '../';
 
-export default ({
-        type = 'light',
-        direction = 'down',
-        size = 'm',
-        fill = '#383838',
-        classes,
-        ...otherProps
-    }: IconIProps) => {
-    
-    const rotateDegObj = {
+export default (props: IconIProps) => {
+    const rotateDegMapper = {
         'up': '180',
         'right': '-90',
         'down': '0',
         'left': '90',
     };
-
-    
-    const svgProps = {
-        style: {
-            transform: `rotate(${rotateDegObj[direction]}deg)`,
-            transformOrigin: '50% 50%',
-            fill: fill,
-        },
-        ...otherProps
-    }
-
-    return (
+    return IconWrapper(rotateDegMapper, {...props, direction:'down'},
         <svg
             viewBox="0 0 292.362 292.362" xmlns="http://www.w3.org/2000/svg"
-            {...svgProps}
         >
             <path d="M286.935,69.377c-3.614-3.617-7.898-5.424-12.848-5.424H18.274c-4.952,0-9.233,1.807-12.85,5.424
 		C1.807,72.998,0,77.279,0,82.228c0,4.948,1.807,9.229,5.424,12.847l127.907,127.907c3.621,3.617,7.902,5.428,12.85,5.428

@@ -1,10 +1,9 @@
 import * as React from 'react';
 import Classnames from 'classnames';
 import styles from './_styles.css';
-import tailwindStyles from '../../src/index.css';
 import { Link } from "react-router-dom";
-import ThreeDotsLoader from '../icon/threeDotsLoader';
-import {Classes} from '../_base';
+import ThreeDotsLoader from '../icon/solid/threeDotsLoader';
+
 
 interface IProps {
   type?: 'outline' | 'flat',
@@ -21,7 +20,7 @@ interface IProps {
 }
 
 const Button = ({
-    type = 'outline',
+    type = 'flat',
     size = 'm',
     label,
     isDisabled = false,
@@ -34,15 +33,14 @@ const Button = ({
     children,
     ...otherProps
   }: IProps) => {
-  const child = isLoading ? <ThreeDotsLoader size='l2' fill='#fff' /> : (label ?? children);
+  const child = isLoading ? <ThreeDotsLoader size='l2'/> : (label ?? children);
   const buttonProps = {
     ...otherProps,
     className:Classnames(
       styles['sezy-button'],
       styles['sezy-button-'+type],
       styles['sezy-button-'+size],
-      styles[isDisabled ? 'sezy-button-disabled' : ''],
-      styles[round ? 'sezy-button-round' : ''],
+      isDisabled && styles['sezy-button-disabled'],
       classes,
     ),
     onClick: (e) => !isDisabled && !isLoading && onClick && onClick(e),

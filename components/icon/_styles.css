@@ -1,7 +1,13 @@
+@import '../../css/variables.css';
+
 .sezy-icon{
     vertical-align: middle;
+    fill: var(--text-color);
 }
-.sezy-svg-{
+.sezy-icon>*{
+    fill: inherit;
+}
+.sezy-icon-{
     &s2{
         width: 0.25rem;
     }

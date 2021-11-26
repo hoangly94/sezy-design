@@ -17,25 +17,43 @@ interface IProps {
   name?: 'bars' | 'caret' | 'checkCircle' | 'chevron' | 'circle' | 'circleDotCenter' | 'documentCheck' | 'exclamationCircle' | 'home' | 'homeLove' | 'threeDotsLoader' | 'user',
 }
 
-const Icon = ({
-  name,
-  size = 'm',
-  classes,
-  ...otherProps
-}: IProps): React.ReactElement => {
-  if (name) {
-    const Icon = require('./' + name).default;
-    return <Icon
-      className={Classnames(
-        styles['sezy-svg-' + size],
+const IconWrapper = (
+  rotateDegMapper,
+  {
+    type = 'light',
+    direction = 'down',
+    size = 'm',
+    fill,
+    classes,
+    ...otherProps
+  }: IProps,
+  Svg: any
+) => {
+
+  return React.Children.map<any, any>(Svg, child => (
+    React.cloneElement(child, {
+      ...child?.props,
+      className: Classnames(
+        styles['sezy-icon'],
+        styles['sezy-icon-' + size],
         classes,
-      )}
-      {...otherProps} />;
-  }
-  return <></>
+      ),
+      ...otherProps,
+      style: {
+        ...(
+          rotateDegMapper &&
+          {
+            transform: `rotate(${rotateDegMapper[direction]}deg)`,
+            transformOrigin: '50% 50%',
+          }
+        ),
+        ...(fill && { fill: fill }),
+      },
+    })
+  ));
 }
 
-export default Icon
 export {
   IProps as IconIProps,
+  IconWrapper,
 }

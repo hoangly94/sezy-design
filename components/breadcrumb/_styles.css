@@ -1,66 +1,64 @@
-.breadcrumbs{
-  &{
-    display:flex;
-    padding: 18px 38px 18px 288px;
+@import '../../css/variables.css';
+
+.breadcrumbs {
+  & {
+    display: flex;
   }
-  &>a{
-    color:#383838;
+  & > a {
+    color: var(--text-color);
   }
-  &>svg{
-    color:#383838;
+  & svg {
+    fill: var(--text-color) !important;
   }
-  &>span{
-    color:#383838;
-  }
-}
-//size
-.breadcrumbs{
-  &-s{
-    /* padding: 5px 18px; */
-    &>a{
-      font-size:15px;
-      margin-right: 6px;
-    }
-    &>span{
-      font-size:15px;
-      margin-right: 6px;
-    }
-    &>svg{
-      margin-right: 6px;
-    }
-  }
-  &-m{
-    &>a{
-      font-size:18px;
-      margin-right: 8px;
-    }
-    &>span{
-      font-size:18px;
-      margin-right: 8px;
-    }
-    &>svg{
-      margin-right: 8px;
-    }
-    /* padding: 8px 28px; */
-  }
-  &-l{
-    &>a{
-      font-size:22px;
-      margin-right: 10px;
-    }
-    &>span{
-      font-size:22px;
-      margin-right: 10px;
-    }
-    &>svg{
-      margin-right: 10px;
-    }
-    /* padding: 12px 38px; */
+  & > span {
+    color: var(--text-color);
   }
 }
 
-@media (max-width: 768px){
-  .breadcrumbs{
-    display:none;
+.breadcrumbs {
+  &-s {
+    & > a {
+      font-size: 15px;
+      margin-right: 6px;
+    }
+    & > span {
+      font-size: 15px;
+      margin-right: 6px;
+    }
+    & > svg {
+      margin-right: 6px;
+    }
+  }
+  &-m {
+    & > a {
+      font-size: 18px;
+      margin-right: 8px;
+    }
+    & > span {
+      font-size: 18px;
+      margin-right: 8px;
+    }
+    & > svg {
+      margin-right: 8px;
+    }
+  }
+  &-l {
+    & > a {
+      font-size: 22px;
+      margin-right: 10px;
+    }
+    & > span {
+      font-size: 22px;
+      margin-right: 10px;
+    }
+    & > svg {
+      margin-right: 10px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .breadcrumbs {
+    display: none;
   }
 }

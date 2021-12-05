@@ -6,6 +6,7 @@ import ReactDOM from "react-dom";
 import Button from '../components/button'
 import List from '../components/list'
 import Dropdown from '../components/dropdown'
+import Select from '../components/select'
 import Input from '../components/input'
 import Breadcrumb from '../components/breadcrumb'
 import Link from "../components/link";
@@ -16,6 +17,13 @@ const App = (): React.ReactElement => {
   const backgroundStyle = { style: { background: '#49d5ff' } };
   return (
     <>
+      <div>---Select---</div>
+      <Select size='s' ref={React.useRef(null)}>
+        <div {...{ value: '111111' }}>a1</div>
+        <div {...{ value: 'a2' }}>a2</div>
+        <div {...{ value: 'a3' }}>a3</div>
+        <a {...{ value: '44444444444' }}>a4</a>
+      </Select>
       <div>---Row---</div>
       <Row gaps={[1, 1]}>
         <a {...backgroundStyle}>1</a>
@@ -107,18 +115,22 @@ const App = (): React.ReactElement => {
       <Input placeholder="Input M" />
       <Input placeholder="Input L" size='l' />
       <Input placeholder="Input" errorText='Error' />
-      <Input placeholder="Input With Clear S" canClear={true} ref={React.useRef(null)} size='s' />
-      <Input placeholder="Input With Clear M" canClear={true} ref={React.useRef(null)} />
-      <Input placeholder="Input With Clear L" canClear={true} ref={React.useRef(null)} size='l' />
+      <Input placeholder="Input With Clear S" isClearable={true} ref={React.useRef(null)} size='s' />
+      <Input placeholder="Input With Clear M" isClearable={true} ref={React.useRef(null)} />
+      <Input placeholder="Input With Clear L" isClearable={true} ref={React.useRef(null)} size='l' />
       <Input placeholder="Input With Prefix Postfix S" prefix={<UserIcon size='s' />} postfix={<UserIcon size='s' />} size='s' />
       <Input placeholder="Input With Prefix Postfix M" prefix={<UserIcon />} postfix={<UserIcon />} />
       <Input placeholder="Input With Prefix Postfix L" prefix={<UserIcon size='l' />} postfix={<UserIcon size='l' />} size='l' />
-      <Input placeholder="Input With Prefix" postfix={<UserIcon />} canClear={true} ref={React.useRef(null)} />
+      <Input placeholder="Input With Prefix" postfix={<UserIcon />} isClearable={true} ref={React.useRef(null)} />
+      <Input placeholder="Input Disabled" isDisabled={true} />
+      <Input placeholder="Input Loading" isLoading={true} />
 
       <div>---Breadcrumb---</div>
       <Breadcrumb
         mapper={breadcrumbsMapper}
       />
+
+
     </>
   )
 }

@@ -1,6 +1,6 @@
 {
   "name": "sezy-design",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "description": "super easy app",
   "main": "src/index.ts",
   "repository": {

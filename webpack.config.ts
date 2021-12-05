@@ -10,35 +10,22 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 export default {
   name: "local",
   mode: 'development',
-  // Where files should be sent once they are bundled
- output: {
-   path: path.join(__dirname, '/dist'),
-   filename: 'sezy-design.js'
- },
-  node:{
-    // tls: 'empty',
-    // Buffer: true,
+  output: {
+    path: path.join(__dirname, '/dist'),
+    filename: 'sezy-design.js'
   },
   optimization: {
     minimizer: [
       new OptimizeCSSAssetsPlugin({}),
       new TerserPlugin({
-        // Use multi-process parallel running to improve the build speed
-        // Default number of concurrent runs: os.cpus().length - 1
         parallel: true,
       }),
     ],
-    // splitChunks: {
-    //   chunks: 'all',
-    //   name: 'vendor',
-    // },
   },
   plugins: [
     new ForkTsCheckerWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: 'sezy-design.css',
-      // filename: `${commonPaths.cssFolder}/[name].[contenthash].css`,
-      // chunkFilename: `${commonPaths.cssFolder}/[name].[contenthash].css`,
     }),
     new HtmlWebpackPlugin({ template: './src/index.html' }),
   ],
@@ -124,7 +111,6 @@ export default {
     ],
   },
   resolve: {
-    // modules: [path.join(__dirname, '..', 'src'), path.join(__dirname, '..', 'node_modules')],
     extensions: ['.tsx', '.ts', '.js', '.jsx', ".css"],
     alias: {
     },
@@ -132,12 +118,13 @@ export default {
   },
   devtool: 'eval-source-map',
   devServer: {
-    // contentBase: path.join(__dirname, "dist"),
-    // historyApiFallback: true,
-    // contentBase: commonPaths.devServerContentBase,
-    compress: true, 
-    port: 4000,
-    watchContentBase: true
+    contentBase: path.join(__dirname, "dist"),
+    publicPath: '/',
+    historyApiFallback: true,
+    compress: true,
+    port: 3000,
+    watchContentBase: true,
+    open: true,
   },
 };
 

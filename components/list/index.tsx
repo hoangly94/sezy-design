@@ -24,7 +24,6 @@ const List = ({
     children,
     ...otherProps
   }: IProps) => {
-    console.log(classes);
   const childrenSize = React.Children.count(children);
   
   const listProps = {

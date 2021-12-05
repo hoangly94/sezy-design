@@ -17,6 +17,12 @@
 div[data-line]:after {
   content: attr(data-line); /* no quotes around attribute name! */
 }
+.sezy-input-disabled {
+  background-color: var(--input-disabled-background-color);
+  border: 1px solid var(--input-disabled-border-color);
+  color: var(--input-disabled-text-color);
+  cursor: default;
+}
 
 .sezy-input {
   & {
@@ -109,20 +115,4 @@ div[data-line]:after {
   transition: fill 0.5s;
   fill: #888888;
   cursor: pointer;
-}
-
-.sezy-input-disabled {
-  & {
-    box-shadow: none;
-    border: 1px solid var(--border-disabled-color);
-    background-color: var(--bg-disabled-color);
-    color: var(--text-disabled-color);
-    cursor: default;
-  }
-  &:hover {
-    box-shadow: none;
-    border: 1px solid var(--border-disabled-color);
-    background-color: var(--bg-disabled-color);
-    color: var(--text-disabled-color);
-  }
 }

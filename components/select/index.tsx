@@ -1,196 +1,116 @@
-// import React, { useRef, useState, useEffect } from 'react'
-// import Classnames from 'classnames'
-// import styles from './_styles.css';
-// import {Classes}from '../_base';
-// import * as Block from "~commons/block";
-// import * as Text from "~commons/text";
-// import * as Input from "~commons/input";
-// import Caret from "~svg/caret";
-// import * as SVG from "~svg/index";
-// import * as Option from "./option";
-// import { useClickOutside, useForceRender } from '../../hooks';
+import * as React from 'react';
+import Classnames from 'classnames';
+import styles from './_styles.css';
+import List from '../list';
+import Input from '../input';
+import { useClickOutside } from '../../hooks';
+import Caret from '../icon/solid/caret';
+import ThreeDotsLoader from '../icon/solid/threeDotsLoader';
 
-// export enum Type {
-//   DEFAULT = 'combox',
-// }
+interface IProps {
+  type?: 'flat' | 'outline',
+  size?: 's' | 'm' | 'l',
+  href?: string,
+  isDisabled?: boolean,
+  isLoading?: boolean,
+  isSearchable?: boolean,
+  placement?: 't' | 'tr' | 'tl' | 'r' | 'rt' | 'rb' | 'b' | 'br' | 'bf' | 'l' | 'lt' | 'lb',
+  trigger?: 'hover' | 'click',
+  classes?: string,
+  onClick?: React.MouseEventHandler,
+  children?: React.ReactNode,
+}
 
-// export enum Size {
-//   S1 = 'size-s1',
-//   S = 'size-s',
-//   M = 'size-m',
-//   L = 'size-l',
-//   L1 = 'size-l1',
-// }
+const Select = ({
+  type = 'outline',
+  size = 'm',
+  href = '',
+  isDisabled = false,
+  isLoading = false,
+  isSearchable = false,
+  placement = 'bf',
+  trigger = 'hover',
+  classes,
+  onClick,
+  children,
+  ...otherProps
+}: IProps, ref) => {
+  const {
+    ref: clickOutsideRef,
+    clickData,
+  } = useClickOutside();
+  const selectProps = {
+    ...otherProps,
+    className: Classnames(
+      styles['sezy-select'],
+      styles['sezy-select-' + type],
+      styles['sezy-select-size-' + size],
+      styles['sezy-select-placement-' + placement],
+      isDisabled && styles['sezy-select-disabled'],
+      trigger === 'hover' && !(isLoading || isDisabled) && styles['sezy-select-hover'],
+      classes,
+    ),
+    onClick: (e) => !isDisabled && !isLoading && onClick && onClick(e),
+  }
 
-// interface IProps{
-//   type?: Type,
-//   size?: Size,
-//   label?: string,
-//   $selectorWrapper?: Block.Props & {
-//   }
-//   $optionsWrapper?: Block.Props & {
-//     $options?: Option.Props[],
-//   },
-//   isMulti: boolean,
-//   isDisabled?: boolean,
-//   isInputDisabled?: boolean,
-// }
+  const convertListItem = () => {
+    return React.Children.map<any, any>(children, child => (
+      React.cloneElement(child, {
+        ...child?.props,
+        onClick: (e) => {
+          child?.props?.onClick && child?.props?.onClick(e);
+          console.log('----------');
+          console.log(child?.props);
+          console.log(ref?.current);
+          ref?.current && (ref.current.value = child?.props?.value ?? '');
+          // ref?.current && (ref.current = '');
+        },
+      })
+    ));
+  };
 
-// const Select = ({
-//     type = Type.DEFAULT,
-//     $selectorWrapper,
-//     $optionsWrapper,
-//     size = Size.M,
-//     isMulti = false,
-//     isDisabled = false,
-//     isInputDisabled = false,
-//   }: IProps) => {
-//   const forceRender = useForceRender();
-//   const disabled = isDisabled ? 'disabled' : '';
-//   const [optionsFilter, setOptionsFilter] = useState('');
-//   const inputTextRef = useRef((defaultText as any)?.text);
-//   const inputPlaceholderRef = useRef((defaultText as any)?.text);
-//   useEffect(() => {
-//     if (inputTextRef.current || (defaultText as any)?.value  === '' || (defaultText as any)?.value || (defaultText as any)?.text === 'Tất cả') {
-//       inputTextRef.current = (defaultText as any)?.text;
-//       forceRender();
-//     }
-//   }, [defaultText?.text]);
+  return (
+    <div {...selectProps}>
+      <div
+        ref={clickOutsideRef}
+      >
+        {
+          isLoading ? <ThreeDotsLoader size='l2' classes="sezy-select-loading" /> :
+            <>
+              <Input ref={ref} size={size} postfix={<Caret size={selectSizeToCaretSize[size] as any} />} />
+              {/* <div className={Classnames(styles['sezy-select-caret'])}>
+                
+              </div> */}
+            </>
+        }
+      </div>
+      <List type='outline' size={size}>
+        {convertListItem()}
+      </List>
+    </div>
+  )
+}
 
-//   const {
-//     ref,
-//     clickData,
-//   } = useClickOutside();
+const selectSizeToCaretSize = {
+  s: 's2',
+  m: 's1',
+  l: 's',
+}
 
-//   
-//   const componentWrapperProps = {
-//     classNames: Classnames(
-//       styles[type],
-//     ),
-//     ...props,
-//   };
 
-//   const textProps: Text.Props = {
-//     text: (defaultText as any)?.text ?? 'Default Text',
-//     style: {
-//       whiteSpace: 'nowrap',
-//       paddingRight: '18px',
-//     }
-//   };
+export default React.forwardRef(Select)
+export {
+  IProps as SelectIProps,
+}
 
-//   const selectorWrapperProps: Block.Props = {
-//     classNames: Classnames(
-//       styles['combox-selector'],
-//       styles[disabled],
-//       styles[size],
-//     ),
-//     backgroundColor: Base.BackgroundColor.WHITE,
-//     padding: Base.Padding.PX_8,
-//     border: Base.Border.SOLID,
-//     refs: ref,
-//     style: {
-//       padding: '0px',
-//     },
-//     ...$selectorWrapper,
-//   };
 
-//   const display = !disabled && !clickData.isOutside ? { display: 'block' } : { display: 'none' };
-//   const optionsWrapperProps: Block.Props = {
-//     classNames: Classnames(
-//       styles['combox-options'],
-//     ),
-//     backgroundColor: Base.BackgroundColor.WHITE,
-//     style: {
-//       ...display,
-//     },
-//     ...$optionsWrapper,
-//   };
-//   return (
-//     <Block.Element {...componentWrapperProps}>
-//       <Block.Element {...selectorWrapperProps}>
-//         {/* <Text.Element {...textProps} /> */}
-//         {/* {InputElement.current} */}
-//         <Input.Element
-//           isDisabled={isInputDisabled}
-//           defaultValue={inputTextRef.current}
-//           placeholder={inputPlaceholderRef.current}
-//           onChange={handleInputOnChange(setOptionsFilter, inputTextRef)}
-//           style={{
-//             whiteSpace: 'nowrap',
-//             paddingRight: '18px',
-//             border: '0px',
-//             width: '100%',
-//           }}
-//         />
-//         <Caret {...caretProps} />
-//       </Block.Element>
-//       <Block.Element {...optionsWrapperProps}>
-//         {store.defaultOptions?.map(mapFunctionsToDefaultItemElement(props, dispatch))}
-//         {options?.filter(item =>
-//           !optionsFilter || ~(item[store.reducerKeys.text] as any)?.toLowerCase().search(optionsFilter.toLowerCase()))
-//           .map(mapFunctionsToItemElement(props, dispatch))}
-//       </Block.Element>
-//     </Block.Element>
-//   )
-// }
 
-// const caretProps = {
-//   size: SVG.Size.S2,
-//   classNames: styles['caret'],
-// };
-// const handleInputOnChange = (setOptionsFilter, inputTextRef) => (e) => {
-//   setOptionsFilter(e.target.value);
-//   inputTextRef.current = e.target.value;
-// }
-// const mapFunctionsToDefaultItemElement = (props: Props, dispatch) => {
-//   const store = props.store;
-//   const type = store.reducerType;
 
-//   return (option, index: number) => {
-//     const child = {
-//       text: option.text,
-//       value: option.value,
-//     }
 
-//     const itemProps = {
-//       key: index,
-//       padding: Base.Padding.PX_8,
-//       ...(props.$optionsWrapper?.$options ? props.$optionsWrapper.$options[index] : {}),
 
-//       onClick: () => {
-//         if (!props.isDisabled)
-//           dispatch({ type: type, data: child })
-//       },
-//       ...child,
-//     }
-//     return <Option.Element {...itemProps} />
-//   }
-// }
 
-// const mapFunctionsToItemElement = (props: Props, dispatch) => {
-//   const store = props.store;
-//   const type = store.reducerType;
-//   const keys = store.reducerKeys;
 
-//   return (option, index: number) => {
-//     const child = {
-//       text: option[keys.text],
-//       value: option[keys.value],
-//     }
 
-//     const itemProps = {
-//       key: index,
-//       padding: Base.Padding.PX_8,
-//       ...(props.$optionsWrapper?.$options ? props.$optionsWrapper.$options[index] : {}),
 
-//       onClick: () => {
-//         if (!props.isDisabled)
-//           dispatch({ type: type, data: child, keys: props.store?.defaultSelectorKeys?.slice(1) })
-//       },
-//       ...child,
-//     }
-//     return <Option.Element {...itemProps} />
-//   }
-// }
 
-// export default Select;
+

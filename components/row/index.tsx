@@ -30,7 +30,7 @@ const Row = ({
       classes,
     ),
     style: {
-      margin: '0 -' + (isNaN(gaps[0]) ? gaps[0] : gaps[0] + 'rem'),
+      // margin: '0 -' + (isNaN(gaps[0]) ? gaps[0] : gaps[0] + 'rem'),
     }
   };
   return (

@@ -2,6 +2,7 @@ import * as React from 'react';
 import Classnames from 'classnames';
 import styles from './_styles.css';
 import Delete from '../icon/solid/delete';
+import AutoComplete, { AutoCompleteIProps } from '../autoComplete';
 
 interface IProps {
   type?: 'text' | 'password' | 'email' | 'number' | 'phone'
@@ -11,13 +12,13 @@ interface IProps {
   placeholder?: string,
   isDisabled?: boolean,
   isLoading?: boolean,
-  canClear?: boolean,
+  isClearable?: boolean,
   prefix?: React.ReactNode,
   postfix?: React.ReactNode,
   errorText?: string,
   errorPlacement?: 't' | 'r' | 'b' | 'l',
+  $AutoComplete?: AutoCompleteIProps,
   classes?: string,
-  ref?: any,
   onClick?: React.MouseEventHandler,
   onChange?: React.MouseEventHandler,
   onBlur?: React.MouseEventHandler,
@@ -33,11 +34,12 @@ const Input = ({
   placeholder = '',
   isDisabled = false,
   isLoading = false,
-  canClear = false,
+  isClearable = false,
   prefix,
   postfix,
   errorText,
   errorPlacement = 'b',
+  $AutoComplete,
   classes,
   onClick,
   onChange,
@@ -55,7 +57,7 @@ const Input = ({
     }
   }
   const showHideClearButton = () => {
-    canClear && ref?.current?.value?.length ? !showClearButton && setShowClearButton(true) : setShowClearButton(false);
+    isClearable && ref?.current?.value?.length ? !showClearButton && setShowClearButton(true) : setShowClearButton(false);
 
   }
 
@@ -81,18 +83,17 @@ const Input = ({
             styles['sezy-input-wrapper'],
             styles['sezy-input-error-' + errorPlacement],
             styles['sezy-input-' + size],
-            styles[isDisabled ? 'sezy-input-disabled' : ''],
+            (isDisabled || isLoading) && styles['sezy-input-disabled'],
           )
         }>
         {prefix}
-        <input  {...inputProps} ref={ref} />
+        <input  {...inputProps} ref={ref} disabled={isDisabled || isLoading} />
         {showClearButton && <Delete fill='#b8b8b8' classes={styles['sezy-input-clear']} onClick={clearValue} size={size} />}
         {postfix}
       </div>
     </div>
   )
 }
-
 
 export default React.forwardRef(Input)
 export {

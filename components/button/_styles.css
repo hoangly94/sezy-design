@@ -43,20 +43,6 @@
   }
 }
 
-.sezy-button-disabled {
-  & {
-    box-shadow: 0px 0px 0px 1px var(--border-disabled-color);
-    background-color: var(--bg-disabled-color);
-    color: var(--text-disabled-color);
-    cursor: not-allowed;
-  }
-  &:hover {
-    box-shadow: 0px 0px 0px 1px var(--border-disabled-color);
-    background-color: var(--bg-disabled-color);
-    color: var(--text-disabled-color);
-  }
-}
-
 .sezy-button- {
   &s {
     & {
@@ -78,5 +64,21 @@
       font-size: 1.05rem;
       line-height: 1.2rem;
     }
+  }
+}
+
+.sezy-button-disabled {
+  & {
+    box-shadow: none;
+    border: 1px solid var(--border-disabled-color);
+    background-color: var(--bg-disabled-color);
+    color: var(--text-disabled-color);
+    cursor: default;
+  }
+  &:hover {
+    box-shadow: none;
+    border: 1px solid var(--border-disabled-color);
+    background-color: var(--bg-disabled-color);
+    color: var(--text-disabled-color);
   }
 }

@@ -1,5 +1,3 @@
-export type { BlockIProps } from './components/block';
-export { default as Block } from './components/block';
 export type { RowIProps } from './components/row';
 export { default as Row } from './components/row';
 export type { ColIProps } from './components/col';
@@ -14,5 +12,7 @@ export type { ListIProps } from './components/list';
 export { default as List } from './components/list';
 export type { DropdownIProps } from './components/dropdown';
 export { default as Dropdown } from './components/dropdown';
+export type { SelectIProps } from './components/select';
+export { default as Select } from './components/select';
 export type { InputIProps } from './components/input';
 export { default as Input } from './components/input';

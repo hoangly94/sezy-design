@@ -17,7 +17,7 @@ interface IProps {
   caretIcon?: React.ReactNode,
   placement?: 't' | 'tr' | 'tl' | 'r' | 'rt' | 'rb' | 'b' | 'br' | 'bf' | 'l' | 'lt' | 'lb',
   trigger?: 'hover' | 'click',
-
+  
   classes?: string,
   onClick?: React.MouseEventHandler,
   children?: React.ReactNode,
@@ -77,7 +77,7 @@ const Dropdown = ({
         }
       </div>
       <List type='outline' size={size}
-        {...(trigger === 'click' && !(isLoading || isDisabled || clickData.isOutside) && { style: { maxHeight: '1000px' } })}
+        // {...(trigger === 'click' && !(isLoading || isDisabled || clickData.isOutside) && { style: { visibility:'visible', maxHeight: '1000px', transition: 'max-height 1s ease-in-out' } })}
       >
         {children}
       </List>
@@ -89,6 +89,7 @@ const dropdownSizeToCaretSize = {
   m: 's1',
   l: 's',
 }
+
 export default Dropdown
 export {
   IProps as DropdownIProps,

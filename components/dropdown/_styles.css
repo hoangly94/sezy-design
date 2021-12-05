@@ -182,7 +182,7 @@
     background-color: var(--background-disabled-color);
     border: 1px solid var(--border-disabled-color);
     color: var(--text-disabled-color);
-    cursor: not-allowed;
+    cursor: default;
   }
   &:hover > .sezy-dropdown-button {
     background-color: var(--background-disabled-color);

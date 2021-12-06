@@ -3,14 +3,14 @@ import Classnames from 'classnames';
 import styles from './_styles.css';
 import List from '../list';
 import Input from '../input';
-import { useClickOutside } from '../../hooks';
+import { useClickOutside, useHover } from '../../hooks';
 import Caret from '../icon/solid/caret';
 import ThreeDotsLoader from '../icon/solid/threeDotsLoader';
 
 interface IProps {
   type?: 'flat' | 'outline',
   size?: 's' | 'm' | 'l',
-  href?: string,
+  placeholder?: string,
   isDisabled?: boolean,
   isLoading?: boolean,
   isSearchable?: boolean,
@@ -24,21 +24,20 @@ interface IProps {
 const Select = ({
   type = 'outline',
   size = 'm',
-  href = '',
+  placeholder = '',
   isDisabled = false,
   isLoading = false,
   isSearchable = false,
   placement = 'bf',
-  trigger = 'hover',
+  trigger,
   classes,
   onClick,
   children,
   ...otherProps
 }: IProps, ref) => {
-  const {
-    ref: clickOutsideRef,
-    clickData,
-  } = useClickOutside();
+  const { ref: clickOutsideRef, isClickOutside, setClickOutside} = useClickOutside(ref);
+  const { ref: hoverRef, isHovered, setHovered} = useHover();
+
   const selectProps = {
     ...otherProps,
     className: Classnames(
@@ -47,41 +46,33 @@ const Select = ({
       styles['sezy-select-size-' + size],
       styles['sezy-select-placement-' + placement],
       isDisabled && styles['sezy-select-disabled'],
-      trigger === 'hover' && !(isLoading || isDisabled) && styles['sezy-select-hover'],
+      !(isLoading || isDisabled) && ((!trigger && (isHovered || !isClickOutside)) || (trigger === 'hover' && isHovered) || (trigger === 'click' && !isClickOutside)) && styles['sezy-select-active'],
       classes,
     ),
     onClick: (e) => !isDisabled && !isLoading && onClick && onClick(e),
   }
-
+  
   const convertListItem = () => {
     return React.Children.map<any, any>(children, child => (
       React.cloneElement(child, {
         ...child?.props,
         onClick: (e) => {
           child?.props?.onClick && child?.props?.onClick(e);
-          console.log('----------');
-          console.log(child?.props);
-          console.log(ref?.current);
           ref?.current && (ref.current.value = child?.props?.value ?? '');
-          // ref?.current && (ref.current = '');
+          setClickOutside(true);
+          setHovered(false);
         },
       })
     ));
   };
 
   return (
-    <div {...selectProps}>
-      <div
-        ref={clickOutsideRef}
-      >
+    <div {...selectProps} ref={hoverRef}>
+      <div>
         {
-          isLoading ? <ThreeDotsLoader size='l2' classes="sezy-select-loading" /> :
-            <>
-              <Input ref={ref} size={size} postfix={<Caret size={selectSizeToCaretSize[size] as any} />} />
-              {/* <div className={Classnames(styles['sezy-select-caret'])}>
-                
-              </div> */}
-            </>
+          isLoading
+            ? <ThreeDotsLoader size='l2' classes="sezy-select-loading" />
+            : <Input ref={clickOutsideRef} size={size} postfix={<Caret size={selectSizeToCaretSize[size] as any} />} placeholder={placeholder} {...{readonly:true}}/>
         }
       </div>
       <List type='outline' size={size}>

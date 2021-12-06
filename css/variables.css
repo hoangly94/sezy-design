@@ -20,8 +20,8 @@
   
   --text-color: #383838;
   --text-active-color: #383838;
-  --text-disabled-color: #686868;
-  
+  --text-disabled-color: #c8c8c8;
+  --text-placeholder-color: #999;
   
   --text-secondary-color: #383838;
   --text-secondary-active-color: #383838;
@@ -33,9 +33,10 @@
 
   --border-color: #cdcdcd;
   --border-active-color: #1e90ff;
+  --border-shadow-active-color: #1e90ff68;
   --border-disabled-color: #e8e8e8;
   
-  --border-radius: 0.075rem;
+  --border-radius: 0.15rem;
 
   --link-color: #0000ef;
 }

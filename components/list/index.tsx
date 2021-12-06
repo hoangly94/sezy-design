@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Classnames from 'classnames';
 import styles from './_styles.css';
-import {Classes}from '../_base';
 import { Link } from "react-router-dom";
 
 interface IProps {
@@ -24,9 +23,8 @@ const List = ({
     children,
     ...otherProps
   }: IProps) => {
-  const childrenSize = React.Children.count(children);
-  
-  const listProps = {
+
+    const listProps = {
     ...otherProps,
     className:Classnames(
       styles['sezy-list'],

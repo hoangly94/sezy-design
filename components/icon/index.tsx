@@ -24,6 +24,7 @@ const IconWrapper = (
     direction = 'down',
     size = 'm',
     fill,
+    isDisabled = false,
     classes,
     ...otherProps
   }: IProps,
@@ -49,6 +50,7 @@ const IconWrapper = (
         ),
         ...(fill && { fill: fill }),
       },
+      ...(isDisabled && { disabled: true }),
     })
   ));
 }

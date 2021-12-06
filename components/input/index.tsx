@@ -7,7 +7,6 @@ import AutoComplete, { AutoCompleteIProps } from '../autoComplete';
 interface IProps {
   type?: 'text' | 'password' | 'email' | 'number' | 'phone'
   size?: 's' | 'm' | 'l',
-  label?: string,
   href?: string,
   placeholder?: string,
   isDisabled?: boolean,
@@ -29,7 +28,6 @@ interface IProps {
 const Input = ({
   type = 'text',
   size = 'm',
-  label,
   href = '',
   placeholder = '',
   isDisabled = false,
@@ -73,24 +71,21 @@ const Input = ({
     onBlur: (e) => !isDisabled && !isLoading && onBlur && onBlur(e),
     onFocus: (e) => !isDisabled && !isLoading && onFocus && onFocus(e),
   }
-
+  
   return (
-    <div>
-      {label && <div className={Classnames(styles['sezy-input-label'])}>{label}</div>}
-      <div
-        className={
-          Classnames(
-            styles['sezy-input-wrapper'],
-            styles['sezy-input-error-' + errorPlacement],
-            styles['sezy-input-' + size],
-            (isDisabled || isLoading) && styles['sezy-input-disabled'],
-          )
-        }>
-        {prefix}
-        <input  {...inputProps} ref={ref} disabled={isDisabled || isLoading} />
-        {showClearButton && <Delete fill='#b8b8b8' classes={styles['sezy-input-clear']} onClick={clearValue} size={size} />}
-        {postfix}
-      </div>
+    <div
+      className={
+        Classnames(
+          styles['sezy-input-wrapper'],
+          styles['sezy-input-error-' + errorPlacement],
+          styles['sezy-input-' + size],
+          (isDisabled || isLoading) && styles['sezy-input-disabled'],
+        )
+      }>
+      {prefix}
+      <input  {...inputProps} ref={ref} disabled={isDisabled || isLoading} />
+      {showClearButton && <Delete fill='#b8b8b8' classes={styles['sezy-input-clear']} onClick={clearValue} size={size} />}
+      {postfix}
     </div>
   )
 }

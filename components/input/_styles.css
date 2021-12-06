@@ -25,6 +25,7 @@ div[data-line]:after {
     border: none;
     box-sizing: border-box;
     border-radius: var(--border-radius);
+    background: transparent;
   }
 }
 .sezy-input-wrapper {
@@ -39,7 +40,7 @@ div[data-line]:after {
   &:hover,
   &:focus-within {
     border: 1px solid var(--border-active-color);
-    box-shadow: 0px 0px 2px 1px var(--border-active-color)88;
+    box-shadow: 0px 0px 2px 1px var(--border-shadow-active-color);
     z-index: 1;
   }
 }
@@ -113,6 +114,7 @@ div[data-line]:after {
 
 .sezy-input-disabled {
   & {
+    pointer-events: none;
     box-shadow: none;
     border: 1px solid var(--border-disabled-color);
     background-color: var(--bg-disabled-color);

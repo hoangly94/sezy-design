@@ -12,13 +12,18 @@ import Breadcrumb from '../components/breadcrumb'
 import Link from "../components/link";
 import Row from "../components/row";
 import Col from "../components/col";
+import Pagination from "../components/pagination";
 import UserIcon from "../components/icon/solid/user";
 const App = (): React.ReactElement => {
   const backgroundStyle = { style: { background: '#49d5ff' } };
   return (
     <>
+      <div>---Pagination---</div>
+      <Pagination total={100} size='s'/>
+      <Pagination total={100}/>
+      <Pagination total={100} size='l'/>
       <div>---Select---</div>
-      <Select size='s' ref={React.useRef(null)}>
+      <Select ref={React.useRef(null)} placeholder='Select'>
         <div {...{ value: '111111' }}>a1</div>
         <div {...{ value: 'a2' }}>a2</div>
         <div {...{ value: 'a3' }}>a3</div>

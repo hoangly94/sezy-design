@@ -2,7 +2,7 @@ import * as React from 'react';
 import Classnames from 'classnames';
 import styles from './_styles.css';
 import List from '../list';
-import { useClickOutside } from '../../hooks';
+import { useClickOutside, useHover } from '../../hooks';
 import Caret from '../icon/solid/caret';
 import ThreeDotsLoader from '../icon/solid/threeDotsLoader';
 
@@ -17,7 +17,7 @@ interface IProps {
   caretIcon?: React.ReactNode,
   placement?: 't' | 'tr' | 'tl' | 'r' | 'rt' | 'rb' | 'b' | 'br' | 'bf' | 'l' | 'lt' | 'lb',
   trigger?: 'hover' | 'click',
-  
+
   classes?: string,
   onClick?: React.MouseEventHandler,
   children?: React.ReactNode,
@@ -39,10 +39,8 @@ const Dropdown = ({
   children,
   ...otherProps
 }: IProps) => {
-  const {
-    ref,
-    clickData,
-  } = useClickOutside();
+  const { ref: clickOutsideRef, isClickOutside, setClickOutside } = useClickOutside();
+  const { ref: hoverRef, isHovered, setHovered } = useHover();
 
   const dropdownProps = {
     ...otherProps,
@@ -52,16 +50,16 @@ const Dropdown = ({
       styles['sezy-dropdown-size-' + size],
       styles['sezy-dropdown-placement-' + placement],
       isDisabled && styles['sezy-dropdown-disabled'],
-      trigger === 'hover' && !(isLoading || isDisabled) && styles['sezy-dropdown-hover'],
+      !(isLoading || isDisabled) && ((!trigger && (isHovered || !isClickOutside)) || (trigger === 'hover' && isHovered) || (trigger === 'click' && !isClickOutside)) && styles['sezy-dropdown-active'],
       classes,
     ),
     onClick: (e) => !isDisabled && !isLoading && onClick && onClick(e),
   }
   const caretIconElement = caretIcon || <Caret size={dropdownSizeToCaretSize[size] as any} />;
   return (
-    <div {...dropdownProps}>
+    <div {...dropdownProps} ref={hoverRef}>
       <div
-        ref={ref}
+        ref={clickOutsideRef}
         className={Classnames(styles['sezy-dropdown-button'])}
       >
         {
@@ -77,7 +75,7 @@ const Dropdown = ({
         }
       </div>
       <List type='outline' size={size}
-        // {...(trigger === 'click' && !(isLoading || isDisabled || clickData.isOutside) && { style: { visibility:'visible', maxHeight: '1000px', transition: 'max-height 1s ease-in-out' } })}
+      // {...(trigger === 'click' && !(isLoading || isDisabled || isClickOutside.isOutside) && { style: { visibility:'visible', maxHeight: '1000px', transition: 'max-height 1s ease-in-out' } })}
       >
         {children}
       </List>

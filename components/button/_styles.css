@@ -15,19 +15,25 @@
   &:active {
     opacity: 0.3;
   }
+  &:disabled {
+    box-shadow: none;
+    border: 1px solid var(--border-disabled-color);
+    background-color: var(--bg-disabled-color);
+    color: var(--text-disabled-color);
+    pointer-events:none;
+  }
 }
 
 .sezy-button-outline {
   & {
-    box-shadow: 0px 0px 0px 1px var(--border-color);
+    box-shadow: inset 0px 0px 0px 1px var(--border-color);
     background-color: var(--bg-color);
     border-radius: var(--border-radius);
     color: var(--text-color);
   }
-  &:hover {
-    background-color: var(--primary-color);
-    box-shadow: 0px 0px 0px 2px var(--border-active-color);
-    color: var(--text-secondary-active-color);
+  &:hover,&[active] {
+    box-shadow: inset 0px 0px 0px 1px var(--border-active-color);
+    color: var(--border-active-color);
   }
 }
 .sezy-button-flat {
@@ -38,7 +44,6 @@
   }
   &:hover {
     background-color: var(--bg-active-color);
-    box-shadow: 0px 0px 0px 2px var(--border-active-color);
     color: var(--button-active-text-color);
   }
 }
@@ -64,21 +69,5 @@
       font-size: 1.05rem;
       line-height: 1.2rem;
     }
-  }
-}
-
-.sezy-button-disabled {
-  & {
-    box-shadow: none;
-    border: 1px solid var(--border-disabled-color);
-    background-color: var(--bg-disabled-color);
-    color: var(--text-disabled-color);
-    cursor: default;
-  }
-  &:hover {
-    box-shadow: none;
-    border: 1px solid var(--border-disabled-color);
-    background-color: var(--bg-disabled-color);
-    color: var(--text-disabled-color);
   }
 }

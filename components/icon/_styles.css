@@ -1,32 +1,40 @@
 @import '../../css/variables.css';
 
-.sezy-icon{
+.sezy-icon {
+  & {
     vertical-align: middle;
     fill: var(--text-color);
+    user-select: none;
+  }
+  &[disabled] {
+    fill: var(--text-disabled-color);
+    pointer-events:none;
+    user-select: none;
+  }
 }
-.sezy-icon>*{
-    fill: inherit;
+.sezy-icon > * {
+  fill: inherit;
 }
-.sezy-icon-{
-    &s2{
-        width: 0.25rem;
-    }
-    &s1{
-        width: 0.5rem;
-    }
-    &s{
-        width: 0.75rem;
-    }
-    &m{
-        width: 1rem;
-    }
-    &l{
-        width: 1.25rem;
-    }
-    &l1{
-        width: 1.5rem;
-    }
-    &l2{
-        width: 1.75rem;
-    }
+.sezy-icon- {
+  &s2 {
+    width: 0.25rem;
+  }
+  &s1 {
+    width: 0.5rem;
+  }
+  &s {
+    width: 0.75rem;
+  }
+  &m {
+    width: 1rem;
+  }
+  &l {
+    width: 1.25rem;
+  }
+  &l1 {
+    width: 1.5rem;
+  }
+  &l2 {
+    width: 1.75rem;
+  }
 }

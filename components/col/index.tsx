@@ -1,7 +1,6 @@
 import * as React from 'react'
 import Classnames from 'classnames';
 import styles from './_styles.css';
-import {Classes}from '../_base';
 
 interface IProps {
   grid?: number,

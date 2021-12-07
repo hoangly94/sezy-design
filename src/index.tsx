@@ -3,7 +3,7 @@ import "../css/default.css";
 
 import React from "react";
 import ReactDOM from "react-dom";
-import Button from '../components/button'
+// import Button from '../components/button'
 import List from '../components/list'
 import Dropdown from '../components/dropdown'
 import Select from '../components/select'
@@ -15,9 +15,12 @@ import Col from "../components/col";
 import Pagination from "../components/pagination";
 import Table from "../components/table";
 import UserIcon from "../components/icon/solid/user";
+
+import { Button } from '../';
+
 const App = (): React.ReactElement => {
   const backgroundStyle = { style: { background: '#49d5ff' } };
-  const tableColumns =  [
+  const tableColumns = [
     {
       index: 'd1',
       label: 'Title 1',
@@ -44,7 +47,7 @@ const App = (): React.ReactElement => {
     },
   ];
 
-  const tableData=  [
+  const tableData = [
     {
       d1: '1',
       d2: 'data 2',
@@ -61,16 +64,16 @@ const App = (): React.ReactElement => {
       d3: '3',
     },
   ];
-  
+
   return (
     <>
       <div>---Table---</div>
-      <Table columns={tableColumns} data={tableData}/>
+      <Table columns={tableColumns} data={tableData} />
 
       <div>---Pagination---</div>
-      <Pagination total={100} size='s'/>
-      <Pagination total={100}/>
-      <Pagination total={100} size='l'/>
+      <Pagination total={100} size='s' />
+      <Pagination total={100} />
+      <Pagination total={100} size='l' />
       <div>---Select---</div>
       <Select ref={React.useRef(null)} placeholder='Select'>
         <div {...{ value: '111111' }}>a1</div>

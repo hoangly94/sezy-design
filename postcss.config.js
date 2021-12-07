@@ -22,6 +22,5 @@ module.exports = {
     postCSSInlineSVG,
     colorFunction,
     cssnano,
-    require('tailwindcss')(),
   ],
 }

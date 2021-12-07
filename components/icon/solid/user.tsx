@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { IconIProps, IconWrapper } from '../';
 
 export default (props: IconIProps) => {

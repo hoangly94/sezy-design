@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Classnames from 'classnames';
 import styles from './_styles.css';
 import Delete from '../icon/solid/delete';

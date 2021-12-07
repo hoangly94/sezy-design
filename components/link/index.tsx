@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Classnames from 'classnames';
 import { Link as ReactLink } from "react-router-dom";
 import styles from './_styles.css';

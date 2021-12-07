@@ -13,11 +13,60 @@ import Link from "../components/link";
 import Row from "../components/row";
 import Col from "../components/col";
 import Pagination from "../components/pagination";
+import Table from "../components/table";
 import UserIcon from "../components/icon/solid/user";
 const App = (): React.ReactElement => {
   const backgroundStyle = { style: { background: '#49d5ff' } };
+  const tableColumns =  [
+    {
+      index: 'd1',
+      label: 'Title 1',
+    },
+    {
+      index: 'd2',
+      label: 'Title 2',
+    },
+    {
+      index: 'd3',
+      label: 'Title 3',
+    },
+    {
+      index: 'd3',
+      label: 'Title 3',
+    },
+    {
+      index: 'd3',
+      label: 'Title 3',
+    },
+    {
+      index: 'd3',
+      label: 'Title 3',
+    },
+  ];
+
+  const tableData=  [
+    {
+      d1: '1',
+      d2: 'data 2',
+      d3: 'data 3',
+    },
+    {
+      d1: 'data 1',
+      d2: '2',
+      d3: 'data 3',
+    },
+    {
+      d1: 'data 1',
+      d2: 'data 2',
+      d3: '3',
+    },
+  ];
+  
   return (
     <>
+      <div>---Table---</div>
+      <Table columns={tableColumns} data={tableData}/>
+
       <div>---Pagination---</div>
       <Pagination total={100} size='s'/>
       <Pagination total={100}/>
@@ -25,8 +74,26 @@ const App = (): React.ReactElement => {
       <div>---Select---</div>
       <Select ref={React.useRef(null)} placeholder='Select'>
         <div {...{ value: '111111' }}>a1</div>
-        <div {...{ value: 'a2' }}>a2</div>
-        <div {...{ value: 'a3' }}>a3</div>
+        <div {...{ value: '222222' }}>a2</div>
+        <div {...{ value: '3333333' }}>a3</div>
+        <a {...{ value: '44444444444' }}>a4</a>
+      </Select>
+      <Select ref={React.useRef(null)} placeholder='Select Size S' size='s'>
+        <div {...{ value: '111111' }}>a1</div>
+        <div {...{ value: '222222' }}>a2</div>
+        <div {...{ value: '3333333' }}>a3</div>
+        <a {...{ value: '44444444444' }}>a4</a>
+      </Select>
+      <Select ref={React.useRef(null)} placeholder='Select Size M' size='m'>
+        <div {...{ value: '111111' }}>a1</div>
+        <div {...{ value: '222222' }}>a2</div>
+        <div {...{ value: '3333333' }}>a3</div>
+        <a {...{ value: '44444444444' }}>a4</a>
+      </Select>
+      <Select ref={React.useRef(null)} placeholder='Select Size L' size='l'>
+        <div {...{ value: '111111' }}>a1</div>
+        <div {...{ value: '222222' }}>a2</div>
+        <div {...{ value: '3333333' }}>a3</div>
         <a {...{ value: '44444444444' }}>a4</a>
       </Select>
       <div>---Row---</div>

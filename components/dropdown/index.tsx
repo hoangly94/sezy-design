@@ -47,7 +47,7 @@ const Dropdown = ({
     className: Classnames(
       styles['sezy-dropdown'],
       styles['sezy-dropdown-' + type],
-      styles['sezy-dropdown-size-' + size],
+      styles['sezy-dropdown-' + size],
       styles['sezy-dropdown-placement-' + placement],
       isDisabled && styles['sezy-dropdown-disabled'],
       !(isLoading || isDisabled) && ((!trigger && (isHovered || !isClickOutside)) || (trigger === 'hover' && isHovered) || (trigger === 'click' && !isClickOutside)) && styles['sezy-dropdown-active'],

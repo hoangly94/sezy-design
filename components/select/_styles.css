@@ -34,20 +34,6 @@
   transition: max-height 1s ease-in-out;
 }
 
-.sezy-select-button {
-  & {
-    cursor: pointer;
-    transition: opacity 0.5s, background-color 0.5s, color 0.3s, box-shadow 0.5s;
-  }
-  & > .sezy-select-caret {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  &:has(>) {
-    text-align: center;
-  }
-}
 
 .sezy-select-outline {
   & > .sezy-select-button {
@@ -77,41 +63,11 @@
 }
 
 /* Size */
-.sezy-select-size-s {
-  & > .sezy-select-button {
-    & {
-      padding: 0.25rem 0.5rem;
-      font-size: 0.75rem;
-      line-height: 1rem;
-    }
-    & > .sezy-select-caret {
-      right: 0.5rem;
-    }
-  }
+.sezy-select-s {
 }
-.sezy-select-size-m {
-  & > .sezy-select-button {
-    & {
-      padding: 0.375rem 0.6rem;
-      font-size: 0.9rem;
-      line-height: 1.1rem;
-    }
-    & > .sezy-select-caret {
-      right: 0.6rem;
-    }
-  }
+.sezy-select-m {
 }
-.sezy-select-size-l {
-  & > .sezy-select-button {
-    & {
-      padding: 0.625rem 0.7rem;
-      font-size: 1.05rem;
-      line-height: 1.2rem;
-    }
-    & > .sezy-select-caret {
-      right: 0.7rem;
-    }
-  }
+.sezy-select-l {
 }
 
 .sezy-select > .sezy-list {
@@ -177,19 +133,5 @@
     bottom: 0;
     left: 0;
     transform: translate(-100%, 0);
-  }
-}
-
-.sezy-select-disabled {
-  & > .sezy-select-button {
-    background-color: var(--background-disabled-color);
-    border: 1px solid var(--border-disabled-color);
-    color: var(--text-disabled-color);
-    cursor: default;
-  }
-  &:hover > .sezy-select-button {
-    background-color: var(--background-disabled-color);
-    border: 1px solid var(--border-disabled-color);
-    color: var(--text-disabled-color);
   }
 }

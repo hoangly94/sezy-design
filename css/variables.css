@@ -15,8 +15,6 @@
   --background-color: #fff;
   --active-background-color: #fff;
   --disabled-background-color: #ececec;
-
-
   
   --text-color: #383838;
   --text-active-color: #383838;
@@ -37,6 +35,11 @@
   --border-disabled-color: #e8e8e8;
   
   --border-radius: 0.15rem;
+
+  
+  --table-border-color: #e8e8e8;
+  --table-header-bg: #f3f3f3;
+  --table-header-weight: 500;
 
   --link-color: #0000ef;
 }

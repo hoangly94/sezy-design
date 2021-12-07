@@ -16,3 +16,5 @@ export type { SelectIProps } from './components/select';
 export { default as Select } from './components/select';
 export type { InputIProps } from './components/input';
 export { default as Input } from './components/input';
+export type { TableIProps } from './components/table';
+export { default as Table } from './components/table';

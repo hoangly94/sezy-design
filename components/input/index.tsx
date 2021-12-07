@@ -5,13 +5,15 @@ import Delete from '../icon/solid/delete';
 import AutoComplete, { AutoCompleteIProps } from '../autoComplete';
 
 interface IProps {
-  type?: 'text' | 'password' | 'email' | 'number' | 'phone'
+  type?: 'text' | 'textValue' | 'password' | 'email' | 'number' | 'phone',
   size?: 's' | 'm' | 'l',
   href?: string,
   placeholder?: string,
+  textRef?: React.MutableRefObject<any>, // Only use for Type textValue
   isDisabled?: boolean,
   isLoading?: boolean,
   isClearable?: boolean,
+  isReadOnly?: boolean,
   prefix?: React.ReactNode,
   postfix?: React.ReactNode,
   errorText?: string,
@@ -30,9 +32,11 @@ const Input = ({
   size = 'm',
   href = '',
   placeholder = '',
+  textRef,
   isDisabled = false,
   isLoading = false,
   isClearable = false,
+  isReadOnly = false,
   prefix,
   postfix,
   errorText,
@@ -71,7 +75,7 @@ const Input = ({
     onBlur: (e) => !isDisabled && !isLoading && onBlur && onBlur(e),
     onFocus: (e) => !isDisabled && !isLoading && onFocus && onFocus(e),
   }
-  
+
   return (
     <div
       className={
@@ -79,15 +83,28 @@ const Input = ({
           styles['sezy-input-wrapper'],
           styles['sezy-input-error-' + errorPlacement],
           styles['sezy-input-' + size],
-          (isDisabled || isLoading) && styles['sezy-input-disabled'],
+          // (isDisabled || isLoading) && styles['sezy-input-disabled'],
         )
-      }>
+      }
+      {...{ disabled: isDisabled || isLoading }}
+    >
       {prefix}
-      <input  {...inputProps} ref={ref} disabled={isDisabled || isLoading} />
+      {type === 'textValue'
+        ? <>
+          <input ref={textRef} {...inputProps} disabled={isDisabled || isLoading} readOnly />
+          <input ref={ref} disabled={isDisabled || isLoading} readOnly={isReadOnly} type={mapType(type)} />
+        </>
+        : <input {...inputProps} ref={ref} disabled={isDisabled || isLoading} readOnly={isReadOnly} type={mapType(type)} />}
       {showClearButton && <Delete fill='#b8b8b8' classes={styles['sezy-input-clear']} onClick={clearValue} size={size} />}
       {postfix}
     </div>
   )
+}
+
+const mapType = type => {
+  if (type === 'textValue')
+    return 'hidden';
+  return type;
 }
 
 export default React.forwardRef(Input)

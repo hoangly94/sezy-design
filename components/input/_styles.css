@@ -43,6 +43,14 @@ div[data-line]:after {
     box-shadow: 0px 0px 2px 1px var(--border-shadow-active-color);
     z-index: 1;
   }
+  &[disabled] {
+    pointer-events: none;
+    box-shadow: none;
+    border: 1px solid var(--border-disabled-color);
+    background-color: var(--bg-disabled-color);
+    color: var(--text-disabled-color);
+    cursor: default;
+  }
 }
 
 .sezy-input- {
@@ -110,21 +118,4 @@ div[data-line]:after {
   transition: fill 0.5s;
   fill: #888888;
   cursor: pointer;
-}
-
-.sezy-input-disabled {
-  & {
-    pointer-events: none;
-    box-shadow: none;
-    border: 1px solid var(--border-disabled-color);
-    background-color: var(--bg-disabled-color);
-    color: var(--text-disabled-color);
-    cursor: default;
-  }
-  &:hover {
-    box-shadow: none;
-    border: 1px solid var(--border-disabled-color);
-    background-color: var(--bg-disabled-color);
-    color: var(--text-disabled-color);
-  }
 }

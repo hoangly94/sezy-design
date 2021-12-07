@@ -74,7 +74,7 @@
 }
 
 /* Size */
-.sezy-dropdown-size-s {
+.sezy-dropdown-s {
   & > .sezy-dropdown-button {
     & {
       padding: 0.25rem 0.5rem;
@@ -86,7 +86,7 @@
     }
   }
 }
-.sezy-dropdown-size-m {
+.sezy-dropdown-m {
   & > .sezy-dropdown-button {
     & {
       padding: 0.375rem 0.6rem;
@@ -98,7 +98,7 @@
     }
   }
 }
-.sezy-dropdown-size-l {
+.sezy-dropdown-l {
   & > .sezy-dropdown-button {
     & {
       padding: 0.625rem 0.7rem;

@@ -11,6 +11,9 @@ html{
   padding: 0;
 }
 
+input[readonly] {
+  cursor: default;
+}
 a{
   text-decoration: none;
 }

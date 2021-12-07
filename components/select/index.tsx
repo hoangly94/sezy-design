@@ -34,16 +34,17 @@ const Select = ({
   onClick,
   children,
   ...otherProps
-}: IProps, ref) => {
-  const { ref: clickOutsideRef, isClickOutside, setClickOutside} = useClickOutside(ref);
-  const { ref: hoverRef, isHovered, setHovered} = useHover();
+}: IProps, valueInputRef) => {
+  const { ref: clickOutsideRef, isClickOutside, setClickOutside } = useClickOutside(valueInputRef);
+  const { ref: hoverRef, isHovered, setHovered } = useHover();
+  const labelInputRef: React.MutableRefObject<any> = React.useRef(null);
 
   const selectProps = {
     ...otherProps,
     className: Classnames(
       styles['sezy-select'],
       styles['sezy-select-' + type],
-      styles['sezy-select-size-' + size],
+      styles['sezy-select-' + size],
       styles['sezy-select-placement-' + placement],
       isDisabled && styles['sezy-select-disabled'],
       !(isLoading || isDisabled) && ((!trigger && (isHovered || !isClickOutside)) || (trigger === 'hover' && isHovered) || (trigger === 'click' && !isClickOutside)) && styles['sezy-select-active'],
@@ -51,14 +52,15 @@ const Select = ({
     ),
     onClick: (e) => !isDisabled && !isLoading && onClick && onClick(e),
   }
-  
+
   const convertListItem = () => {
     return React.Children.map<any, any>(children, child => (
       React.cloneElement(child, {
         ...child?.props,
         onClick: (e) => {
           child?.props?.onClick && child?.props?.onClick(e);
-          ref?.current && (ref.current.value = child?.props?.value ?? '');
+          valueInputRef?.current && (valueInputRef.current.value = child?.props?.value ?? '');
+          labelInputRef?.current && (labelInputRef.current.value = child?.props?.children ?? '');
           setClickOutside(true);
           setHovered(false);
         },
@@ -72,7 +74,7 @@ const Select = ({
         {
           isLoading
             ? <ThreeDotsLoader size='l2' classes="sezy-select-loading" />
-            : <Input ref={clickOutsideRef} size={size} postfix={<Caret size={selectSizeToCaretSize[size] as any} />} placeholder={placeholder} {...{readonly:true}}/>
+            : <Input type='textValue' ref={clickOutsideRef} textRef={labelInputRef} size={size} postfix={<Caret size={selectSizeToCaretSize[size] as any} />} placeholder={placeholder} isReadOnly={true} />
         }
       </div>
       <List type='outline' size={size}>

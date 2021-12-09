@@ -18,7 +18,6 @@ module.exports = {
     postCssImport,
     postCSSAutoprefixer,
     postCSSNested,
-    postCssCssVariables,
     postCSSInlineSVG,
     colorFunction,
     cssnano,

@@ -1,5 +1,6 @@
 
 import "../css/default.css";
+import "../css/variables.css";
 
 import React from "react";
 import ReactDOM from "react-dom";

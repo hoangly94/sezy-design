@@ -4,7 +4,7 @@
 // } 
 import Classnames from 'classnames';
 import React from 'react';
-import styles from './_styles.css';
+import styles from './_styles.module.css';
 
 interface IProps {
   type?: 'solid' | 'light',

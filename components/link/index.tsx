@@ -1,7 +1,7 @@
 import React from 'react';
 import Classnames from 'classnames';
 import { Link as ReactLink } from "react-router-dom";
-import styles from './_styles.css';
+import styles from './_styles.module.css';
 
 interface IProps {
   size?: 's' | 'm' | 'l',

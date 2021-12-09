@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Classnames from 'classnames';
-import styles from './_styles.css'
+import styles from './_styles.module.css'
 import Col from '../col'
 import _ from 'lodash';
 

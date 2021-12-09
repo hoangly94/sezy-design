@@ -1,7 +1,7 @@
 import React from 'react';
 import Classnames from 'classnames';
 import Button from '../button';
-import styles from './_styles.css';
+import styles from './_styles.module.css';
 import Chevron from '../icon/solid/chevron';
 
 interface IProps {

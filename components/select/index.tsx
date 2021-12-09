@@ -1,6 +1,6 @@
 import React from 'react';
 import Classnames from 'classnames';
-import styles from './_styles.css';
+import styles from './_styles.module.css';
 import List from '../list';
 import Input from '../input';
 import { useClickOutside, useHover } from '../../hooks';

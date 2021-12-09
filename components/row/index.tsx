@@ -4,18 +4,18 @@ import styles from './_styles.module.css'
 import Col from '../col'
 import _ from 'lodash';
 
-interface IProps {
+export interface RowIProps {
   children?: React.ReactNode,
   gaps?: [any, any],
-  classes?: string,
+  className?: string,
 };
 
 const Row = ({
   children,
   gaps = [0, 0],
-  classes,
+  className,
   ...otherProps
-}: IProps): React.ReactElement => {
+}: RowIProps): React.ReactElement => {
   const childrenSize = React.Children.count(children);
   const numberGridSet = _.sum(React.Children.map<React.ReactNode, any>(children, child => child?.props?.grid ?? 0));
 
@@ -27,7 +27,7 @@ const Row = ({
     className: Classnames(
       styles['sezy-row'],
       numberGridSet ? '' : styles['sezy-row-' + childrenSize],
-      classes,
+      className,
     ),
     style: {
       // margin: '0 -' + (isNaN(gaps[0]) ? gaps[0] : gaps[0] + 'rem'),
@@ -49,6 +49,3 @@ const Row = ({
 }
 
 export default Row
-export {
-  IProps as RowIProps,
-}

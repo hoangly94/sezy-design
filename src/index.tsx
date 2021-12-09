@@ -76,7 +76,7 @@ const App = (): React.ReactElement => {
       <Pagination total={100} />
       <Pagination total={100} size='l' />
       <div>---Select---</div>
-      <Select ref={React.useRef(null)} placeholder='Select'>
+      <Select placeholder='Select'>
         <div {...{ value: '111111' }}>a1</div>
         <div {...{ value: '222222' }}>a2</div>
         <div {...{ value: '3333333' }}>a3</div>

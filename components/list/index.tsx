@@ -3,12 +3,12 @@ import Classnames from 'classnames';
 import styles from './_styles.module.css';
 import { Link } from "react-router-dom";
 
-interface IProps {
+export interface ListIProps {
   type?: 'outline' | 'flat',
   size?: 's' | 'm' | 'l',
   href?: string,
   isLoading?: boolean,
-  classes?: string,
+  className?: string,
   onClick?: React.MouseEventHandler,
   children?: React.ReactNode,
 }
@@ -18,11 +18,11 @@ const List = ({
     size,
     href = '',
     isLoading = false,
-    classes,
+    className,
     onClick,
     children,
     ...otherProps
-  }: IProps) => {
+  }: ListIProps) => {
 
     const listProps = {
     ...otherProps,
@@ -30,7 +30,7 @@ const List = ({
       styles['sezy-list'],
       styles['sezy-list-'+type],
       styles['sezy-list-'+size],
-      classes,
+      className,
     ),
   }
   
@@ -42,9 +42,6 @@ const List = ({
 }
 
 export default List
-export {
-  IProps as ListIProps,
-}
 
 
 

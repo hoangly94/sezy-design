@@ -18,3 +18,5 @@ export type { InputIProps } from './components/input';
 export { default as Input } from './components/input';
 export type { TableIProps } from './components/table';
 export { default as Table } from './components/table';
+export type { SectionIProps } from './components/section';
+export { default as Section } from './components/section';

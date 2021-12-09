@@ -1,8 +1,7 @@
 import React from 'react';
 import { IconIProps, IconWrapper } from '../';
 
-export default (props: IconIProps) => {
-
+const Home = (props: IconIProps) => {
     return IconWrapper(undefined, props,
         <svg viewBox="0 0 27.02 27.02" xmlns="http://www.w3.org/2000/svg"
         >
@@ -13,7 +12,7 @@ export default (props: IconIProps) => {
 		L13.732,1.54L0,13.635z"/>
             <polygon points="23.83,4.275 21.168,4.275 21.179,7.503 23.83,9.752 	" />
         </svg>
-
     )
 }
 
+export default Home

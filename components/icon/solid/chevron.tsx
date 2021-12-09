@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconIProps, IconWrapper } from '../';
 
-export default (props: IconIProps) => {
+const Chevron = (props: IconIProps) => {
     const rotateDegMapper = {
         'up': '180',
         'right': '-90',
@@ -18,3 +18,4 @@ export default (props: IconIProps) => {
         </svg>
     )
 }
+export default Chevron

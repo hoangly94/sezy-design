@@ -4,7 +4,7 @@ import styles from './_styles.module.css';
 import Delete from '../icon/solid/delete';
 import AutoComplete, { AutoCompleteIProps } from '../autoComplete';
 
-interface IProps {
+export interface InputIProps {
   type?: 'text' | 'textValue' | 'password' | 'email' | 'number' | 'phone',
   size?: 's' | 'm' | 'l',
   href?: string,
@@ -19,7 +19,7 @@ interface IProps {
   errorText?: string,
   errorPlacement?: 't' | 'r' | 'b' | 'l',
   $AutoComplete?: AutoCompleteIProps,
-  classes?: string,
+  className?: string,
   onClick?: React.MouseEventHandler,
   onChange?: React.MouseEventHandler,
   onBlur?: React.MouseEventHandler,
@@ -42,14 +42,14 @@ const Input = ({
   errorText,
   errorPlacement = 'b',
   $AutoComplete,
-  classes,
+  className,
   onClick,
   onChange,
   onBlur,
   onFocus,
   children,
   ...otherProps
-}: IProps, ref) => {
+}: InputIProps, ref) => {
   const [showClearButton, setShowClearButton] = React.useState(false);
 
   const clearValue = (e) => {
@@ -67,7 +67,7 @@ const Input = ({
     ...otherProps,
     className: Classnames(
       styles['sezy-input'],
-      classes,
+      className,
     ),
     placeholder,
     onClick: (e) => !isDisabled && !isLoading && onClick && onClick(e),
@@ -95,7 +95,7 @@ const Input = ({
           <input ref={ref} disabled={isDisabled || isLoading} readOnly={isReadOnly} type={mapType(type)} />
         </>
         : <input {...inputProps} ref={ref} disabled={isDisabled || isLoading} readOnly={isReadOnly} type={mapType(type)} />}
-      {showClearButton && <Delete fill='#b8b8b8' classes={styles['sezy-input-clear']} onClick={clearValue} size={size} />}
+      {showClearButton && <Delete fill='#b8b8b8' className={styles['sezy-input-clear']} onClick={clearValue} size={size} />}
       {postfix}
     </div>
   )
@@ -108,9 +108,6 @@ const mapType = type => {
 }
 
 export default React.forwardRef(Input)
-export {
-  IProps as InputIProps,
-}
 
 
 

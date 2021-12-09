@@ -6,23 +6,23 @@ import Link from "../link";
 
 // import { useLocation } from 'react-router';
 
-interface IProps {
+export interface BreadcrumbIProps {
   type?: 'breadcrumbs',
   size?: 's' | 'm' | 'l',
   homeIcon?: React.ReactNode,
   separator?: React.ReactNode,
-  classes?: string,
+  className?: string,
   mapper: Object,
 };
 
-const Breadcrumb = (props: IProps): React.ReactElement => {
+const Breadcrumb = (props: BreadcrumbIProps): React.ReactElement => {
   const {
     type = 'breadcrumbs',
     size = 'm',
     homeIcon,
     mapper,
     separator = '>',
-    classes,
+    className,
     ...otherProps
   } = props;
 
@@ -31,7 +31,7 @@ const Breadcrumb = (props: IProps): React.ReactElement => {
     className: Classnames(
       styles['breadcrumbs'],
       // styles['breadcrumbs-'+size],
-      classes,
+      className,
     ),
   };
 
@@ -72,6 +72,3 @@ const Breadcrumb = (props: IProps): React.ReactElement => {
 }
 
 export default Breadcrumb
-export {
-  IProps as BreadcrumbIProps,
-}

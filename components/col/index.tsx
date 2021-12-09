@@ -2,25 +2,25 @@ import * as React from 'react'
 import Classnames from 'classnames';
 import styles from './_styles.module.css';
 
-interface IProps {
+export interface ColIProps {
   grid?: number,
-  classes?: string,
+  className?: string,
   children?: React.ReactNode,
 };
 
 const Col = ({
   children,
   grid,
-  classes,
+  className,
   ...otherProps
-}: IProps): React.ReactElement => {
+}: ColIProps): React.ReactElement => {
 
 const props = {
   ...otherProps,
   className:Classnames(
     styles['sezy-col'],
     styles['sezy-col-'+ grid],
-    classes,
+    className,
   ),
 };
 
@@ -32,6 +32,3 @@ return (
 }
 
 export default Col
-export {
-  IProps as ColIProps,
-}

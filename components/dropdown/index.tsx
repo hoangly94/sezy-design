@@ -6,7 +6,7 @@ import { useClickOutside, useHover } from '../../hooks';
 import Caret from '../icon/solid/caret';
 import ThreeDotsLoader from '../icon/solid/threeDotsLoader';
 
-interface IProps {
+export interface DropdownIProps {
   type?: 'flat' | 'outline',
   size?: 's' | 'm' | 'l',
   label?: string,
@@ -18,7 +18,7 @@ interface IProps {
   placement?: 't' | 'tr' | 'tl' | 'r' | 'rt' | 'rb' | 'b' | 'br' | 'bf' | 'l' | 'lt' | 'lb',
   trigger?: 'hover' | 'click',
 
-  classes?: string,
+  className?: string,
   onClick?: React.MouseEventHandler,
   children?: React.ReactNode,
 }
@@ -34,11 +34,11 @@ const Dropdown = ({
   caretIcon,
   placement = 'bf',
   trigger = 'hover',
-  classes,
+  className,
   onClick,
   children,
   ...otherProps
-}: IProps) => {
+}: DropdownIProps) => {
   const { ref: clickOutsideRef, isClickOutside, setClickOutside } = useClickOutside();
   const { ref: hoverRef, isHovered, setHovered } = useHover();
 
@@ -51,7 +51,7 @@ const Dropdown = ({
       styles['sezy-dropdown-placement-' + placement],
       isDisabled && styles['sezy-dropdown-disabled'],
       !(isLoading || isDisabled) && ((!trigger && (isHovered || !isClickOutside)) || (trigger === 'hover' && isHovered) || (trigger === 'click' && !isClickOutside)) && styles['sezy-dropdown-active'],
-      classes,
+      className,
     ),
     onClick: (e) => !isDisabled && !isLoading && onClick && onClick(e),
   }
@@ -63,7 +63,7 @@ const Dropdown = ({
         className={Classnames(styles['sezy-dropdown-button'])}
       >
         {
-          isLoading ? <ThreeDotsLoader size='l2' classes="sezy-dropdown-loading" /> :
+          isLoading ? <ThreeDotsLoader size='l2' className="sezy-dropdown-loading" /> :
             <>
               {leftIcon}
               {label}
@@ -89,9 +89,6 @@ const dropdownSizeToCaretSize = {
 }
 
 export default Dropdown
-export {
-  IProps as DropdownIProps,
-}
 
 
 

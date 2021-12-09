@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import ThreeDotsLoader from '../icon/solid/threeDotsLoader';
 
 
-interface IProps {
+export interface ButtonIProps {
   type?: 'outline' | 'flat',
   size?: 's1' | 's' | 'm' | 'l' | 'l1',
   label?: string,
@@ -15,7 +15,7 @@ interface IProps {
   isLoading?: boolean,
   isExternalLink?: boolean,
   round?: boolean,
-  classes?: string,
+  className?: string,
   onClick?: React.MouseEventHandler,
   children?: React.ReactNode,
 }
@@ -30,11 +30,11 @@ const Button = ({
   isLoading = false,
   isExternalLink = false,
   round = false,
-  classes,
+  className,
   onClick,
   children,
   ...otherProps
-}: IProps) => {
+}: ButtonIProps) => {
   const child = isLoading ? <ThreeDotsLoader size='l2' /> : (label ?? children);
   const buttonProps = {
     ...otherProps,
@@ -43,7 +43,7 @@ const Button = ({
       styles['sezy-button-' + type],
       styles['sezy-button-' + size],
       // isDisabled && styles['sezy-button-disabled'],
-      classes,
+      className,
     ),
     onClick: (e) => !isDisabled && !isLoading && onClick && onClick(e),
     ...(isActive && { active: '' }),
@@ -62,9 +62,6 @@ const Button = ({
 }
 
 export default Button
-export {
-  IProps as ButtonIProps,
-}
 
 
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconIProps, IconWrapper } from '../';
 
-export default (props: IconIProps) => {
+const Delete = (props: IconIProps) => {
     return IconWrapper(undefined, props,
         <svg viewBox="0 0 459 459" xmlns="http://www.w3.org/2000/svg">
             <path d="M229.5,0C102.751,0,0,102.751,0,229.5S102.751,459,229.5,459S459,356.249,459,229.5S356.249,0,229.5,0z M307.105,271.629
@@ -10,7 +10,7 @@ export default (props: IconIProps) => {
 			l42.129-42.129l-42.129-42.129c-9.797-9.797-9.797-25.68,0-35.477s25.68-9.797,35.477,0l42.128,42.129l42.128-42.129
 			c9.797-9.797,25.68-9.797,35.477,0c9.797,9.796,9.797,25.68,0,35.477l-42.13,42.129L307.105,271.629z"/>
         </svg>
-
     )
 }
 
+export default Delete

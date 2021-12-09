@@ -3,13 +3,13 @@ import Classnames from 'classnames';
 import { Link as ReactLink } from "react-router-dom";
 import styles from './_styles.module.css';
 
-interface IProps {
+export interface LinkIProps {
   size?: 's' | 'm' | 'l',
   href?: string,
   label?: string,
   isExternal?: boolean,
   icon?: React.ReactNode,
-  classes?: string,
+  className?: string,
   onClick?: React.MouseEventHandler,
   children?: React.ReactNode,
 }
@@ -20,17 +20,17 @@ const Link = ({
   label,
   isExternal = true,
   icon,
-  classes,
+  className,
   onClick,
   children,
   ...otherProps
-}: IProps): React.ReactElement => {
+}: LinkIProps): React.ReactElement => {
   const linkProps = {
     ...otherProps,
     className: Classnames(
       styles['sezy-link'],
       styles['sezy-link-' + size],
-      classes,
+      className,
     ),
     onClick,
     ...(href ? { href } : {}),
@@ -46,6 +46,3 @@ const Link = ({
 
 
 export default Link
-export {
-  IProps as LinkIProps,
-}

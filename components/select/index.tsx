@@ -7,7 +7,7 @@ import { useClickOutside, useHover } from '../../hooks';
 import Caret from '../icon/solid/caret';
 import ThreeDotsLoader from '../icon/solid/threeDotsLoader';
 
-interface IProps {
+export interface SelectIProps {
   type?: 'flat' | 'outline',
   size?: 's' | 'm' | 'l',
   placeholder?: string,
@@ -16,7 +16,7 @@ interface IProps {
   isSearchable?: boolean,
   placement?: 't' | 'tr' | 'tl' | 'r' | 'rt' | 'rb' | 'b' | 'br' | 'bf' | 'l' | 'lt' | 'lb',
   trigger?: 'hover' | 'click',
-  classes?: string,
+  className?: string,
   onClick?: React.MouseEventHandler,
   children?: React.ReactNode,
 }
@@ -30,11 +30,11 @@ const Select = ({
   isSearchable = false,
   placement = 'bf',
   trigger,
-  classes,
+  className,
   onClick,
   children,
   ...otherProps
-}: IProps, valueInputRef) => {
+}: SelectIProps, valueInputRef) => {
   const { ref: clickOutsideRef, isClickOutside, setClickOutside } = useClickOutside(valueInputRef);
   const { ref: hoverRef, isHovered, setHovered } = useHover();
   const labelInputRef: React.MutableRefObject<any> = React.useRef(null);
@@ -48,7 +48,7 @@ const Select = ({
       styles['sezy-select-placement-' + placement],
       isDisabled && styles['sezy-select-disabled'],
       !(isLoading || isDisabled) && ((!trigger && (isHovered || !isClickOutside)) || (trigger === 'hover' && isHovered) || (trigger === 'click' && !isClickOutside)) && styles['sezy-select-active'],
-      classes,
+      className,
     ),
     onClick: (e) => !isDisabled && !isLoading && onClick && onClick(e),
   }
@@ -73,7 +73,7 @@ const Select = ({
       <div>
         {
           isLoading
-            ? <ThreeDotsLoader size='l2' classes="sezy-select-loading" />
+            ? <ThreeDotsLoader size='l2' className="sezy-select-loading" />
             : <Input type='textValue' ref={clickOutsideRef} textRef={labelInputRef} size={size} postfix={<Caret size={selectSizeToCaretSize[size] as any} />} placeholder={placeholder} isReadOnly={true} />
         }
       </div>
@@ -92,9 +92,6 @@ const selectSizeToCaretSize = {
 
 
 export default React.forwardRef(Select)
-export {
-  IProps as SelectIProps,
-}
 
 
 

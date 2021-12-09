@@ -2,11 +2,11 @@ import React from 'react';
 import Classnames from 'classnames';
 import styles from './_styles.module.css';
 
-interface IProps {
+export interface AutoCompleteIProps {
   type?: 'text' | undefined
   size?: 's' | 'm' | 'l',
   placement?: 't' | 'tr' | 'tl' | 'r' | 'rt' | 'rb' | 'b' | 'br' | 'bf' | 'l' | 'lt' | 'lb',
-  classes?: string,
+  className?: string,
   children?: React.ReactNode,
 }
 
@@ -14,16 +14,16 @@ const AutoComplete = ({
   type = undefined,
   size = 'm',
   placement = 'bf',
-  classes,
+  className,
   children,
   ...otherProps
-}: IProps, ref) => {
+}: AutoCompleteIProps, ref) => {
 
   const inputProps = {
     ...otherProps,
     className: Classnames(
       styles['sezy-autocomplete'],
-      classes,
+      className,
     ),
   }
 
@@ -33,10 +33,7 @@ const AutoComplete = ({
   )
 }
 
-export default AutoComplete;
-export {
-  IProps as AutoCompleteIProps,
-}
+export default React.forwardRef(AutoComplete)
 
 
 

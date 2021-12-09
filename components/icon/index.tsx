@@ -6,18 +6,18 @@ import Classnames from 'classnames';
 import React from 'react';
 import styles from './_styles.module.css';
 
-interface IProps {
+export interface IconIProps {
   type?: 'solid' | 'light',
   size?: 's2' | 's1' | 's' | 'm' | 'l' | 'l1' | 'l2',
   fill?: string,
   direction?: 'up' | 'right' | 'down' | 'left',
   isDisabled?: boolean,
-  classes?: string,
+  className?: string,
   onClick?: React.MouseEventHandler;
   name?: 'bars' | 'caret' | 'checkCircle' | 'chevron' | 'circle' | 'circleDotCenter' | 'documentCheck' | 'exclamationCircle' | 'home' | 'homeLove' | 'threeDotsLoader' | 'user',
 }
 
-const IconWrapper = (
+export const IconWrapper = (
   rotateDegMapper,
   {
     type = 'light',
@@ -25,9 +25,9 @@ const IconWrapper = (
     size = 'm',
     fill,
     isDisabled = false,
-    classes,
+    className,
     ...otherProps
-  }: IProps,
+  }: IconIProps,
   Svg: any
 ) => {
 
@@ -37,7 +37,7 @@ const IconWrapper = (
       className: Classnames(
         styles['sezy-icon'],
         styles['sezy-icon-' + size],
-        classes,
+        className,
       ),
       ...otherProps,
       style: {
@@ -53,9 +53,4 @@ const IconWrapper = (
       ...(isDisabled && { disabled: true }),
     })
   ));
-}
-
-export {
-  IProps as IconIProps,
-  IconWrapper,
 }

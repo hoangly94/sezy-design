@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconIProps, IconWrapper } from '..';
 
-export default (props: IconIProps) => {
+const Bars = (props: IconIProps) => {
     return IconWrapper(undefined, props,
         <svg
             viewBox="0 0 124 124" xmlns="http://www.w3.org/2000/svg"
@@ -12,4 +12,6 @@ export default (props: IconIProps) => {
         </svg>
     )
 }
+export default Bars
+
 

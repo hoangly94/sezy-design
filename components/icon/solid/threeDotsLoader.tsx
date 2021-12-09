@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconIProps, IconWrapper } from '../';
 
-export default (props: IconIProps) => {
+const ThreeDotsLoader = (props: IconIProps) => {
     return IconWrapper(undefined, props,
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 30" >
             <circle cx="15" cy="15" r="15" >
@@ -20,3 +20,4 @@ export default (props: IconIProps) => {
     )
 }
 
+export default ThreeDotsLoader

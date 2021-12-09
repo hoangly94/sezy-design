@@ -3,12 +3,12 @@ import Classnames from 'classnames';
 import styles from './_styles.module.css';
 import ThreeDotsLoader from '../icon/solid/threeDotsLoader';
 
-interface IProps {
+export interface TableIProps {
   type?: 'flat' | 'outline',
   size?: 's' | 'm' | 'l',
   columns?: TableColumn[],
   data?: TableData[],
-  classes?: string,
+  className?: string,
 }
 
 type TableColumn = {
@@ -31,9 +31,9 @@ const Table = ({
   size = 'm',
   columns,
   data,
-  classes,
+  className,
   ...otherProps
-}: IProps) => {
+}: TableIProps) => {
   const keyPrefix = 'table.';
   const tableProps = {
     ...otherProps,
@@ -41,7 +41,7 @@ const Table = ({
       styles['sezy-table'],
       styles['sezy-table-' + type],
       styles['sezy-table-' + size],
-      classes,
+      className,
     ),
   }
 
@@ -75,9 +75,6 @@ const tableSizeToCaretSize = {
 
 
 export default Table
-export {
-  IProps as TableIProps,
-}
 
 
 

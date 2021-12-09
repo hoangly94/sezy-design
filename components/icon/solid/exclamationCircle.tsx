@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconIProps, IconWrapper } from '../';
 
-export default (props: IconIProps) => {
+const ExclamationCircle = (props: IconIProps) => {
     return IconWrapper(undefined, props,
         <svg
             viewBox="0 0 24 24"
@@ -14,3 +14,4 @@ export default (props: IconIProps) => {
     )
 }
 
+export default ExclamationCircle

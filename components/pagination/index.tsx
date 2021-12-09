@@ -4,7 +4,7 @@ import Button from '../button';
 import styles from './_styles.module.css';
 import Chevron from '../icon/solid/chevron';
 
-interface IProps {
+export interface PaginationIProps {
   type?: 'outline' | 'flat',
   size?: 's' | 'm' | 'l',
   defaultPage?: number,//defaut active page, default = 1
@@ -14,7 +14,7 @@ interface IProps {
   hasFirstLast?: boolean,
   isDisabled?: boolean,
   isLoading?: boolean,
-  classes?: string,
+  className?: string,
   onClick?: React.MouseEventHandler,
 }
 
@@ -28,10 +28,10 @@ const Pagination = ({
   hasFirstLast = false,
   isDisabled = false,
   isLoading = false,
-  classes,
+  className,
   onClick,
   ...otherProps
-}: IProps) => {
+}: PaginationIProps) => {
 
   const [currentPage, setCurrentPage] = React.useState(defaultPage ?? 1);
 
@@ -73,7 +73,7 @@ const Pagination = ({
       styles['sezy-pagination'],
       styles['sezy-pagination-' + type],
       styles['sezy-pagination-' + size],
-      classes,
+      className,
     ),
   }
 
@@ -104,9 +104,6 @@ const toIconSize = {
 
 
 export default Pagination
-export {
-  IProps as PaginationIProps,
-}
 
 
 

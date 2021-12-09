@@ -56,8 +56,8 @@ export default {
             loader: 'css-loader',
             options: {
               modules: {
-                localIdentName: '[local]',
-                // localIdentName: '[local]--[hash:base64:5]',
+                // localIdentName: '[local]',
+                localIdentName: '[local]--[hash:base64:5]',
               },
               importLoaders: 2,
             },

@@ -1,4 +1,3 @@
-/* @import '../../css/variables.css'; */
 
 /* .sezy-input{
     &{
@@ -31,8 +30,8 @@
     position: relative;
     box-sizing: border-box;
     transition: box-shadow 0.38s, border 0.38s;
-    border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
+    background-color:#fff;
   }
   &:hover,
   &:focus-within {
@@ -107,6 +106,15 @@
     & > .sezy-input-clear {
       margin-left: 0.35rem;
     }
+  }
+}
+
+.sezy-input-{
+  &outline{
+    border: 1px solid var(--border-color);
+  }
+  &flat{
+    border: 1px solid transparent;
   }
 }
 

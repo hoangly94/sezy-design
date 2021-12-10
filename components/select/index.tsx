@@ -43,7 +43,7 @@ const Select = ({
     ...otherProps,
     className: Classnames(
       styles['sezy-select'],
-      styles['sezy-select-' + type],
+      // styles['sezy-select-' + type],
       styles['sezy-select-' + size],
       styles['sezy-select-placement-' + placement],
       isDisabled && styles['sezy-select-disabled'],
@@ -70,14 +70,12 @@ const Select = ({
 
   return (
     <div {...selectProps} ref={hoverRef}>
-      <div>
-        {
-          isLoading
-            ? <ThreeDotsLoader size='l2' className="sezy-select-loading" />
-            : <Input type='textValue' ref={clickOutsideRef} textRef={labelInputRef} size={size} postfix={<Caret size={selectSizeToCaretSize[size] as any} />} placeholder={placeholder} isReadOnly={true} />
-        }
-      </div>
-      <List type='outline' size={size}>
+      {
+        isLoading
+          ? <ThreeDotsLoader size='l2' className="sezy-select-loading" />
+          : <Input type={type} valueType='textValue' ref={clickOutsideRef} textRef={labelInputRef} size={size} postfix={<Caret size={selectSizeToCaretSize[size] as any} />} placeholder={placeholder} isReadOnly={true} />
+      }
+      <List type={type} size={size}>
         {convertListItem()}
       </List>
     </div>

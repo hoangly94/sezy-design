@@ -5,7 +5,8 @@ import Delete from '../icon/solid/delete';
 import AutoComplete, { AutoCompleteIProps } from '../autoComplete';
 
 export interface InputIProps {
-  type?: 'text' | 'textValue' | 'password' | 'email' | 'number' | 'phone',
+  type?: 'flat' | 'outline' ,
+  valueType?: 'text' | 'textValue' | 'password' | 'email' | 'number' | 'phone',
   size?: 's' | 'm' | 'l',
   href?: string,
   placeholder?: string,
@@ -28,7 +29,8 @@ export interface InputIProps {
 }
 
 const Input = ({
-  type = 'text',
+  type = 'outline',
+  valueType = 'text',
   size = 'm',
   href = '',
   placeholder = '',
@@ -83,28 +85,29 @@ const Input = ({
           styles['sezy-input-wrapper'],
           styles['sezy-input-error-' + errorPlacement],
           styles['sezy-input-' + size],
+          styles['sezy-input-' + type],
           // (isDisabled || isLoading) && styles['sezy-input-disabled'],
         )
       }
       {...{ disabled: isDisabled || isLoading }}
     >
       {prefix}
-      {type === 'textValue'
+      {valueType === 'textValue'
         ? <>
           <input ref={textRef} {...inputProps} disabled={isDisabled || isLoading} readOnly />
-          <input ref={ref} disabled={isDisabled || isLoading} readOnly={isReadOnly} type={mapType(type)} />
+          <input ref={ref} disabled={isDisabled || isLoading} readOnly={isReadOnly} type={mapType(valueType)} />
         </>
-        : <input {...inputProps} ref={ref} disabled={isDisabled || isLoading} readOnly={isReadOnly} type={mapType(type)} />}
+        : <input {...inputProps} ref={ref} disabled={isDisabled || isLoading} readOnly={isReadOnly} type={mapType(valueType)} />}
       {showClearButton && <Delete fill='#b8b8b8' className={styles['sezy-input-clear']} onClick={clearValue} size={size} />}
       {postfix}
     </div>
   )
 }
 
-const mapType = type => {
-  if (type === 'textValue')
+const mapType = valueType => {
+  if (valueType === 'textValue')
     return 'hidden';
-  return type;
+  return valueType;
 }
 
 export default React.forwardRef(Input)

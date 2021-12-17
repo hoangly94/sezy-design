@@ -8,7 +8,7 @@ import styles from './_styles.module.css';
 
 export interface IconIProps {
   type?: 'solid' | 'light',
-  size?: 's2' | 's1' | 's' | 'm' | 'l' | 'l1' | 'l2',
+  size?: 's2' | 's1' | 's' | 'm' | 'l' | 'l1' | 'l2' | 'l3' | 'l4',
   fill?: string,
   direction?: 'up' | 'right' | 'down' | 'left',
   isDisabled?: boolean,

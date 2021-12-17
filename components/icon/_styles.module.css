@@ -36,4 +36,10 @@
   &l2 {
     width: 1.75rem;
   }
+  &l3 {
+    width: 2rem;
+  }
+  &l4 {
+    width: 2.25rem;
+  }
 }

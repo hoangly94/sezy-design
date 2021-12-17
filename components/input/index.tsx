@@ -3,6 +3,7 @@ import Classnames from 'classnames';
 import styles from './_styles.module.css';
 import Delete from '../icon/solid/delete';
 import AutoComplete, { AutoCompleteIProps } from '../autoComplete';
+import ThreeDotsLoader from '../icon/solid/threeDotsLoader';
 
 export interface InputIProps {
   type?: 'flat' | 'outline' ,
@@ -72,10 +73,10 @@ const Input = ({
       className,
     ),
     placeholder,
-    onClick: (e) => !isDisabled && !isLoading && onClick && onClick(e),
-    onChange: (e) => !isDisabled && !isLoading && showHideClearButton() && onChange && onChange(e),
-    onBlur: (e) => !isDisabled && !isLoading && onBlur && onBlur(e),
-    onFocus: (e) => !isDisabled && !isLoading && onFocus && onFocus(e),
+    onClick: (e) => !isDisabled && onClick && onClick(e),
+    onChange: (e) => !isDisabled && showHideClearButton() && onChange && onChange(e),
+    onBlur: (e) => !isDisabled && onBlur && onBlur(e),
+    onFocus: (e) => !isDisabled && onFocus && onFocus(e),
   }
 
   return (
@@ -89,19 +90,26 @@ const Input = ({
           // (isDisabled || isLoading) && styles['sezy-input-disabled'],
         )
       }
-      {...{ disabled: isDisabled || isLoading }}
+      {...{ disabled: isDisabled}}
     >
       {prefix}
       {valueType === 'textValue'
         ? <>
-          <input ref={textRef} {...inputProps} disabled={isDisabled || isLoading} readOnly />
-          <input ref={ref} disabled={isDisabled || isLoading} readOnly={isReadOnly} type={mapType(valueType)} />
+          <input ref={textRef} {...inputProps} disabled={isDisabled} readOnly />
+          <input ref={ref} disabled={isDisabled} readOnly={isReadOnly} type={mapType(valueType)} />
         </>
-        : <input {...inputProps} ref={ref} disabled={isDisabled || isLoading} readOnly={isReadOnly} type={mapType(valueType)} />}
+        : <input {...inputProps} ref={ref} disabled={isDisabled} readOnly={isReadOnly} type={mapType(valueType)} />}
       {showClearButton && <Delete fill='#b8b8b8' className={styles['sezy-input-clear']} onClick={clearValue} size={size} />}
+      {isLoading && <ThreeDotsLoader size={size} />}
       {postfix}
     </div>
   )
+}
+
+const selectSizeToLoadingSize = {
+  s: 's',
+  m: 'm',
+  l: 'l',
 }
 
 const mapType = valueType => {

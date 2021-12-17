@@ -20,3 +20,5 @@ export type { TableIProps } from './components/table';
 export { default as Table } from './components/table';
 export type { SectionIProps } from './components/section';
 export { default as Section } from './components/section';
+export type { PaginationIProps } from './components/pagination';
+export { default as Pagination } from './components/pagination';

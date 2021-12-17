@@ -15,7 +15,7 @@ export interface PaginationIProps {
   isDisabled?: boolean,
   isLoading?: boolean,
   className?: string,
-  onClick?: React.MouseEventHandler,
+  onClick?: Function,
 }
 
 const Pagination = ({
@@ -32,12 +32,11 @@ const Pagination = ({
   onClick,
   ...otherProps
 }: PaginationIProps) => {
-
-  const [currentPage, setCurrentPage] = React.useState(defaultPage ?? 1);
+  const [currentPage, setCurrentPage] = React.useState(defaultPage || 1);
 
   React.useEffect(() => {
-    setCurrentPage(currentPage);
-  }, [currentPage]);
+    setCurrentPage(defaultPage || 1);
+  }, [defaultPage]);
 
   const maxPage = Math.ceil(total / pageSize);
 
@@ -51,8 +50,9 @@ const Pagination = ({
     return [currentPage - step, currentPage + step];
   })();
 
-  const pageClick = pageNumber => {
+  const pageClick = (pageNumber, e) => {
     setCurrentPage(pageNumber);
+    onClick && onClick(pageNumber, e);
   }
 
   const itemElements = maxPage > 0 && Array(lastPage - firstPage + 1).fill(0).map((item, index) => {
@@ -62,7 +62,7 @@ const Pagination = ({
       type={type}
       size={size}
       label={'' + pageNumber}
-      onClick={event => { pageClick(pageNumber); onClick && onClick(event); }}
+      onClick={e => pageClick(pageNumber, e)}
       isActive={currentPage === pageNumber}
     />;
   });
@@ -80,18 +80,18 @@ const Pagination = ({
   const isFirst = currentPage === 1;
   const isLast = currentPage === maxPage;
   const nextClick = e => {
-    setCurrentPage(currentPage+1);
+    pageClick(currentPage + 1, e);
   }
 
   const prevClick = e => {
-    setCurrentPage(currentPage-1);
+    pageClick(currentPage - 1, e);
   }
 
   return (
     <div {...paginationProps}>
-      <Chevron direction='left' size={toIconSize[size] as any} isDisabled={isFirst} onClick={prevClick} />
+      {total && <Chevron direction='left' size={toIconSize[size] as any} isDisabled={isFirst} onClick={prevClick} />}
       {itemElements}
-      <Chevron direction='right' size={toIconSize[size] as any} isDisabled={isLast} onClick={nextClick} />
+      {total && <Chevron direction='right' size={toIconSize[size] as any} isDisabled={isLast} onClick={nextClick} />}
     </div>
   )
 }

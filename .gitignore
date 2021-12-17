@@ -69,3 +69,5 @@ typings/
 .idea/
 
 src/components/*/*/__snapshots__/
+
+yarn.clock

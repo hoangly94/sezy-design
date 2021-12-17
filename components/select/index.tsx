@@ -14,6 +14,7 @@ export interface SelectIProps {
   isDisabled?: boolean,
   isLoading?: boolean,
   isSearchable?: boolean,
+  isMulti?: boolean,
   placement?: 't' | 'tr' | 'tl' | 'r' | 'rt' | 'rb' | 'b' | 'br' | 'bf' | 'l' | 'lt' | 'lb',
   trigger?: 'hover' | 'click',
   className?: string,
@@ -28,6 +29,7 @@ const Select = ({
   isDisabled = false,
   isLoading = false,
   isSearchable = false,
+  isMulti = false,
   placement = 'bf',
   trigger,
   className,
@@ -43,11 +45,11 @@ const Select = ({
     ...otherProps,
     className: Classnames(
       styles['sezy-select'],
-      // styles['sezy-select-' + type],
+      styles['sezy-select-' + type],
       styles['sezy-select-' + size],
       styles['sezy-select-placement-' + placement],
       isDisabled && styles['sezy-select-disabled'],
-      !(isLoading || isDisabled) && ((!trigger && (isHovered || !isClickOutside)) || (trigger === 'hover' && isHovered) || (trigger === 'click' && !isClickOutside)) && styles['sezy-select-active'],
+      !isDisabled && ((!trigger && (isHovered || !isClickOutside)) || (trigger === 'hover' && isHovered) || (trigger === 'click' && !isClickOutside)) && styles['sezy-select-active'],
       className,
     ),
     onClick: (e) => !isDisabled && !isLoading && onClick && onClick(e),
@@ -57,6 +59,7 @@ const Select = ({
     return React.Children.map<any, any>(children, child => (
       React.cloneElement(child, {
         ...child?.props,
+        key: child?.props?.value,
         onClick: (e) => {
           child?.props?.onClick && child?.props?.onClick(e);
           valueInputRef?.current && (valueInputRef.current.value = child?.props?.value ?? '');
@@ -70,13 +73,23 @@ const Select = ({
 
   return (
     <div {...selectProps} ref={hoverRef}>
-      {
-        isLoading
-          ? <ThreeDotsLoader size='l2' className="sezy-select-loading" />
-          : <Input type={type} valueType='textValue' ref={clickOutsideRef} textRef={labelInputRef} size={size} postfix={<Caret size={selectSizeToCaretSize[size] as any} />} placeholder={placeholder} isReadOnly={true} />
-      }
+      <Input
+        type={type}
+        valueType='textValue'
+        ref={clickOutsideRef}
+        textRef={labelInputRef}
+        size={size}
+        postfix={<Caret size={selectSizeToCaretSize[size] as any} />}
+        placeholder={placeholder}
+        isReadOnly={true}
+        isLoading={isLoading}
+      />
       <List type={type} size={size}>
-        {convertListItem()}
+        {
+        isLoading 
+        ? <div>Loading...</div>
+        : convertListItem()
+        }
       </List>
     </div>
   )
@@ -87,7 +100,6 @@ const selectSizeToCaretSize = {
   m: 's1',
   l: 's',
 }
-
 
 export default React.forwardRef(Select)
 

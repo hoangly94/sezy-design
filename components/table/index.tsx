@@ -8,6 +8,8 @@ export interface TableIProps {
   size?: 's' | 'm' | 'l',
   columns?: TableColumn[],
   data?: TableData[],
+  isLoading?: boolean,
+  emptyText?: string,
   className?: string,
 }
 
@@ -19,6 +21,8 @@ type TableColumn = {
   filter?: Object,
   sort?: Object,
   search?: Object,
+  align?: 'center' | 'left' | 'right'
+  valign?: 'middle' | 'top' | 'bottom'
 }
 
 type TableData = Object & {
@@ -29,8 +33,10 @@ type TableData = Object & {
 const Table = ({
   type = 'outline',
   size = 'm',
+  isLoading = false,
   columns,
   data,
+  emptyText = 'Empty',
   className,
   ...otherProps
 }: TableIProps) => {
@@ -46,32 +52,67 @@ const Table = ({
   }
 
   return (
-    <table {...tableProps}>
-      <thead>
-        <tr>
-          {columns?.map((c, index) => {
-            return <th key={keyPrefix + 'h.' + (c.key ?? `${c.index}.${index}`)}>{c.label}</th>;
-          })}
-        </tr>
-      </thead>
-      <tbody>
-        {data?.map((r, rowIndex) => {
-          return <tr>
-            {columns?.map((c, colIndex) => {
-              return <td key={keyPrefix + `b.${rowIndex}.` + (c.key ?? `${c.index}.${colIndex}`)}> {r[c.index]}</td>;
+    <div className={Classnames(
+      styles['sezy-table-wrapper'],
+    )}>
+      <table {...tableProps}>
+        <thead>
+          <tr>
+            {columns?.map((c, index) => {
+              return (
+                <th
+                  key={keyPrefix + 'h.' + (c.key ?? `${c.index}.${index}`)}
+                >
+                  {c.label}
+                </th>
+              );
             })}
-          </tr>;
-        })}
-      </tbody>
-    </table >
+          </tr>
+        </thead>
+        <tbody>
+          {data?.map((r, rowIndex) => {
+            return (
+              <tr
+                key={keyPrefix + `br.${rowIndex}.`}
+              >
+                {columns?.map((c, colIndex) => {
+                  return (
+                    <td
+                      key={keyPrefix + `bd.${rowIndex}.` + (c.key ?? `${c.index}.${colIndex}`)}
+                      align={c.align}
+                      valign={c.valign}
+                    >
+                      {
+                        r[c.index]
+                        // c.index==='index' ?  : r[c.index]
+                      }
+                    </td>
+                  );
+                })}
+              </tr>
+            );
+          })}
+          {
+            !data?.length && (<tr>
+              <td align="center" rowSpan={4} colSpan={columns?.length} >
+                {emptyText}
+              </td>
+            </tr>)
+          }
+        </tbody>
+      </table >
+      {isLoading && <div className={styles['sezy-table-loading']}><ThreeDotsLoader size={sizeToLoadingSize[size] as any} /></div>}
+    </div>
   )
 }
 
-const tableSizeToCaretSize = {
-  s: 's2',
-  m: 's1',
-  l: 's',
+
+const sizeToLoadingSize = {
+  s: 'l2',
+  m: 'l3',
+  l: 'l4',
 }
+
 
 
 export default Table

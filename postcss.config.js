@@ -13,6 +13,7 @@ const postCssImport = postCSSImport({
 
 const colorFunction = require('postcss-color-function')
 
+const postcssCustomMedia = require('postcss-custom-media');
 module.exports = {
   plugins: [
     postCssImport,
@@ -21,5 +22,8 @@ module.exports = {
     postCSSInlineSVG,
     colorFunction,
     cssnano,
+    postcssCustomMedia({
+      importFrom: 'css/viewports.css'
+    })
   ],
 }

@@ -25,6 +25,7 @@ const App = (): React.ReactElement => {
     {
       index: 'd1',
       label: 'Title 1',
+      align: 'center'
     },
     {
       index: 'd2',
@@ -69,12 +70,16 @@ const App = (): React.ReactElement => {
   return (
     <>
       <div>---Table---</div>
-      <Table columns={tableColumns} data={tableData} />
+      <Table columns={tableColumns as any} data={tableData} />
+      <Table columns={tableColumns as any} data={[]} />
+      <Table columns={tableColumns as any} data={tableData} isLoading={true}/>
 
       <div>---Pagination---</div>
       <Pagination total={100} size='s' />
       <Pagination total={100} />
       <Pagination total={100} size='l' />
+      
+      <Pagination total={100} defaultPage={2}/>
       <div>---Select---</div>
       <Select placeholder='Select'>
         <div {...{ value: '111111' }}>a1</div>
@@ -100,8 +105,21 @@ const App = (): React.ReactElement => {
         <div {...{ value: '3333333' }}>a3</div>
         <a {...{ value: '44444444444' }}>a4</a>
       </Select>
+      <Select ref={React.useRef(null)} placeholder='Select Size L' size='m' isLoading={true}>
+        <div {...{ value: '111111' }}>a1</div>
+        <div {...{ value: '222222' }}>a2</div>
+        <div {...{ value: '3333333' }}>a3</div>
+        <a {...{ value: '44444444444' }}>a4</a>
+      </Select>
+      <Select ref={React.useRef(null)} placeholder='Select Size L' size='l' isLoading={true}>
+        <div {...{ value: '111111' }}>a1</div>
+        <div {...{ value: '222222' }}>a2</div>
+        <div {...{ value: '3333333' }}>a3</div>
+        <a {...{ value: '44444444444' }}>a4</a>
+      </Select>
       <div>---Row---</div>
-      <Row gaps={[1, 1]}>
+      {/* <Row gaps={[1, 1]} gutter={{sm:1, md:2,xl:3}}> */}
+      <Row gaps={[1, 1]} gutter={{xs:1}}>
         <a {...backgroundStyle}>1</a>
         <a {...backgroundStyle}>2</a>
         <a {...backgroundStyle}>3</a>

@@ -30,3 +30,12 @@ a {
     }
   }
 }
+
+@media only screen and (max-width: 768px) {
+  section {
+    & > * {
+      margin: auto;
+      max-width: 95%;
+    }
+  }
+}

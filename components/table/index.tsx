@@ -62,6 +62,7 @@ const Table = ({
               return (
                 <th
                   key={keyPrefix + 'h.' + (c.key ?? `${c.index}.${index}`)}
+                  align={c.align}
                 >
                   {c.label}
                 </th>

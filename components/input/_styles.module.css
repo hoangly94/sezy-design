@@ -61,9 +61,11 @@
       padding-left: 0.25rem;
     }
     & > .sezy-input {
-      padding: 0.25rem 0.5rem 0.25rem 0;
+      height:1.5rem;
+      line-height:1.5rem;
+      /* padding: 0.25rem 0.5rem 0.25rem 0; */
+      padding: 0 0.5rem 0 0;
       font-size: 0.8rem;
-      line-height: 1rem;
     }
     & > .sezy-input-clear {
       margin-left: 0.25rem;
@@ -80,9 +82,11 @@
       padding-left: 0.3rem;
     }
     & > .sezy-input {
-      padding: 0.375rem 0.6rem 0.375rem 0;
+      height:2rem;
+      line-height:2rem;
+      /* padding: 0.375rem 0.6rem 0.375rem 0; */
+      padding: 0 0.6rem 0 0;
       font-size: 0.9rem;
-      line-height: 1.1rem;
     }
     & > .sezy-input-clear {
       margin-left: 0.3rem;
@@ -99,9 +103,11 @@
       padding-left: 0.35rem;
     }
     & > .sezy-input {
-      padding: 0.625rem 0.7rem 0.625rem 0;
+      height:2.5rem;
+      line-height:2.5rem;
+      /* padding: 0.625rem 0.7rem 0.625rem 0; */
+      padding: 0 0.7rem 0 0;
       font-size: 1.05rem;
-      line-height: 1.2rem;
     }
     & > .sezy-input-clear {
       margin-left: 0.35rem;

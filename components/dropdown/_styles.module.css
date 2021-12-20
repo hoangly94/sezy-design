@@ -76,7 +76,10 @@
 .sezy-dropdown-s {
   & > .sezy-dropdown-button {
     & {
-      padding: 0.25rem 0.5rem;
+      height: 1.5rem;
+      line-height: 1.5rem;
+      /* padding: 0.25rem 0.5rem; */
+      padding: 0 0.5rem;
       font-size: 0.75rem;
       line-height: 1rem;
     }
@@ -88,7 +91,10 @@
 .sezy-dropdown-m {
   & > .sezy-dropdown-button {
     & {
-      padding: 0.375rem 0.6rem;
+      height: 2rem;
+      line-height: 2rem;
+      /* padding: 0.375rem 0.6rem; */
+      padding: 0 0.6rem;
       font-size: 0.9rem;
       line-height: 1.1rem;
     }
@@ -100,7 +106,10 @@
 .sezy-dropdown-l {
   & > .sezy-dropdown-button {
     & {
-      padding: 0.625rem 0.7rem;
+      height: 2.5rem;
+      line-height: 2.5rem;
+      /* padding: 0.625rem 0.7rem; */
+      padding: 0 0.7rem;
       font-size: 1.05rem;
       line-height: 1.2rem;
     }

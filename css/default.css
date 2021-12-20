@@ -21,6 +21,11 @@ a {
   text-decoration: none;
 }
 
+[data-placeholder]:empty:before{
+  content: attr(data-placeholder);
+  color: #888;
+}
+
 @media only screen and (min-width: 768px) {
   section {
     & > * {

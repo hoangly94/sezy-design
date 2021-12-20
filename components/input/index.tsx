@@ -6,7 +6,8 @@ import AutoComplete, { AutoCompleteIProps } from '../autoComplete';
 import ThreeDotsLoader from '../icon/solid/threeDotsLoader';
 
 export interface InputIProps {
-  type?: 'flat' | 'outline' ,
+  type?: 'flat' | 'outline',
+  tagType?: 'input' | 'textarea' | 'div',
   valueType?: 'text' | 'textValue' | 'password' | 'email' | 'number' | 'phone',
   size?: 's' | 'm' | 'l',
   href?: string,
@@ -23,7 +24,7 @@ export interface InputIProps {
   $AutoComplete?: AutoCompleteIProps,
   className?: string,
   onClick?: React.MouseEventHandler,
-  onChange?: React.MouseEventHandler,
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void,
   onBlur?: React.MouseEventHandler,
   onFocus?: React.MouseEventHandler,
   children?: React.ReactNode,
@@ -31,6 +32,7 @@ export interface InputIProps {
 
 const Input = ({
   type = 'outline',
+  tagType = 'input',
   valueType = 'text',
   size = 'm',
   href = '',
@@ -79,6 +81,32 @@ const Input = ({
     onFocus: (e) => !isDisabled && onFocus && onFocus(e),
   }
 
+  const inputElement = (() => {
+    switch (tagType) {
+      case 'input':
+        return (
+          valueType === 'textValue'
+            ? <>
+              <input ref={textRef} {...inputProps} disabled={isDisabled} readOnly />
+              <input ref={ref} disabled={isDisabled} readOnly={isReadOnly} type={mapType(valueType)} />
+            </>
+            : <input {...inputProps} ref={ref} disabled={isDisabled} readOnly={isReadOnly} type={mapType(valueType)} />
+        )
+      case 'div':
+        return (
+          <div
+            {...inputProps}
+            ref={ref}
+            contentEditable={!isReadOnly}
+          >{children}</div>
+        )
+      case 'textarea':
+        return (
+          <textarea />
+        )
+    }
+  })();
+
   return (
     <div
       className={
@@ -87,18 +115,12 @@ const Input = ({
           styles['sezy-input-error-' + errorPlacement],
           styles['sezy-input-' + size],
           styles['sezy-input-' + type],
-          // (isDisabled || isLoading) && styles['sezy-input-disabled'],
         )
       }
-      {...{ disabled: isDisabled}}
+      {...{ disabled: isDisabled }}
     >
       {prefix}
-      {valueType === 'textValue'
-        ? <>
-          <input ref={textRef} {...inputProps} disabled={isDisabled} readOnly />
-          <input ref={ref} disabled={isDisabled} readOnly={isReadOnly} type={mapType(valueType)} />
-        </>
-        : <input {...inputProps} ref={ref} disabled={isDisabled} readOnly={isReadOnly} type={mapType(valueType)} />}
+      {inputElement}
       {showClearButton && <Delete fill='#b8b8b8' className={styles['sezy-input-clear']} onClick={clearValue} size={size} />}
       {isLoading && <ThreeDotsLoader size={size} />}
       {postfix}

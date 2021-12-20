@@ -89,9 +89,9 @@ const Pagination = ({
 
   return (
     <div {...paginationProps}>
-      {total && <Chevron direction='left' size={toIconSize[size] as any} isDisabled={isFirst} onClick={prevClick} />}
+      {!!total && <Chevron direction='left' size={toIconSize[size] as any} isDisabled={isFirst} onClick={prevClick} />}
       {itemElements}
-      {total && <Chevron direction='right' size={toIconSize[size] as any} isDisabled={isLast} onClick={nextClick} />}
+      {!!total && <Chevron direction='right' size={toIconSize[size] as any} isDisabled={isLast} onClick={nextClick} />}
     </div>
   )
 }

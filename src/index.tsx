@@ -13,6 +13,7 @@ import Breadcrumb from '../components/breadcrumb'
 import Link from "../components/link";
 import Row from "../components/row";
 import Col from "../components/col";
+import Checkbox from "../components/checkbox";
 import Pagination from "../components/pagination";
 import Table from "../components/table";
 import UserIcon from "../components/icon/solid/user";
@@ -69,17 +70,74 @@ const App = (): React.ReactElement => {
 
   return (
     <>
+      <div>---Checkbox---</div>
+      <Checkbox />
+      <Checkbox isChecked />
+      <Checkbox isChecked size='s' />
+      <Checkbox isChecked size='m' />
+      <Checkbox isChecked size='l' />
+
+      <Row>
+        <Select placeholder='Select' >
+          <div {...{ value: '111111' }}>a1</div>
+          <div {...{ value: '222222' }}>a2</div>
+          <div {...{ value: '3333333' }}>a3</div>
+          <a {...{ value: '44444444444' }}>a4</a>
+        </Select>
+        <Select placeholder='Select' >
+          <div {...{ value: '111111' }}>a1</div>
+          <div {...{ value: '222222' }}>a2</div>
+          <div {...{ value: '3333333' }}>a3</div>
+          <a {...{ value: '44444444444' }}>a4</a>
+        </Select>
+        <Select placeholder='Select' isMulti={true} isSearchable={true}>
+          <div {...{ value: '111111,', label: 'aaaaaaaaaaa' }}>a1</div>
+          <div {...{ value: '111111' }}>a1</div>
+          <div {...{ value: '222222' }}>a2</div>
+          <div {...{ value: '3333333' }}>a3</div>
+          <a {...{ value: '44444444444' }}>a4</a>
+          <a {...{ value: '5555555' }}>a4</a>
+          <a {...{ value: '66666666' }}>a4</a>
+          <a {...{ value: '7777777' }}>a4</a>
+          <a {...{ value: '888888888' }}>a4</a>
+          <a {...{ value: '999999' }}>a4</a>
+          <a {...{ value: '100000000' }}>a4</a>
+        </Select>
+      </Row>
+      +
+      <Row>
+        <Select placeholder='Select' size='l' isMulti={true}>
+          <div {...{ value: '111111' }}>a1</div>
+          <div {...{ value: '222222' }}>a2</div>
+          <div {...{ value: '3333333' }}>a3</div>
+          <a {...{ value: '44444444444' }}>a4</a>
+        </Select>
+        <Select placeholder='Select' size='l'>
+          <div {...{ value: '111111' }}>a1</div>
+          <div {...{ value: '222222' }}>a2</div>
+          <div {...{ value: '3333333' }}>a3</div>
+          <a {...{ value: '44444444444' }}>a4</a>
+        </Select>
+        <Select placeholder='Select' size='l'>
+          <div {...{ value: '111111' }}>a1</div>
+          <div {...{ value: '222222' }}>a2</div>
+          <div {...{ value: '3333333' }}>a3</div>
+          <a {...{ value: '44444444444' }}>a4</a>
+        </Select>
+      </Row>
+
       <div>---Table---</div>
       <Table columns={tableColumns as any} data={tableData} />
       <Table columns={tableColumns as any} data={[]} />
-      <Table columns={tableColumns as any} data={tableData} isLoading={true}/>
+      <Table columns={tableColumns as any} data={tableData} isLoading={true} />
 
       <div>---Pagination---</div>
+      <Pagination total={0} />
       <Pagination total={100} size='s' />
       <Pagination total={100} />
       <Pagination total={100} size='l' />
-      
-      <Pagination total={100} defaultPage={2}/>
+
+      <Pagination total={100} defaultPage={2} />
       <div>---Select---</div>
       <Select placeholder='Select'>
         <div {...{ value: '111111' }}>a1</div>
@@ -119,7 +177,7 @@ const App = (): React.ReactElement => {
       </Select>
       <div>---Row---</div>
       {/* <Row gaps={[1, 1]} gutter={{sm:1, md:2,xl:3}}> */}
-      <Row gaps={[1, 1]} gutter={{xs:1}}>
+      <Row gaps={[1, 1]} gutter={{ xs: 1 }}>
         <a {...backgroundStyle}>1</a>
         <a {...backgroundStyle}>2</a>
         <a {...backgroundStyle}>3</a>

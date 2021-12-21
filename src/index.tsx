@@ -19,6 +19,7 @@ import Table from "../components/table";
 import UserIcon from "../components/icon/solid/user";
 
 import { Button } from '../';
+import Option from "../components/select/option";
 
 const App = (): React.ReactElement => {
   const backgroundStyle = { style: { background: '#49d5ff' } };
@@ -68,6 +69,17 @@ const App = (): React.ReactElement => {
     },
   ];
 
+  const b = [
+    {
+      value: '1',
+      children: '1',
+    },
+    {
+      value: '2',
+      children: '2',
+    },
+  ]
+  const [a, setA] = React.useState(<Option value='111111'>a1</Option>);
   return (
     <>
       <div>---Checkbox---</div>
@@ -76,53 +88,54 @@ const App = (): React.ReactElement => {
       <Checkbox isChecked size='s' />
       <Checkbox isChecked size='m' />
       <Checkbox isChecked size='l' />
-
+      <Button label='aaa' onClick={e => setA(b.map(i=>(<Option value={i.value}>{i.children}</Option>)) as any)} />
       <Row>
-        <Select placeholder='Select' >
-          <div {...{ value: '111111' }}>a1</div>
-          <div {...{ value: '222222' }}>a2</div>
-          <div {...{ value: '3333333' }}>a3</div>
-          <a {...{ value: '44444444444' }}>a4</a>
+        <Select placeholder='Select' isSearchable={true}>
+          {a as any}
         </Select>
-        <Select placeholder='Select' >
-          <div {...{ value: '111111' }}>a1</div>
-          <div {...{ value: '222222' }}>a2</div>
-          <div {...{ value: '3333333' }}>a3</div>
-          <a {...{ value: '44444444444' }}>a4</a>
+        <Select placeholder='Select' isMulti={true} isSearchable={true} type='flat'>
+          <Option value='111111' label='aaaaaaaaaaa'>a1</Option>
+          <Option value='222222'>a2</Option>
+          <Option value='3333333'>a3</Option>
+          <Option value='44444444444'>a4</Option>
         </Select>
         <Select placeholder='Select' isMulti={true} isSearchable={true}>
-          <div {...{ value: '111111,', label: 'aaaaaaaaaaa' }}>a1</div>
-          <div {...{ value: '111111' }}>a1</div>
-          <div {...{ value: '222222' }}>a2</div>
-          <div {...{ value: '3333333' }}>a3</div>
-          <a {...{ value: '44444444444' }}>a4</a>
-          <a {...{ value: '5555555' }}>a4</a>
-          <a {...{ value: '66666666' }}>a4</a>
-          <a {...{ value: '7777777' }}>a4</a>
-          <a {...{ value: '888888888' }}>a4</a>
-          <a {...{ value: '999999' }}>a4</a>
-          <a {...{ value: '100000000' }}>a4</a>
+          <Option value='111111' label='aaaaaaaaaaa'>a1</Option>
+          <Option value='222222'>a2</Option>
+          <Option value='3333333'>a3</Option>
+          <Option value='44444444444'>a4</Option>
+          <Option value='5'>a5</Option>
+          <Option value='6'>a6</Option>
+          <Option value='7'>a7</Option>
+          <Option value='8'>a8</Option>
+          <Option value='9'>a9</Option>
+          <Option value='11'>a11</Option>
+          <Option value='12'>a12</Option>
+          <Option value='13'>a13</Option>
+          <Option value='14'>a14</Option>
+          <Option value='15'>a15</Option>
+          <Option value='16'>a16</Option>
         </Select>
       </Row>
       +
       <Row>
         <Select placeholder='Select' size='l' isMulti={true}>
-          <div {...{ value: '111111' }}>a1</div>
-          <div {...{ value: '222222' }}>a2</div>
-          <div {...{ value: '3333333' }}>a3</div>
-          <a {...{ value: '44444444444' }}>a4</a>
+          <Option value='111111'>a1</Option>
+          <Option value='222222'>a2</Option>
+          <Option value='3333333'>a3</Option>
+          <Option value='44444444444'>a4</Option>
         </Select>
         <Select placeholder='Select' size='l'>
-          <div {...{ value: '111111' }}>a1</div>
-          <div {...{ value: '222222' }}>a2</div>
-          <div {...{ value: '3333333' }}>a3</div>
-          <a {...{ value: '44444444444' }}>a4</a>
+          <Option value='111111'>a1</Option>
+          <Option value='222222'>a2</Option>
+          <Option value='3333333'>a3</Option>
+          <Option value='44444444444'>a4</Option>
         </Select>
         <Select placeholder='Select' size='l'>
-          <div {...{ value: '111111' }}>a1</div>
-          <div {...{ value: '222222' }}>a2</div>
-          <div {...{ value: '3333333' }}>a3</div>
-          <a {...{ value: '44444444444' }}>a4</a>
+          <Option value='111111'>a1</Option>
+          <Option value='222222'>a2</Option>
+          <Option value='3333333'>a3</Option>
+          <Option value='44444444444'>a4</Option>
         </Select>
       </Row>
 
@@ -140,43 +153,42 @@ const App = (): React.ReactElement => {
       <Pagination total={100} defaultPage={2} />
       <div>---Select---</div>
       <Select placeholder='Select'>
-        <div {...{ value: '111111' }}>a1</div>
-        <div {...{ value: '222222' }}>a2</div>
-        <div {...{ value: '3333333' }}>a3</div>
-        <a {...{ value: '44444444444' }}>a4</a>
+        <Option value='111111'>a1</Option>
+        <Option value='222222'>a2</Option>
+        <Option value='3333333'>a3</Option>
+        <Option value='44444444444'>a4</Option>
       </Select>
-      <Select ref={React.useRef(null)} placeholder='Select Size S' size='s'>
-        <div {...{ value: '111111' }}>a1</div>
-        <div {...{ value: '222222' }}>a2</div>
-        <div {...{ value: '3333333' }}>a3</div>
-        <a {...{ value: '44444444444' }}>a4</a>
+      <Select placeholder='Select Size S' size='s'>
+        <Option value='111111'>a1</Option>
+        <Option value='222222'>a2</Option>
+        <Option value='3333333'>a3</Option>
+        <Option value='44444444444'>a4</Option>
       </Select>
-      <Select ref={React.useRef(null)} placeholder='Select Size M' size='m'>
-        <div {...{ value: '111111' }}>a1</div>
-        <div {...{ value: '222222' }}>a2</div>
-        <div {...{ value: '3333333' }}>a3</div>
-        <a {...{ value: '44444444444' }}>a4</a>
+      <Select placeholder='Select Size M' size='m'>
+        <Option value='111111'>a1</Option>
+        <Option value='222222'>a2</Option>
+        <Option value='3333333'>a3</Option>
+        <Option value='44444444444'>a4</Option>
       </Select>
-      <Select ref={React.useRef(null)} placeholder='Select Size L' size='l'>
-        <div {...{ value: '111111' }}>a1</div>
-        <div {...{ value: '222222' }}>a2</div>
-        <div {...{ value: '3333333' }}>a3</div>
-        <a {...{ value: '44444444444' }}>a4</a>
+      <Select placeholder='Select Size L' size='l'>
+        <Option value='111111'>a1</Option>
+        <Option value='222222'>a2</Option>
+        <Option value='3333333'>a3</Option>
+        <Option value='44444444444'>a4</Option>
       </Select>
-      <Select ref={React.useRef(null)} placeholder='Select Size L' size='m' isLoading={true}>
-        <div {...{ value: '111111' }}>a1</div>
-        <div {...{ value: '222222' }}>a2</div>
-        <div {...{ value: '3333333' }}>a3</div>
-        <a {...{ value: '44444444444' }}>a4</a>
+      <Select placeholder='Select Size L' size='m' isLoading={true}>
+        <Option value='111111'>a1</Option>
+        <Option value='222222'>a2</Option>
+        <Option value='3333333'>a3</Option>
+        <Option value='44444444444'>a4</Option>
       </Select>
-      <Select ref={React.useRef(null)} placeholder='Select Size L' size='l' isLoading={true}>
-        <div {...{ value: '111111' }}>a1</div>
-        <div {...{ value: '222222' }}>a2</div>
-        <div {...{ value: '3333333' }}>a3</div>
-        <a {...{ value: '44444444444' }}>a4</a>
+      <Select placeholder='Select Size L' size='l' isLoading={true}>
+        <Option value='111111'>a1</Option>
+        <Option value='222222'>a2</Option>
+        <Option value='3333333'>a3</Option>
+        <Option value='44444444444'>a4</Option>
       </Select>
       <div>---Row---</div>
-      {/* <Row gaps={[1, 1]} gutter={{sm:1, md:2,xl:3}}> */}
       <Row gaps={[1, 1]} gutter={{ xs: 1 }}>
         <a {...backgroundStyle}>1</a>
         <a {...backgroundStyle}>2</a>

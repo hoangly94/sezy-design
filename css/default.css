@@ -25,6 +25,9 @@ a {
   content: attr(data-placeholder);
   color: #888;
 }
+th{
+  white-space: nowrap;
+}
 
 @media only screen and (min-width: 768px) {
   section {

@@ -14,6 +14,8 @@ export type { DropdownIProps } from './components/dropdown';
 export { default as Dropdown } from './components/dropdown';
 export type { SelectIProps } from './components/select';
 export { default as Select } from './components/select';
+export type { OptionIProps } from './components/select/option';
+export { default as Option } from './components/select/option';
 export type { InputIProps } from './components/input';
 export { default as Input } from './components/input';
 export type { TableIProps } from './components/table';
@@ -22,3 +24,5 @@ export type { SectionIProps } from './components/section';
 export { default as Section } from './components/section';
 export type { PaginationIProps } from './components/pagination';
 export { default as Pagination } from './components/pagination';
+
+export { Shimmer } from './components/effect';

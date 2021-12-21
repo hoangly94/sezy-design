@@ -3,13 +3,17 @@ import Classnames from 'classnames';
 import styles from './_styles.module.css';
 import ThreeDotsLoader from '../icon/solid/threeDotsLoader';
 
+type TLabel = {
+  emptyData?: string,
+}
+
 export interface TableIProps {
   type?: 'flat' | 'outline',
   size?: 's' | 'm' | 'l',
   columns?: TableColumn[],
   data?: TableData[],
+  labels?: TLabel,
   isLoading?: boolean,
-  emptyText?: string,
   className?: string,
 }
 
@@ -35,11 +39,15 @@ const Table = ({
   size = 'm',
   isLoading = false,
   columns,
+  labels,
   data,
-  emptyText = 'Empty',
   className,
   ...otherProps
 }: TableIProps) => {
+  const labelMap = Object.assign({
+    emptyData: 'Empty',
+  }, labels);
+
   const keyPrefix = 'table.';
   const tableProps = {
     ...otherProps,
@@ -96,7 +104,7 @@ const Table = ({
           {
             !data?.length && (<tr>
               <td align="center" rowSpan={4} colSpan={columns?.length} >
-                {emptyText}
+                {labelMap.emptyData}
               </td>
             </tr>)
           }

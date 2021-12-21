@@ -27,6 +27,8 @@ export interface InputIProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void,
   onBlur?: React.MouseEventHandler,
   onFocus?: React.MouseEventHandler,
+  onKeyUp?: React.KeyboardEventHandler,
+  onKeyPress?: React.KeyboardEventHandler,
   children?: React.ReactNode,
 }
 
@@ -52,7 +54,9 @@ const Input = ({
   onChange,
   onBlur,
   onFocus,
-  children,
+  onKeyUp,
+  onKeyPress,
+  children, 
   ...otherProps
 }: InputIProps, ref) => {
   const [showClearButton, setShowClearButton] = React.useState(false);
@@ -79,8 +83,10 @@ const Input = ({
     onChange: (e) => !isDisabled && showHideClearButton() && onChange && onChange(e),
     onBlur: (e) => !isDisabled && onBlur && onBlur(e),
     onFocus: (e) => !isDisabled && onFocus && onFocus(e),
+    onKeyUp: (e) => !isDisabled && onKeyUp && onKeyUp(e),
+    onKeyPress: (e) => !isDisabled && onKeyPress && onKeyPress(e),
   }
-
+  
   const inputElement = (() => {
     switch (tagType) {
       case 'input':

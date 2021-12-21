@@ -8,22 +8,23 @@ import Caret from '../icon/solid/caret';
 import ThreeDotsLoader from '../icon/solid/threeDotsLoader';
 import Button from '../button';
 import Checkbox from '../checkbox';
+import Option, { OptionIProps } from './option';
 import _ from 'lodash';
 
-type Option = {
+type TSelectedItem = {
   text: string | number,
   value: string | number,
 }
-type Label = {
+type TLabel = {
   allOptions?: string,
-  search?: string,
+  searchPlacholder?: string,
 }
 
 export interface SelectIProps {
   type?: 'flat' | 'outline',
   size?: 's' | 'm' | 'l',
-  labels?: Label,
-  options?: Option[]
+  labels?: TLabel,
+  selectedItems?: TSelectedItem[]
   placeholder?: string,
   isDisabled?: boolean,
   isLoading?: boolean,
@@ -33,19 +34,16 @@ export interface SelectIProps {
   trigger?: 'hover' | 'click',
   className?: string,
   onClick?: React.MouseEventHandler,
-  onSearchChange?: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  onSearchChange?: (key: string) => void,
   onChange?: Function,
-  children?: React.ReactNode,
+  children?: React.ReactElement<OptionIProps>[],
 }
 
 const Select = ({
   type = 'outline',
   size = 'm',
-  labels = {
-    allOptions: 'All',
-    search: 'Search...'
-  },
-  options = [],
+  labels,
+  selectedItems = [],
   placeholder = '',
   isDisabled = false,
   isLoading = false,
@@ -57,17 +55,27 @@ const Select = ({
   onClick,
   onSearchChange,
   onChange,
-  children,
+  children = [],
   ...otherProps
-}: SelectIProps, valueInputRef2) => {
+}: SelectIProps) => {
   const valueInputRef: React.MutableRefObject<any> = React.useRef(null)
   const searchInputRef: React.MutableRefObject<any> = React.useRef(null)
   const { ref: clickOutsideRef, isClickOutside, setClickOutside } = useClickOutside(valueInputRef);
   const { ref: hoverRef, isHovered, setHovered } = useHover();
   const labelInputRef: React.MutableRefObject<any> = React.useRef(null);
   const isAllChecked = React.useRef(false);
-  const [multiChoicesMap, setMultiChoicesMap] = React.useState<Option[]>(options);
+  const [selectedOptions, setSelectedOptions] = React.useState<TSelectedItem[]>(selectedItems);
+  const [options, setOptions] = React.useState<React.ReactElement<OptionIProps>[]>(children);
   const numberOfItems = React.Children.count(children);
+
+  React.useEffect(() => {
+    setOptions(children);
+  }, [children])
+
+  const labelMap = Object.assign({
+    allOptions: 'All',
+    searchPlacholder: 'Search...'
+  }, labels);
 
   const selectProps = {
     ...otherProps,
@@ -83,14 +91,14 @@ const Select = ({
     onClick: (e) => !isDisabled && !isLoading && onClick && onClick(e),
   }
 
-  const convertListItem = React.useCallback((multiChoicesMap) => {
+  const toOptionElements = React.useCallback((selectedOptions) => {
     return <>
       {
         isMulti && (
           <div
             onClick={e => {
               isAllChecked.current = !isAllChecked.current;
-              setMultiChoicesMap([]);
+              setSelectedOptions([]);
               onChange && onChange(isAllChecked.current ? 'all' : []);
             }}
           >
@@ -99,21 +107,21 @@ const Select = ({
               size={size}
               isChecked={isAllChecked.current}
             />
-            {labels.allOptions}
+            {labelMap.allOptions}
           </div>
         )
       }
       {
-        React.Children.map<any, any>(children, child => {
-          const label = child?.props?.label;
-          const htmlChildren = child?.props?.children;
-          const value = child?.props?.value;
-          const filteredMultiChoicesMap = isMulti && multiChoicesMap.filter(item => item.value !== value);
-          const isChecked = isMulti && filteredMultiChoicesMap.length < multiChoicesMap.length;
+        React.Children.map<any, any>(options, child => {
+          const label = child.props.label;
+          const htmlChildren = child.props.children;
+          const value = child.props.value;
+          const filteredMultiChoicesMap = isMulti && selectedOptions.filter(item => item.value !== value);
+          const isChecked = isMulti && filteredMultiChoicesMap.length < selectedOptions.length;
           return (
             React.cloneElement(child, {
               ...child?.props,
-              key: child?.props?.value,
+              key: child.props.value,
               children: isMulti ? <>
                 <Checkbox className={styles['sezy-select-checkbox']} size={size} isChecked={isAllChecked.current || isChecked} />{child?.props?.children}
               </> : child?.props?.children,
@@ -126,7 +134,7 @@ const Select = ({
                       label: label ?? htmlChildren,
                       value,
                     });
-                  setMultiChoicesMap([...filteredMultiChoicesMap]);
+                  setSelectedOptions([...filteredMultiChoicesMap]);
                   isAllChecked.current = numberOfItems === filteredMultiChoicesMap.length;
                   onChange && onChange(filteredMultiChoicesMap);
                 }
@@ -143,12 +151,16 @@ const Select = ({
         })
       }
     </>
-  }, [children]);
+  }, [options]);
 
-  const clickMultiChoicesTag = (multiChoicesMap, value) => e => {
-    const filteredMultiChoicesMap = multiChoicesMap.filter(item => item.value !== value);
+  const localSearch = e => setOptions(children?.filter(child => {
+    return ((child.props.label ?? child.props.children as string))?.toLowerCase().startsWith(e.target.value?.toLowerCase())
+  }));
+
+  const clickMultiChoicesTag = (selectedOptions, value) => e => {
+    const filteredMultiChoicesMap = selectedOptions.filter(item => item.value !== value);
     isAllChecked.current = numberOfItems === filteredMultiChoicesMap.length;
-    setMultiChoicesMap([...filteredMultiChoicesMap]);
+    setSelectedOptions([...filteredMultiChoicesMap]);
     onChange && onChange(filteredMultiChoicesMap);
   }
 
@@ -169,14 +181,13 @@ const Select = ({
           <div className={styles['sezy-select-tags']} data-placeholder={placeholder}>
             {
               isAllChecked.current
-                ? labels.allOptions
-                : !!multiChoicesMap.length && _.values(multiChoicesMap).map(item => (
+                ? labelMap.allOptions
+                : !!selectedOptions.length && _.values(selectedOptions).map((item: any) => (
                   <Button
                     key={item.value}
                     size={toButtonSize[size] as any}
                     className={styles['sezy-select-tag']}
-
-                    onClick={clickMultiChoicesTag(multiChoicesMap, item.value)}
+                    onClick={clickMultiChoicesTag(selectedOptions, item.value)}
                   >
                     {item.label}
                     <span>&#10005;</span>
@@ -192,34 +203,21 @@ const Select = ({
         {
           isSearchable
           && <Input
+            type={type}
             ref={searchInputRef}
             size={size}
-            placeholder={labels.search}
-            onChange={e => {
-              const searchedData = onSearchChange && onSearchChange(e);
-              
-              if (isMulti) {
-                setMultiChoicesMap([...filteredMultiChoicesMap]);
-                isAllChecked.current = numberOfItems === filteredMultiChoicesMap.length;
-                onChange && onChange(filteredMultiChoicesMap);
-              }
-              else {
-                valueInputRef?.current && (valueInputRef.current.value = value ?? '');
-                labelInputRef?.current && (labelInputRef.current.value = htmlChildren ?? '');
-                setClickOutside(true);
-                setHovered(false);
-                onChange && onChange(value);
-              }
-            }} />
+            placeholder={labelMap.searchPlacholder}
+            onKeyUp={e => onSearchChange ? onSearchChange((e.target as HTMLInputElement).value) : localSearch(e)} />
         }
         <List
           className={styles['sezy-select-options']}
           type={type}
           size={size}>
           {
-            isLoading
-              ? <div>Loading...</div>
-              : convertListItem(multiChoicesMap)
+            // isLoading
+            //   ? <div>Loading...</div>
+            //   : toOptionElements(selectedOptions)
+            toOptionElements(selectedOptions)
           }
         </List>
       </div>
@@ -238,7 +236,7 @@ const toButtonSize = {
   m: 's',
   l: 'm',
 }
-export default React.forwardRef(Select)
+export default Select
 
 
 

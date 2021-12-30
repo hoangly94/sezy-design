@@ -24,5 +24,17 @@ export type { SectionIProps } from './components/section';
 export { default as Section } from './components/section';
 export type { PaginationIProps } from './components/pagination';
 export { default as Pagination } from './components/pagination';
+export type { AvatarIProps } from './components/avatar';
+export { default as Avatar } from './components/avatar';
+export type { BadgeIProps } from './components/badge';
+export { default as Badge } from './components/badge';
+export type { TagIProps } from './components/tag';
+export { default as Tag } from './components/tag';
+export type { CarouselIProps } from './components/carousel';
+export { default as Carousel } from './components/carousel';
+export type { DatepickerIProps } from './components/datepicker';
+export { default as Datepicker } from './components/datepicker';
+export type { LabelIProps } from './components/label';
+export { default as Label } from './components/label';
 
 export { Shimmer } from './components/effect';

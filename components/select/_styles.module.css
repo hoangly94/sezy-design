@@ -56,7 +56,6 @@
   height: auto;
 }
 .sezy-select-active .sezy-select-options {
-  /* overflow: hidden auto; */
   visibility: visible;
   max-height: 28rem;
   animation: 1.8s delay-overflow;
@@ -71,41 +70,24 @@
 .sezy-select-tags {
   white-space: nowrap;
   overflow: auto hidden;
-  /* text-overflow: ellipsis; */
 }
 
-.sezy-select-tag {
+.sezy-select-tags > * {
   margin-right: 0.2rem;
-}
-.sezy-select-tag > span {
-  color: white;
-  display: none;
-}
-.sezy-select-tag:hover > span {
-  display: inline-block;
 }
 
 /* Size */
 .sezy-select-s {
-  & .sezy-select-tag > span {
-    margin: 0 -0.2rem 0 0.2rem;
-  }
   & .sezy-select-checkbox {
     margin-right: 0.5rem;
   }
 }
 .sezy-select-m {
-  & .sezy-select-tag > span {
-    margin: 0 -0.3rem 0 0.3rem;
-  }
   & .sezy-select-checkbox {
     margin-right: 0.6rem;
   }
 }
 .sezy-select-l {
-  & .sezy-select-tag > span {
-    margin: 0 -0.4rem 0 0.4rem;
-  }
   & .sezy-select-checkbox {
     margin-right: 0.7rem;
   }

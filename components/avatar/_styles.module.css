@@ -1,0 +1,45 @@
+.sezy-avatar {
+  & {
+    display: inline-block;
+    background-color: #c8c8c8;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+  }
+}
+
+.sezy-avatar {
+  &-square {
+    border-radius: var(--border-radius);
+  }
+  &-circle {
+    border-radius: 50%;
+  }
+}
+
+.sezy-avatar- {
+  &s {
+    & {
+      height: 2rem;
+      line-height: 2rem;
+      width: 2rem;
+      font-size: 0.9rem;
+    }
+  }
+  &m {
+    & {
+      height: 2.5rem;
+      line-height: 2.5rem;
+      width: 2.5rem;
+      font-size: 1.2rem;
+    }
+  }
+  &l {
+    & {
+      height: 3rem;
+      line-height: 3rem;
+      width: 3rem;
+      font-size: 1.5rem;
+    }
+  }
+}

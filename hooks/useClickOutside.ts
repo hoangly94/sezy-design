@@ -1,11 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react'
 
-const useClickOutside = (ref?, initState = true) => {
+interface IProps {
+  ref?: any,
+  initState?: boolean,
+  exludeChildren?: boolean,
+}
+const useClickOutside = ({
+  ref,
+  initState = true,
+  exludeChildren = false,
+}: IProps) => {
   const [isClickOutside, setClickOutside] = useState(initState);
   !ref && (ref = useRef(null));
 
   const handleClickOutside = event => {
-    setClickOutside(!(!ref.current || ref.current.contains(event.target)));
+    if (!(exludeChildren && ref.current.contains(event.target)))
+      setClickOutside(!(!ref.current || ref.current.contains(event.target)));
   };
 
   useEffect(() => {

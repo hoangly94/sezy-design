@@ -1,43 +1,53 @@
 import React from 'react';
 import Classnames from 'classnames';
 import styles from './_styles.module.css';
-import { Link } from "react-router-dom";
 import CheckIcon from '../icon/light/check';
 
+type TValue = String | number | boolean;
 
 export interface CheckboxIProps {
   type?: 'outline' | 'flat',
   size?: 's1' | 's' | 'm' | 'l' | 'l1',
   label?: string,
-  isChecked?: boolean,
+  values?: [TValue, TValue],
+  value?: boolean,
   isDisabled?: boolean,
   className?: string,
-  onClick?: React.MouseEventHandler,
+  onChange?: (isChecked: boolean) => void,
 }
 
 const Checkbox = ({
   type = 'outline',
   size = 'm',
   label,
-  isChecked = false,
+  values = [false, true],
+  value = false,
   isDisabled = false,
   className,
-  onClick,
+  onChange,
   ...otherProps
 }: CheckboxIProps) => {
-  const checkboxProps = {
-    ...otherProps,
-    className: Classnames(
-      styles['sezy-checkbox'],
-      styles['sezy-checkbox-' + type],
-      styles['sezy-checkbox-' + size],
-      className,
-    ),
-    onClick: (e) => !isDisabled && onClick && onClick(e),
-  }
+  const [isChecked, setChecked] = React.useState(value);
+
+  React.useEffect(() => {
+    !isDisabled && onChange && onChange(isChecked)
+  }, [isChecked]);
+
+  React.useEffect(() => {
+    setChecked(value);
+  }, [value]);
 
   return (
-    <span {...checkboxProps}>
+    <span
+      className={Classnames(
+        styles['sezy-checkbox'],
+        styles['sezy-checkbox-' + type],
+        styles['sezy-checkbox-' + size],
+        className,
+      )}
+      onClick={e => !isDisabled && setChecked(!isChecked)}
+      {...otherProps}
+    >
       {isChecked && <CheckIcon fill='#888' size={toCheckSize[size] as any} />}
     </span>
   )

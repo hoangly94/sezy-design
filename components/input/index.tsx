@@ -13,6 +13,7 @@ export interface InputIProps {
   href?: string,
   placeholder?: string,
   textRef?: React.MutableRefObject<any>, // Only use for Type textValue
+  wrapperRef?: React.MutableRefObject<any>,
   isDisabled?: boolean,
   isLoading?: boolean,
   isClearable?: boolean,
@@ -40,6 +41,7 @@ const Input = ({
   href = '',
   placeholder = '',
   textRef,
+  wrapperRef,
   isDisabled = false,
   isLoading = false,
   isClearable = false,
@@ -56,7 +58,7 @@ const Input = ({
   onFocus,
   onKeyUp,
   onKeyPress,
-  children, 
+  children,
   ...otherProps
 }: InputIProps, ref) => {
   const [showClearButton, setShowClearButton] = React.useState(false);
@@ -79,14 +81,13 @@ const Input = ({
       className,
     ),
     placeholder,
-    onClick: (e) => !isDisabled && onClick && onClick(e),
     onChange: (e) => !isDisabled && showHideClearButton() && onChange && onChange(e),
     onBlur: (e) => !isDisabled && onBlur && onBlur(e),
     onFocus: (e) => !isDisabled && onFocus && onFocus(e),
     onKeyUp: (e) => !isDisabled && onKeyUp && onKeyUp(e),
     onKeyPress: (e) => !isDisabled && onKeyPress && onKeyPress(e),
   }
-  
+
   const inputElement = (() => {
     switch (tagType) {
       case 'input':
@@ -124,6 +125,8 @@ const Input = ({
         )
       }
       {...{ disabled: isDisabled }}
+      ref={wrapperRef}
+      onClick={(e) => !isDisabled && onClick && onClick(e)}
     >
       {prefix}
       {inputElement}

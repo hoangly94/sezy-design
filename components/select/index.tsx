@@ -10,6 +10,7 @@ import Button from '../button';
 import Checkbox from '../checkbox';
 import Option, { OptionIProps } from './option';
 import _ from 'lodash';
+import Tag from '../tag';
 
 type TSelectedItem = {
   text: string | number,
@@ -60,7 +61,7 @@ const Select = ({
 }: SelectIProps) => {
   const valueInputRef: React.MutableRefObject<any> = React.useRef(null)
   const searchInputRef: React.MutableRefObject<any> = React.useRef(null)
-  const { ref: clickOutsideRef, isClickOutside, setClickOutside } = useClickOutside(valueInputRef);
+  const { ref: clickOutsideRef, isClickOutside, setClickOutside } = useClickOutside({ ref: valueInputRef });
   const { ref: hoverRef, isHovered, setHovered } = useHover();
   const labelInputRef: React.MutableRefObject<any> = React.useRef(null);
   const isAllChecked = React.useRef(false);
@@ -105,14 +106,14 @@ const Select = ({
             <Checkbox
               className={styles['sezy-select-checkbox']}
               size={size}
-              isChecked={isAllChecked.current}
+              value={isAllChecked.current}
             />
             {labelMap.allOptions}
           </div>
         )
       }
       {
-        React.Children.map<any, any>(options, child => {
+        React.Children.map<any, any>(options, (child, index) => {
           const label = child.props.label;
           const htmlChildren = child.props.children;
           const value = child.props.value;
@@ -120,10 +121,10 @@ const Select = ({
           const isChecked = isMulti && filteredMultiChoicesMap.length < selectedOptions.length;
           return (
             React.cloneElement(child, {
+              key: `${child.props.value}.${index}`,
               ...child?.props,
-              key: child.props.value,
               children: isMulti ? <>
-                <Checkbox className={styles['sezy-select-checkbox']} size={size} isChecked={isAllChecked.current || isChecked} />{child?.props?.children}
+                <Checkbox className={styles['sezy-select-checkbox']} size={size} value={isAllChecked.current || isChecked} />{child?.props?.children}
               </> : child?.props?.children,
               onClick: (e) => {
                 child?.props?.onClick && child?.props?.onClick(e);
@@ -177,25 +178,23 @@ const Select = ({
         placeholder={placeholder}
         isReadOnly={true}
         isLoading={isLoading}
-        children={
-          <div className={styles['sezy-select-tags']} data-placeholder={placeholder}>
-            {
-              isAllChecked.current
-                ? labelMap.allOptions
-                : !!selectedOptions.length && _.values(selectedOptions).map((item: any) => (
-                  <Button
-                    key={item.value}
-                    size={toButtonSize[size] as any}
-                    className={styles['sezy-select-tag']}
-                    onClick={clickMultiChoicesTag(selectedOptions, item.value)}
-                  >
-                    {item.label}
-                    <span>&#10005;</span>
-                  </Button>
-                ))}
-          </div>
-        }
-      />
+      >
+        <div className={styles['sezy-select-tags']} data-placeholder={placeholder}>
+          {
+            isAllChecked.current
+              ? labelMap.allOptions
+              : !!selectedOptions.length && _.values(selectedOptions).map((item: any) => (
+                <Tag
+                  key={item.value}
+                  size={toButtonSize[size] as any}
+                  isClearable={true}
+                  onClick={clickMultiChoicesTag(selectedOptions, item.value)}
+                >
+                  {item.label}
+                </Tag>
+              ))}
+        </div>
+      </Input>
       <div className={Classnames(
         styles['sezy-select-options-wrapper'],
         isSearchable && styles['sezy-select-options-search'],
@@ -207,7 +206,8 @@ const Select = ({
             ref={searchInputRef}
             size={size}
             placeholder={labelMap.searchPlacholder}
-            onKeyUp={e => onSearchChange ? onSearchChange((e.target as HTMLInputElement).value) : localSearch(e)} />
+            onKeyUp={e => onSearchChange ? onSearchChange((e.target as HTMLInputElement).value) : localSearch(e)}
+          />
         }
         <List
           className={styles['sezy-select-options']}

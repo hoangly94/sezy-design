@@ -20,6 +20,12 @@ import UserIcon from "../components/icon/solid/user";
 
 import { Button } from '../';
 import Option from "../components/select/option";
+import Tag from "../components/tag";
+import Switch from "../components/switch";
+import Badge from "../components/badge";
+import Avatar from "../components/avatar";
+import Carousel from "../components/carousel";
+import Datepicker from "../components/datepicker";
 
 const App = (): React.ReactElement => {
   const backgroundStyle = { style: { background: '#49d5ff' } };
@@ -82,13 +88,91 @@ const App = (): React.ReactElement => {
   const [a, setA] = React.useState(<Option value='111111'>a1</Option>);
   return (
     <>
+      <div>---Datepicker---</div>
+      <Datepicker size='s'/>
+      <br/>
+      <Datepicker dateFormat='DD/MM/YYYY'/>
+      <br/>
+      <Datepicker size='l'/>
+      <div>---Carousel---</div>
+      <Carousel {...{ style: { width: '800px', height: '400px' } }}>
+        <div style={{ background: 'red' }} />
+        <div style={{ background: 'blue' }} />
+        <div style={{ background: '#bb9393' }} />
+        <div style={{ background: 'black' }} />
+        <div style={{ background: 'yellow' }} />
+        <div style={{ background: 'pink' }} />
+        <div style={{ background: 'gray' }} />
+      </Carousel>
+      <div>---Badge---</div>
+      <Badge>
+        <Avatar />
+      </Badge>
+      <br />
+      <br />
+      <Badge value='1'>
+        <Avatar />
+      </Badge>
+      <br />
+      <br />
+      <Badge value='1123'>
+        <Avatar />
+      </Badge>
+      <br />
+      <br />
+      <Badge value='1' size='s' >
+        <Avatar size='s' />
+      </Badge>
+      <br />
+      <br />
+      <Badge value='1' size='m' >
+        <Avatar size='m' />
+      </Badge>
+      <br />
+      <br />
+      <Badge value='1' size='l' >
+        <Avatar size='l' />
+      </Badge>
+      <div>---Avatar---</div>
+      <div>
+        <Avatar />
+        <Avatar size='s' />
+        <Avatar size='m' />
+        <Avatar size='l' />
+      </div>
+      <div>
+        <Avatar shape='circle' />
+        <Avatar size='s' shape='circle' />
+        <Avatar size='m' shape='circle' />
+        <Avatar size='l' shape='circle' />
+      </div>
+      <div>
+        <Avatar>H</Avatar>
+        <Avatar size='s' shape='circle' >H</Avatar>
+        <Avatar size='m' shape='circle' >H</Avatar>
+        <Avatar size='l' shape='circle' >H</Avatar>
+      </div>
+      <div>---Switch---</div>
+      <Switch />
+      <Switch isActive />
+      <Switch size='s' />
+      <Switch size='m' />
+      <Switch size='l' />
+      <div>---Tag---</div>
+      <Tag>Tag</Tag>
+      <Tag type='flat' color='#e30000'>Tag Type Flat</Tag>
+      <Tag type='outline' color='#e30000'>Tag Type Outline</Tag>
+      <Tag isClearable={true}>Tag with Clear</Tag>
+      <Tag size='s'>Tag size S</Tag>
+      <Tag size='m'>Tag size M</Tag>
+      <Tag size='l'>Tag size L</Tag>
       <div>---Checkbox---</div>
       <Checkbox />
-      <Checkbox isChecked />
-      <Checkbox isChecked size='s' />
-      <Checkbox isChecked size='m' />
-      <Checkbox isChecked size='l' />
-      <Button label='aaa' onClick={e => setA(b.map(i=>(<Option value={i.value}>{i.children}</Option>)) as any)} />
+      <Checkbox value />
+      <Checkbox value size='s' />
+      <Checkbox value size='m' />
+      <Checkbox value size='l' />
+      <Button label='aaa' onClick={e => setA(b.map(i => (<Option value={i.value}>{i.children}</Option>)) as any)} />
       <Row>
         <Select placeholder='Select' isSearchable={true}>
           {a as any}
@@ -207,19 +291,19 @@ const App = (): React.ReactElement => {
       <Col grid={6} {...backgroundStyle}>6</Col>
 
       <div>---Button---</div>
-      <Button label='Button size s' round={true} size='s' />
+      <Button label='Button size s' size='s' />
       <br />
-      <Button label='Button size m' round={true} />
+      <Button label='Button size m' />
       <br />
-      <Button label='Button size l' round={true} size='l' />
+      <Button label='Button size l' size='l' />
       <br />
-      <Button label='Button Flat' type='flat' round={true} />
+      <Button label='Button Flat' type='flat' />
       <br />
-      <Button label='Button Outline' type='outline' round={true} />
+      <Button label='Button Outline' type='outline' />
       <br />
-      <Button label='Button disabled' round={true} isDisabled={true} />
+      <Button label='Button disabled' isDisabled={true} />
       <br />
-      <Button label='Button Loading' round={true} isLoading={true} />
+      <Button label='Button Loading' isLoading={true} />
 
       <div>---Link---</div>
       <Link label='Link size s' size='s' />
@@ -237,37 +321,43 @@ const App = (): React.ReactElement => {
       </List>
 
       <div>---Dropdown---</div>
-      <Dropdown label='Dropdown S' size='s'>
+      <Dropdown size='s'>
+        <Button label='Dropdown S' size='s' />
         <div>aaaa s fse fdsf</div>
         <div>aaaa</div>
         <div>aaaa</div>
         <a href="google.com">aaaa</a>
       </Dropdown>
-      <Dropdown label='Dropdown M'>
+      <Dropdown>
+        <Button label='Dropdown M' />
         <div>aaaa s fse fdsf</div>
         <div>aaaa</div>
         <div>aaaa</div>
         <a href="google.com">aaaa</a>
       </Dropdown>
-      <Dropdown label='Dropdown L' size='l'>
+      <Dropdown size='l'>
+        <Button label='Dropdown L' size='l' />
         <div>aaaa s fse fdsf</div>
         <div>aaaa</div>
         <div>aaaa</div>
         <a href="google.com">aaaa</a>
       </Dropdown>
-      <Dropdown label='Dropdown Flat' type='flat'>
+      <Dropdown type='flat'>
+        <Button label='Dropdown Flat' type='flat' />
         <div>aaaa s fse fdsf</div>
         <div>aaaa</div>
         <div>aaaa</div>
         <a href="google.com">aaaa</a>
       </Dropdown>
-      <Dropdown label='Dropdown Click' trigger='click'>
+      <Dropdown trigger='click'>
+        <Button label='Dropdown Click' />
         <div>aaaa s fse fdsf</div>
         <div>aaaa</div>
         <div>aaaa</div>
         <a href="google.com">aaaa</a>
       </Dropdown>
-      <Dropdown label='Dropdown Loading' isLoading={true}>
+      <Dropdown isLoading={true}>
+        <Button label='Dropdown Loading' isLoading={true} />
         <div>aaaa s fse fdsf</div>
         <div>aaaa</div>
         <div>aaaa</div>

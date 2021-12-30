@@ -1,0 +1,58 @@
+.sezy-carousel {
+  position: relative;
+  background: green;
+  overflow-x: hidden;
+}
+
+.sezy-carousel {
+  position: relative;
+  background: green;
+  /* overflow-x: hidden; */
+}
+
+.sezy-carousel-prev,
+.sezy-carousel-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.sezy-carousel-prev {
+  left: 2%;
+}
+
+.sezy-carousel-next {
+  right: 3%;
+}
+
+.sezy-carousel-items {
+  white-space: nowrap;
+  line-height: 0;
+}
+
+.sezy-carousel-item {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  transition: transform 1s;
+  height: 100%;
+  width: 100%;
+}
+
+.sezy-carousel-item- {
+  &prev {
+    transform: translateX(100%);
+    left:-100%;
+  }
+  &next {
+    transform: translateX(-100%);
+  }
+}
+.sezy-carousel- {
+  &s {
+  }
+  &m {
+  }
+  &l {
+  }
+}

@@ -1,20 +1,11 @@
 import React from 'react';
 import Classnames from 'classnames';
+import _ from 'lodash';
 import styles from './_styles.module.css';
 import ThreeDotsLoader from '../icon/solid/threeDotsLoader';
 
 type TLabel = {
   emptyData?: string,
-}
-
-export interface TableIProps {
-  type?: 'flat' | 'outline',
-  size?: 's' | 'm' | 'l',
-  columns?: TableColumn[],
-  data?: TableData[],
-  labels?: TLabel,
-  isLoading?: boolean,
-  className?: string,
 }
 
 type TableColumn = {
@@ -34,6 +25,16 @@ type TableData = Object & {
   render?: Function,
 }
 
+
+export interface TableIProps {
+  type?: 'flat' | 'outline' | 'nude',
+  size?: 's' | 'm' | 'l',
+  columns?: TableColumn[],
+  data?: TableData[],
+  labels?: TLabel,
+  isLoading?: boolean,
+  className?: string,
+}
 const Table = ({
   type = 'outline',
   size = 'm',
@@ -70,7 +71,9 @@ const Table = ({
               return (
                 <th
                   key={keyPrefix + 'h.' + (c.key ?? `${c.index}.${index}`)}
-                  align={c.align}
+                  style={{
+                    textAlign: c.align
+                  }}
                 >
                   {c.label}
                 </th>
@@ -85,15 +88,16 @@ const Table = ({
                 key={keyPrefix + `br.${rowIndex}.`}
               >
                 {columns?.map((c, colIndex) => {
+                  const cell = r[c.index];
                   return (
                     <td
                       key={keyPrefix + `bd.${rowIndex}.` + (c.key ?? `${c.index}.${colIndex}`)}
                       align={c.align}
                       valign={c.valign}
+                      {...(_.isObject(cell) ? cell : null)}
                     >
                       {
-                        r[c.index]
-                        // c.index==='index' ?  : r[c.index]
+                        _.isObject(cell) ? cell.children : cell
                       }
                     </td>
                   );

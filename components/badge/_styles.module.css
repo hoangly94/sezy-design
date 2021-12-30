@@ -1,0 +1,59 @@
+.sezy-badge-wrapper {
+  position: relative;
+  display: inline-block;
+}
+.sezy-badge {
+  & {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    background-color: #f14e50;
+    border: 1px solid #fff;
+    color: #fff;
+    text-align: center;
+    box-sizing: border-box;
+  }
+}
+
+.sezy-badge- {
+  &s {
+    & {
+      height: 0.9rem;
+      line-height: 0.9rem;
+      border-radius: 0.9rem;
+      min-width: 0.9rem;
+      font-size: 0.6rem;
+      padding: 0 0.2rem;
+    }
+    & > span {
+      margin: 0 -0.2rem 0 0.2rem;
+    }
+  }
+  &m {
+    & {
+      height: 1.1rem;
+      line-height: 1.1rem;
+      border-radius: 1.1rem;
+      min-width: 1.1rem;
+      font-size: 0.7rem;
+      padding: 0 0.3rem;
+    }
+    & > span {
+      margin: 0 -0.3rem 0 0.3rem;
+    }
+  }
+  &l {
+    & {
+      height: 1.3rem;
+      line-height: 1.3rem;
+      border-radius: 1.3rem;
+      min-width: 1.3rem;
+      padding: 0 0.35rem;
+      font-size: 0.8rem;
+    }
+    & > span {
+      margin: 0 -0.4rem 0 0.4rem;
+    }
+  }
+}

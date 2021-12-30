@@ -51,6 +51,14 @@
   }
 }
 
+
+.sezy-table-nude {
+  & th,
+  & td {
+    border:0;
+  }
+}
+
 /* Size */
 .sezy-table- {
   &s {

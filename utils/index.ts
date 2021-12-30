@@ -1,3 +1,4 @@
+import _ from 'lodash'
 
 export const _Object = {
     //remove key have falsy values
@@ -25,4 +26,3 @@ export function thousandSeparator(v) {
     numParts[0] = numParts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return numParts.join(".");
 }
-

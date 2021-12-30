@@ -1,0 +1,35 @@
+.sezy-label {
+  & {
+    display: inline-block;
+    color: var(--label-color);
+  }
+  & > svg {
+    fill: var(--label-color);
+  }
+}
+
+/* Size */
+.sezy-label-s {
+  & {
+    font-size: 0.875rem;
+  }
+  & > svg {
+    margin-right: 0.1rem;
+  }
+}
+.sezy-label-m {
+  & {
+    font-size: 1rem;
+  }
+  & > svg {
+    margin-right: 0.2rem;
+  }
+}
+.sezy-label-l {
+  & {
+    font-size: 1.125rem;
+  }
+  & > svg {
+    margin-right: 0.3rem;
+  }
+}

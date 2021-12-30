@@ -1,7 +1,6 @@
 import React from 'react';
 import Classnames from 'classnames';
 import styles from './_styles.module.css';
-import { Link } from "react-router-dom";
 
 export interface ListIProps {
   type?: 'outline' | 'flat',
@@ -14,26 +13,26 @@ export interface ListIProps {
 }
 
 const List = ({
-    type = 'flat',
-    size,
-    href = '',
-    isLoading = false,
-    className,
-    onClick,
-    children,
-    ...otherProps
-  }: ListIProps) => {
+  type = 'flat',
+  size,
+  href = '',
+  isLoading = false,
+  className,
+  onClick,
+  children,
+  ...otherProps
+}: ListIProps) => {
 
-    const listProps = {
+  const listProps = {
     ...otherProps,
-    className:Classnames(
+    className: Classnames(
       styles['sezy-list'],
-      styles['sezy-list-'+type],
-      styles['sezy-list-'+size],
+      styles['sezy-list-' + type],
+      styles['sezy-list-' + size],
       className,
     ),
   }
-  
+
   return (
     <div {...listProps}>
       {children}

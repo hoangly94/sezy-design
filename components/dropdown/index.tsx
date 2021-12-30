@@ -15,12 +15,12 @@ export interface DropdownIProps {
   isLoading?: boolean,
   leftIcon?: React.ReactNode,
   caretIcon?: React.ReactNode,
-  placement?: 't' | 'tr' | 'tl' | 'r' | 'rt' | 'rb' | 'b' | 'br' | 'bf' | 'l' | 'lt' | 'lb',
+  placement?: 't' | 'tr' | 'tl' | 'r' | 'rt' | 'rb' | 'b' | 'br' | 'bl' | 'l' | 'lt' | 'lb',
   trigger?: 'hover' | 'click',
 
   className?: string,
   onClick?: React.MouseEventHandler,
-  children?: React.ReactNode,
+  children: React.ReactNode,
 }
 
 const Dropdown = ({
@@ -32,14 +32,14 @@ const Dropdown = ({
   isLoading = false,
   leftIcon,
   caretIcon,
-  placement = 'bf',
+  placement = 'bl',
   trigger = 'hover',
   className,
   onClick,
   children,
   ...otherProps
 }: DropdownIProps) => {
-  const { ref: clickOutsideRef, isClickOutside, setClickOutside } = useClickOutside();
+  const { ref: clickOutsideRef, isClickOutside, setClickOutside } = useClickOutside({});
   const { ref: hoverRef, isHovered, setHovered } = useHover();
 
   const dropdownProps = {
@@ -56,28 +56,34 @@ const Dropdown = ({
     onClick: (e) => !isDisabled && !isLoading && onClick && onClick(e),
   }
   const caretIconElement = caretIcon || <Caret size={dropdownSizeToCaretSize[size] as any} />;
+
+  const clonedChildren: any = React.Children.toArray(children);
+  const button = clonedChildren.shift();
   return (
     <div {...dropdownProps} ref={hoverRef}>
-      <div
-        ref={clickOutsideRef}
-        className={Classnames(styles['sezy-dropdown-button'])}
-      >
+      <div ref={clickOutsideRef}>
         {
+          React.cloneElement(button, {
+            ...button?.props,
+          })
+        }
+      </div>
+      {/* {
           isLoading ? <ThreeDotsLoader size='l2' className="sezy-dropdown-loading" /> :
             <>
               {leftIcon}
               {label}
-
               <div className={Classnames(styles['sezy-dropdown-caret'])}>
                 {caretIconElement}
               </div>
             </>
-        }
-      </div>
-      <List type='outline' size={size}
-      // {...(trigger === 'click' && !(isLoading || isDisabled || isClickOutside.isOutside) && { style: { visibility:'visible', maxHeight: '1000px', transition: 'max-height 1s ease-in-out' } })}
+        } */}
+      <List
+        className={Classnames(styles['sezy-dropdown-list'])}
+        type={type}
+        size={size}
       >
-        {children}
+        {clonedChildren}
       </List>
     </div>
   )

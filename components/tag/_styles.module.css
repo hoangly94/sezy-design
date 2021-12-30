@@ -1,81 +1,81 @@
-.sezy-button {
+.sezy-tag {
   & {
+    display: inline-block;
     cursor: pointer;
-    border: none;
     user-select: none;
     white-space: nowrap;
-    transition: opacity 0.3s, background-color 0.3s, color 0.3s, border-color 0.3s;
     box-sizing: border-box;
+    vertical-align: middle;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
   }
-  &:hover {
-    opacity: 0.8;
+
+  & > span {
+    display: none;
   }
-  &:active {
-    opacity: 0.3;
-  }
-  &:disabled {
-    box-shadow: none;
-    border: 1px solid var(--border-disabled-color);
-    background-color: var(--bg-disabled-color);
-    color: var(--text-disabled-color);
-    pointer-events: none;
+  &:hover > span {
+    display: inline-block;
   }
 }
 
-.sezy-button-outline {
+.sezy-tag-outline {
   & {
     border: 1px solid var(--border-color);
     background-color: var(--bg-color);
     border-radius: var(--border-radius);
     color: var(--text-color);
   }
-  &:hover,
-  &[active] {
-    border-color: var(--border-active-color);
-    color: var(--border-active-color);
-  }
 }
-.sezy-button-flat {
+.sezy-tag-flat {
   & {
     background-color: var(--primary-color);
     color: #fff;
     border-radius: var(--border-radius);
   }
-  &:hover {
-    background-color: var(--bg-active-color);
-  }
 }
 
-.sezy-button- {
+.sezy-tag- {
   &s1 {
     & {
       height: 1rem;
+      line-height: 1rem;
       padding: 0 0.5rem;
       font-size: 0.6rem;
+    }
+    & > span {
+      margin: 0 -0.1rem 0 0.1rem;
     }
   }
   &s {
     & {
       height: 1.5rem;
-      /* padding: 0.25rem 0.65rem; */
+      line-height: 1.5rem;
       padding: 0 0.65rem;
       font-size: 0.75rem;
+    }
+    & > span {
+      margin: 0 -0.2rem 0 0.2rem;
     }
   }
   &m {
     & {
       height: 2rem;
-      /* padding: 0.375rem 0.8rem; */
+      line-height: 2rem;
       padding: 0 0.8rem;
       font-size: 0.9rem;
+    }
+    & > span {
+      margin: 0 -0.3rem 0 0.3rem;
     }
   }
   &l {
     & {
       height: 2.5rem;
-      /* padding: 0.625rem 0.95rem; */
+      line-height: 2.5rem;
       padding: 0 0.95rem;
       font-size: 1.05rem;
+    }
+    & > span {
+      margin: 0 -0.4rem 0 0.4rem;
     }
   }
 }

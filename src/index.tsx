@@ -89,11 +89,15 @@ const App = (): React.ReactElement => {
   return (
     <>
       <div>---Datepicker---</div>
-      <Datepicker size='s'/>
-      <br/>
-      <Datepicker dateFormat='DD/MM/YYYY'/>
-      <br/>
-      <Datepicker size='l'/>
+      <Datepicker size='s'
+        InputProps={{
+          type: 'nude'
+        }}
+      />
+      <br />
+      <Datepicker dateFormat='DD/MM/YYYY' />
+      <br />
+      <Datepicker size='l' />
       <div>---Carousel---</div>
       <Carousel {...{ style: { width: '800px', height: '400px' } }}>
         <div style={{ background: 'red' }} />
@@ -101,8 +105,8 @@ const App = (): React.ReactElement => {
         <div style={{ background: '#bb9393' }} />
         <div style={{ background: 'black' }} />
         <div style={{ background: 'yellow' }} />
-        <div style={{ background: 'pink' }} />
-        <div style={{ background: 'gray' }} />
+        {/* <div style={{ background: 'pink' }} />
+        <div style={{ background: 'gray' }} /> */}
       </Carousel>
       <div>---Badge---</div>
       <Badge>
@@ -178,10 +182,10 @@ const App = (): React.ReactElement => {
           {a as any}
         </Select>
         <Select placeholder='Select' isMulti={true} isSearchable={true} type='flat'>
-          <Option value='111111' label='aaaaaaaaaaa'>a1</Option>
-          <Option value='222222'>a2</Option>
-          <Option value='3333333'>a3</Option>
-          <Option value='44444444444'>a4</Option>
+          <Option value='111111' label='aaaaaaaaaaa1'>a1</Option>
+          <Option value='222222' label='aaaaaaaaaaa2'>a2</Option>
+          <Option value='3333333' label='aaaaaaaaaaa3'>a3</Option>
+          <Option value='44444444444' label='aaaaaaaaaaa4'>a4</Option>
         </Select>
         <Select placeholder='Select' isMulti={true} isSearchable={true}>
           <Option value='111111' label='aaaaaaaaaaa'>a1</Option>
@@ -229,7 +233,7 @@ const App = (): React.ReactElement => {
       <Table columns={tableColumns as any} data={tableData} isLoading={true} />
 
       <div>---Pagination---</div>
-      <Pagination total={0} />
+      <Pagination type='flat' total={100} />
       <Pagination total={100} size='s' />
       <Pagination total={100} />
       <Pagination total={100} size='l' />
@@ -283,12 +287,14 @@ const App = (): React.ReactElement => {
       </Row>
 
       <div>---Col---</div>
-      <Col grid={1} {...backgroundStyle}>1</Col>
-      <Col grid={2} {...backgroundStyle}>2</Col>
-      <Col grid={3} {...backgroundStyle}>3</Col>
-      <Col grid={4} {...backgroundStyle}>4</Col>
-      <Col grid={5} {...backgroundStyle}>5</Col>
-      <Col grid={6} {...backgroundStyle}>6</Col>
+      <Row>
+        <Col grid={1} gutter={{ xs: 24, sm: 24 }}{...backgroundStyle}>1</Col>
+        <Col grid={2} {...backgroundStyle}>2</Col>
+        <Col grid={3} {...backgroundStyle}>3</Col>
+        <Col grid={4} {...backgroundStyle}>4</Col>
+        <Col grid={5} {...backgroundStyle}>5</Col>
+        <Col grid={6} {...backgroundStyle}>6</Col>
+      </Row>
 
       <div>---Button---</div>
       <Button label='Button size s' size='s' />

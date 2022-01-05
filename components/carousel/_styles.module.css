@@ -16,6 +16,7 @@
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
+  z-index:100;
 }
 .sezy-carousel-prev {
   left: 2%;
@@ -34,12 +35,12 @@
   position: absolute;
   top: 0;
   left: 100%;
-  transition: transform 1s;
+  transition: left 1s;
   height: 100%;
   width: 100%;
 }
 
-.sezy-carousel-item- {
+/* .sezy-carousel-item- {
   &prev {
     transform: translateX(100%);
     left:-100%;
@@ -47,7 +48,7 @@
   &next {
     transform: translateX(-100%);
   }
-}
+} */
 .sezy-carousel- {
   &s {
   }

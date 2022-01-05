@@ -3,7 +3,7 @@ import Classnames from 'classnames';
 import styles from './_styles.module.css';
 
 export interface ListIProps {
-  type?: 'outline' | 'flat',
+  type?: 'outline' | 'flat' | 'nude',
   size?: 's' | 'm' | 'l',
   href?: string,
   isLoading?: boolean,

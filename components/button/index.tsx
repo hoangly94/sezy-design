@@ -6,7 +6,7 @@ import ThreeDotsLoader from '../icon/solid/threeDotsLoader';
 
 
 export interface ButtonIProps {
-  type?: 'outline' | 'flat',
+  type?: 'outline' | 'flat' | 'nude',
   size?: 's1' | 's' | 'm' | 'l' | 'l1',
   label?: string,
   href?: string,
@@ -15,6 +15,8 @@ export interface ButtonIProps {
   isLoading?: boolean,
   isExternalLink?: boolean,
   className?: string,
+  prefix?: React.ReactNode,
+  postfix?: React.ReactNode,
   onClick?: React.MouseEventHandler,
   children?: React.ReactNode,
 }
@@ -28,12 +30,16 @@ const Button = ({
   isDisabled = false,
   isLoading = false,
   isExternalLink = false,
+  prefix,
+  postfix,
   className,
   onClick,
   children,
   ...otherProps
 }: ButtonIProps) => {
-  const child = isLoading ? <ThreeDotsLoader size='l2' /> : (label ?? children);
+  const child = isLoading
+    ? <ThreeDotsLoader size='l2' />
+    : <>{prefix}{label ?? children}{postfix}</>;
   const buttonProps = {
     ...otherProps,
     className: Classnames(

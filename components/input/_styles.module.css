@@ -22,6 +22,7 @@
     box-sizing: border-box;
     border-radius: var(--border-radius);
     background: transparent;
+    font-family: inherit;
   }
 }
 .sezy-input-wrapper {
@@ -53,6 +54,7 @@
   &s {
     & {
       padding: 0px 0.5rem;
+      height:1.5rem;
     }
     & > *:first-child {
       padding-right: 0.25rem;
@@ -74,6 +76,7 @@
   &m {
     & {
       padding: 0 0.6rem;
+      height:2rem;
     }
     & > *:first-child {
       padding-right: 0.3rem;
@@ -95,6 +98,7 @@
   &l {
     & {
       padding: 0px 0.7rem;
+      height:2.5rem;
     }
     & > *:first-child {
       padding-right: 0.35rem;
@@ -120,6 +124,11 @@
     border: 1px solid var(--border-color);
   }
   &flat{
+    border: 1px solid transparent;
+  }
+  &nude {
+    background-color: inherit;
+    border-radius: inherit;
     border: 1px solid transparent;
   }
 }

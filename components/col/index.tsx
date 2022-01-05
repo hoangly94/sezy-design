@@ -1,9 +1,20 @@
 import * as React from 'react'
 import Classnames from 'classnames';
+import _ from 'lodash';
 import styles from './_styles.module.css';
+
+type Gutter = {
+  xs?: number,
+  sm?: number,
+  md?: number,
+  lg?: number,
+  xl?: number,
+  xxl?: number,
+}
 
 export interface ColIProps {
   grid?: number,
+  gutter?: Gutter,
   className?: string,
   children?: React.ReactNode,
 };
@@ -11,24 +22,24 @@ export interface ColIProps {
 const Col = ({
   children,
   grid,
+  gutter,
   className,
   ...otherProps
 }: ColIProps): React.ReactElement => {
-
-const props = {
-  ...otherProps,
-  className:Classnames(
-    styles['sezy-col'],
-    styles['sezy-col-'+ grid],
-    className,
-  ),
-};
-
-return (
-  <div {...props}>
-    {children}
-  </div>
-)
+  const gutterValues = _.values(gutter);
+  return (
+    <div
+      {...otherProps}
+      className={Classnames(
+        styles['sezy-col'],
+        styles['sezy-col-' + grid],
+        gutter && _.keys(gutter).map((v, k) => styles[`sezy-col-${v}-${gutterValues[k]}`]),
+        className,
+      )}
+    >
+      {children}
+    </div>
+  )
 }
 
 export default Col

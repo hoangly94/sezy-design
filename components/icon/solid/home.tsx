@@ -3,7 +3,7 @@ import { IconIProps, IconWrapper } from '../';
 
 const Home = (props: IconIProps) => {
     return IconWrapper(undefined, props,
-        <svg viewBox="0 0 27.02 27.02" xmlns="http://www.w3.org/2000/svg"
+        <svg viewBox="0 0 27.02 27.02"
         >
             <path d="M3.674,24.876c0,0-0.024,0.604,0.566,0.604c0.734,0,6.811-0.008,6.811-0.008l0.01-5.581
 		c0,0-0.096-0.92,0.797-0.92h2.826c1.056,0,0.991,0.92,0.991,0.92l-0.012,5.563c0,0,5.762,0,6.667,0

@@ -36,6 +36,11 @@
     box-sizing: border-box;
   }
 }
+.sezy-list-nude {
+  & {
+    box-sizing: border-box;
+  }
+}
 
 /* Size */
 .sezy-list-s > * {

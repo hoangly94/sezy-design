@@ -20,7 +20,7 @@ export const toMonthYearPickerFn = ({
   activeConditionFn: (string, number) => boolean,
   blurConditionFn: (string, number) => boolean,
   onClick: (string, number) => void,
-  range: string[],
+  range: number[] | string[],
   toLabelFn: (string, number) => string | number
 }) => (
   range.map((data, index) =>

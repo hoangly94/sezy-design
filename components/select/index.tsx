@@ -1,8 +1,8 @@
 import React from 'react';
 import Classnames from 'classnames';
 import styles from './_styles.module.css';
-import List from '../list';
-import Input from '../input';
+import List, { ListIProps } from '../list';
+import Input, { InputIProps } from '../input';
 import { useClickOutside, useHover } from '../../hooks';
 import Caret from '../icon/solid/caret';
 import ThreeDotsLoader from '../icon/solid/threeDotsLoader';
@@ -22,7 +22,7 @@ type TLabel = {
 }
 
 export interface SelectIProps {
-  type?: 'flat' | 'outline',
+  type?: 'flat' | 'outline' | 'nude',
   size?: 's' | 'm' | 'l',
   labels?: TLabel,
   selectedItems?: TSelectedItem[]
@@ -37,6 +37,8 @@ export interface SelectIProps {
   onClick?: React.MouseEventHandler,
   onSearchChange?: (key: string) => void,
   onChange?: Function,
+  InputProps?: InputIProps,
+  ListProps?: ListIProps,
   children?: React.ReactElement<OptionIProps>[],
 }
 
@@ -57,6 +59,8 @@ const Select = ({
   onSearchChange,
   onChange,
   children = [],
+  InputProps,
+  ListProps,
   ...otherProps
 }: SelectIProps) => {
   const valueInputRef: React.MutableRefObject<any> = React.useRef(null)
@@ -121,8 +125,8 @@ const Select = ({
           const isChecked = isMulti && filteredMultiChoicesMap.length < selectedOptions.length;
           return (
             React.cloneElement(child, {
-              key: `${child.props.value}.${index}`,
               ...child?.props,
+              key: `${child.props.value}.${index}`,
               children: isMulti ? <>
                 <Checkbox className={styles['sezy-select-checkbox']} size={size} value={isAllChecked.current || isChecked} />{child?.props?.children}
               </> : child?.props?.children,
@@ -162,22 +166,22 @@ const Select = ({
     const filteredMultiChoicesMap = selectedOptions.filter(item => item.value !== value);
     isAllChecked.current = numberOfItems === filteredMultiChoicesMap.length;
     setSelectedOptions([...filteredMultiChoicesMap]);
-    onChange && onChange(filteredMultiChoicesMap);
   }
 
   return (
     <div {...selectProps} ref={hoverRef}>
       <Input
         type={type}
-        tagType={isMulti ? 'div' : 'input'}
-        valueType='textValue'
-        ref={clickOutsideRef}
-        textRef={labelInputRef}
         size={size}
         postfix={<Caret size={toCaretSize[size] as any} />}
         placeholder={placeholder}
         isReadOnly={true}
         isLoading={isLoading}
+        {...InputProps}
+        tagType={isMulti ? 'div' : 'input'}
+        valueType='textValue'
+        ref={clickOutsideRef}
+        textRef={labelInputRef}
       >
         <div className={styles['sezy-select-tags']} data-placeholder={placeholder}>
           {
@@ -210,9 +214,14 @@ const Select = ({
           />
         }
         <List
-          className={styles['sezy-select-options']}
           type={type}
-          size={size}>
+          size={size}
+          {...ListProps}
+          className={Classnames(
+            styles['sezy-select-options'],
+            ListProps?.className
+          )}
+        >
           {
             // isLoading
             //   ? <div>Loading...</div>
@@ -224,7 +233,6 @@ const Select = ({
     </div>
   )
 }
-
 const toCaretSize = {
   s: 's2',
   m: 's1',

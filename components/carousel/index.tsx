@@ -2,6 +2,7 @@ import React from 'react';
 import Classnames from 'classnames';
 import styles from './_styles.module.css';
 import ChevronIcon from '../icon/solid/chevron';
+import _ from 'lodash';
 
 export interface CarouselIProps {
   // type?: 'outline' | 'flat',
@@ -43,7 +44,7 @@ const Carousel = ({
     setStep(step);
   }, [deafultStep]);
 
-  const prevStep = React.useRef(deafultStep);
+  const stepAction = React.useRef(0);
 
   const newStep = (step: number, add: number) => {
     const newStep = (() => {
@@ -55,10 +56,14 @@ const Carousel = ({
         return size
       return newStep
     })();
-    prevStep.current = step;
+    stepAction.current = add;
     setStep(newStep);
   }
+  const childrenCount = React.Children.count(children);
+  const centerRange = Math.floor(childrenCount / 2);
+  const centerPoint = childrenCount % 2 === 0 ? centerRange - 1 : centerRange;
 
+  const slideItemIndex = _.range(childrenCount).map((v, i) => (((childrenCount + (step - centerRange) + i) - 1) % childrenCount) + 1);
   return (
     <div
       className={Classnames(
@@ -75,20 +80,24 @@ const Carousel = ({
         {...otherProps}
       >
         {
-          React.Children.map<any, any>(children, (child, index) => (
-            React.cloneElement(child, {
-              ...child.props,
-              className: Classnames(
-                child.props.className,
-                styles['sezy-carousel-item'],
-                step === (index + 1) && prevStep.current > step && styles['sezy-carousel-item-prev'],
-                step === (index + 1) && prevStep.current < step && styles['sezy-carousel-item-next'],
-              ),
-              style: {
-                ...child.props.style,
-              }
-            })
-          ))
+          React.Children.map<any, any>(children, (child, childIndex) => {
+            const newItemPosition = slideItemIndex.indexOf(childIndex + 1) - centerPoint;
+            const style = {
+              ...child.props.style,
+              left: `${newItemPosition}00%`,
+              zIndex: (stepAction.current === 1 ? -newItemPosition : newItemPosition) + childrenCount,
+            }
+            return (
+              React.cloneElement(child, {
+                ...child.props,
+                className: Classnames(
+                  child.props.className,
+                  styles['sezy-carousel-item'],
+                ),
+                style
+              })
+            )
+          })
         }
       </div>
       <span

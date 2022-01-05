@@ -4,7 +4,7 @@ import { IconIProps, IconWrapper } from '../';
 const DocumentCheck = (props: IconIProps) => {
     return IconWrapper(undefined, props,
         <svg
-            viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
         >
             <polygon points="8.789,121 120,121 120,8.789" />
             <path d="M391,271c-66.167,0-120,53.833-120,120s53.833,121,120,121s121-54.833,121-121S457.167,271,391,271z M446.605,386.605

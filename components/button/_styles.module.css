@@ -1,10 +1,12 @@
 .sezy-button {
   & {
+    font-family: inherit;
     cursor: pointer;
     border: none;
     user-select: none;
     white-space: nowrap;
-    transition: opacity 0.3s, background-color 0.3s, color 0.3s, border-color 0.3s;
+    transition: opacity 0.3s, background-color 0.3s, color 0.3s,
+      border-color 0.3s;
     box-sizing: border-box;
   }
   &:hover {
@@ -25,7 +27,7 @@
 .sezy-button-outline {
   & {
     border: 1px solid var(--border-color);
-    background-color: var(--bg-color);
+    background: var(--bg-color);
     border-radius: var(--border-radius);
     color: var(--text-color);
   }
@@ -37,12 +39,24 @@
 }
 .sezy-button-flat {
   & {
-    background-color: var(--primary-color);
+    background: var(--primary-color);
     color: #fff;
     border-radius: var(--border-radius);
   }
   &:hover {
     background-color: var(--bg-active-color);
+  }
+}
+.sezy-button-nude {
+  & {
+    background: transparent;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+  }
+  &:hover,
+  &[active] {
+    background: var(--primary-color);
+    color: #fff;
   }
 }
 

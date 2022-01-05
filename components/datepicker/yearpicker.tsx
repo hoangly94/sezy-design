@@ -39,7 +39,8 @@ const DatepickerYearpicker = ({
     })
 
   const toYearPicker = () => {
-    const yearRange = _.range(...get10Years(+currentYearPicker.format('YYYY'), 1));
+    const [from, to] = get10Years(+currentYearPicker.format('YYYY'), 1);
+    const yearRange = _.range(from, to);
     const currentYear = +currentDate.format('YYYY');
     return toMonthYearPickerFn({
       key: 'year',
@@ -57,7 +58,8 @@ const DatepickerYearpicker = ({
   }
 
   const to10YearsPicker = () => {
-    const yearRange = _.range(...get100Years(+currentYearPicker.format('YYYY'), 1), 10);
+    const [from, to] = get100Years(+currentYearPicker.format('YYYY'), 1);
+    const yearRange = _.range(from, to, 10);
     const activeYear = get10Years(+currentDate.format('YYYY'))[0];
     return toMonthYearPickerFn({
       key: 'year10',
@@ -79,7 +81,8 @@ const DatepickerYearpicker = ({
   }
 
   const to100YearsPicker = () => {
-    const yearRange = _.range(...get1000Years(+currentYearPicker.format('YYYY'), 1).map(year => year -= 500), 100);
+    const [from, to] = get1000Years(+currentYearPicker.format('YYYY'), 1).map(year => year -= 500);
+    const yearRange = _.range(from, to, 100);
     const activeYear = get100Years(+currentDate.format('YYYY'))[0];
     return toMonthYearPickerFn({
       key: 'year100',

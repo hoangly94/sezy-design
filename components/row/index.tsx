@@ -12,12 +12,14 @@ type Gutter = {
   xl?: number,
   xxl?: number,
 }
+
 export interface RowIProps {
   children?: React.ReactNode,
   gaps?: [any, any],
   gutter?: Gutter,
   className?: string,
 };
+
 const Row = ({
   children,
   gaps = [0, 0],

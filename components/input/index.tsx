@@ -6,7 +6,7 @@ import AutoComplete, { AutoCompleteIProps } from '../autoComplete';
 import ThreeDotsLoader from '../icon/solid/threeDotsLoader';
 
 export interface InputIProps {
-  type?: 'flat' | 'outline',
+  type?: 'flat' | 'outline' | 'nude',
   tagType?: 'input' | 'textarea' | 'div',
   valueType?: 'text' | 'textValue' | 'password' | 'email' | 'number' | 'phone',
   size?: 's' | 'm' | 'l',

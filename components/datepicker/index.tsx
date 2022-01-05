@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import Classnames from 'classnames'
 import styles from './_styles.module.css'
 import { useClickOutside } from '../../hooks'
-import Table from '../table'
-import Input from '../input'
+import Table, { TableIProps } from '../table'
+import Input, { InputIProps } from '../input'
 import Calendar from '../icon/solid/calendar'
 import moment from 'moment'
 import _ from 'lodash'
@@ -26,7 +26,11 @@ export interface DatepickerIProps {
   dateFormat?: string,
   defaultDate?: [moment.Moment, moment.Moment]
   yearRange?: [number, number],
+  hasRange?: boolean,
   isLoading?: boolean,
+  className?: string,
+  InputProps?: InputIProps,
+  TableProps?: TableIProps,
   onChange?: ({ date, dateFrom }: { date: moment.Moment, dateFrom?: moment.Moment }) => void,
 }
 const Datepicker = ({
@@ -35,8 +39,13 @@ const Datepicker = ({
   labels,
   dateFormat = 'YYYY/MM/DD',
   defaultDate = [moment(), moment()],
+  hasRange = true,
   isLoading = false,
+  className,
   onChange,
+  InputProps,
+  TableProps,
+  ...otherProps
 }: DatepickerIProps) => {
   const labelMap = Object.assign({
     placeholder: 'Date...',
@@ -80,19 +89,22 @@ const Datepicker = ({
       styles['sezy-datepicker'],
       styles['sezy-datepicker-' + type],
       styles['sezy-datepicker-' + size],
+      className,
     )}
       ref={clickOutsideRef}
+      {...otherProps}
     >
-      <Input
-        type={type}
-        ref={inputRef}
-        size={size}
-        postfix={<Calendar size={size} />}
-        placeholder={labelMap?.placeholder}
-        isReadOnly={true}
-        isLoading={isLoading}
-        onClick={() => setClickOutside(false)}
-      />
+    <Input
+      type={type}
+      size={size}
+      postfix={<Calendar size={size} />}
+      placeholder={labelMap?.placeholder}
+      isLoading={isLoading}
+      isReadOnly={true}
+      {...InputProps}
+      ref={inputRef}
+      onClick={() => setClickOutside(false)}
+    />
       <div className={Classnames(
         styles['sezy-datepicker-box'],
         !isClickOutside && styles['sezy-datepicker-open'],
@@ -112,8 +124,9 @@ const Datepicker = ({
           styles['sezy-datepicker-table'],
         )}>
           <Table
-            type={type === 'flat' ? 'nude' : type}
+            type='nude'
             size={size}
+            {...TableProps}
             columns={tableColumns as any}
             data={toTableData(currentDate, onClickCell, selectedDates)} />
         </div>

@@ -59,7 +59,7 @@ const Pagination = ({
     const pageNumber = firstPage + index;
     return <Button
       key={pageNumber}
-      type={type}
+      type={type === 'flat' ? 'nude' : type}
       size={size}
       label={'' + pageNumber}
       onClick={e => pageClick(pageNumber, e)}

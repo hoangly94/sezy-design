@@ -11,7 +11,7 @@ type TLabel = {
 type TableColumn = {
   key?: string,
   index: string,
-  label: string,
+  label: string | React.ReactNode,
   isDisabled?: boolean,
   filter?: Object,
   sort?: Object,
@@ -97,7 +97,7 @@ const Table = ({
                       {...(_.isObject(cell) ? cell : null)}
                     >
                       {
-                        _.isObject(cell) ? cell.children : cell
+                        _.isObject(cell) ? cell['children'] : cell
                       }
                     </td>
                   );

@@ -4,10 +4,10 @@
     user-select: none;
     box-sizing: border-box;
   }
-  & > *:first-child {
+  /* & > *:first-child {
     background-color: inherit;
     border-radius: inherit;
-  }
+  } */
   & > *:first-child > div {
     overflow: hidden;
   }
@@ -32,7 +32,7 @@
   min-width: 100%;
   visibility: hidden;
   max-height: 0;
-  overflow: hidden;
+  overflow: hidden auto;
   height: 0;
   overscroll-behavior: contain;
 }
@@ -58,9 +58,9 @@
 .sezy-select-active .sezy-select-options {
   visibility: visible;
   max-height: 28rem;
-  animation: 1.8s delay-overflow;
-  animation-fill-mode: forwards;
-  transition: max-height 0.5s ease-in-out;
+  /* animation: 1.8s delay-overflow;
+  animation-fill-mode: forwards; */
+  transition: max-height 0.2s ease-in-out;
   height: auto;
 }
 .sezy-select-active .sezy-select-options-search > *:first-child {

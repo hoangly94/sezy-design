@@ -6,7 +6,6 @@
 
 .sezy-carousel {
   position: relative;
-  background: green;
   /* overflow-x: hidden; */
 }
 
@@ -16,7 +15,7 @@
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
-  z-index:100;
+  z-index: 100;
 }
 .sezy-carousel-prev {
   left: 2%;
@@ -32,6 +31,7 @@
 }
 
 .sezy-carousel-item {
+  background: var(--primary-color);
   position: absolute;
   top: 0;
   left: 100%;

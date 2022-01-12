@@ -3,32 +3,44 @@ import Classnames from 'classnames';
 import styles from './_styles.module.css';
 import ChevronIcon from '../icon/solid/chevron';
 import _ from 'lodash';
+import { useInterval } from '../../hooks';
+
+type Dot = {
+  sharp?: 'circle' | 'bar',
+  playtimeEffect?: boolean,
+  placement?: 't' | 'b',
+  size?: 's' | 'm' | 'l',
+}
+
+type Navigation = {
+  type?: 'icon' | 'full',
+  Prev?: React.ReactNode,
+  Next?: React.ReactNode,
+}
 
 export interface CarouselIProps {
-  // type?: 'outline' | 'flat',
+  // type?: 'classic'
+  dot?: Dot,
+  navigation?: Navigation,
   size?: 's' | 'm' | 'l',
   deafultStep?: number, // slide will be shown
-  autoplayTime?: string, // no set no auto play
-  hasDots?: boolean,
+  autoPlayTime?: number, //(second) no set no auto play
   isInfinity?: boolean,
   isFull?: boolean,
-  $prev?: React.ReactNode,
-  $next?: React.ReactNode,
   className?: string,
   onChange?: (step: number) => void,
   children?: React.ReactNode
 }
 
 const Carousel = ({
-  // type = 'flat',
+  // type = 'classic',
+  dot,
+  navigation,
   size = 'm',
   deafultStep = 1,
-  autoplayTime,
-  hasDots = false,
+  autoPlayTime,
   isInfinity = true,
   isFull = true,
-  $prev,
-  $next,
   className,
   onChange,
   children,
@@ -36,17 +48,26 @@ const Carousel = ({
 }: CarouselIProps) => {
   const [step, setStep] = React.useState(deafultStep);
 
+  const intervalProps = {
+    callbackFn: () => setNewStep(step, 1),
+    seconds: autoPlayTime,
+  }
+  const { setIntervalProps, setIsIntervalActive } = useInterval({});
+
   React.useEffect(() => {
-    onChange && onChange(step)
+    onChange && onChange(step);
+    if (autoPlayTime) {
+      setIntervalProps(intervalProps);
+      setIsIntervalActive(step !== childrenCount);
+    }
   }, [step]);
 
   React.useEffect(() => {
     setStep(step);
   }, [deafultStep]);
-
   const stepAction = React.useRef(0);
 
-  const newStep = (step: number, add: number) => {
+  const setNewStep = (step: number, add: number) => {
     const newStep = (() => {
       const newStep = step + add;
       const size = React.Children.count(children);
@@ -59,11 +80,95 @@ const Carousel = ({
     stepAction.current = add;
     setStep(newStep);
   }
-  const childrenCount = React.Children.count(children);
-  const centerRange = Math.floor(childrenCount / 2);
-  const centerPoint = childrenCount % 2 === 0 ? centerRange - 1 : centerRange;
 
-  const slideItemIndex = _.range(childrenCount).map((v, i) => (((childrenCount + (step - centerRange) + i) - 1) % childrenCount) + 1);
+  const childrenCount = React.Children.count(children);
+  // const centerRange = Math.floor(childrenCount / 2);
+  // const centerPoint = childrenCount % 2 === 0 ? centerRange - 1 : centerRange;
+
+  // const slideItemIndex = _.range(childrenCount).map((v, i) => (((childrenCount + (step - centerRange) + i) - 1) % childrenCount) + 1);
+
+  const leftChild = step - 1 ? step - 1 : childrenCount;
+
+  const prevClick = () => (isInfinity || step > 1) && setNewStep(step, -1);
+  const nextClick = () => (isInfinity || step < childrenCount) && setNewStep(step, 1);
+
+  const navigations = (() => {
+    if (navigation?.type === 'full') {
+      return (
+        <>
+          <span
+            className={styles['sezy-carousel-full-prev']}
+            onClick={prevClick}
+          />
+          <span
+            className={styles['sezy-carousel-full-next']}
+            onClick={nextClick}
+          />
+        </>
+      )
+    }
+    return (
+      <>
+        <span
+          className={styles['sezy-carousel-prev']}
+          onClick={prevClick}
+        >
+          {navigation?.Prev || <ChevronIcon
+            direction='left'
+            size={size}
+            isDisabled={!isInfinity && step === 1}
+          />}
+        </span>
+        <span
+          className={styles['sezy-carousel-next']}
+          onClick={nextClick}
+        >
+          {navigation?.Next || <ChevronIcon
+            direction='right'
+            size={size}
+            isDisabled={!isInfinity && step === childrenCount}
+          />}
+        </span>
+      </>
+    )
+  })();
+
+  const dots = (() => {
+    return (
+      <div
+        className={Classnames([
+          styles['sezy-carousel-dots'],
+          styles[`sezy-carousel-dot-${dot?.placement ?? 'b'}`],
+          styles[`sezy-carousel-dot-${dot?.sharp ?? 'circle'}`],
+        ])}
+      >
+        {
+          _.range(childrenCount).map((item, index) => {
+
+            return (
+              <span
+                key={`dot.${index}`}
+                className={Classnames([
+                  step === (index + 1) && styles['sezy-carousel-dot-active'],
+                  styles[`sezy-carousel-dot-${dot?.size ?? 'm'}`],
+                ])}
+                onClick={() => {
+                  console.log(index);
+                  setStep(index + 1)
+                }}
+              >
+                {autoPlayTime && dot?.playtimeEffect && <>
+                  <span />
+                  <span style={{ animationDuration: `${autoPlayTime}s` }} />
+                </>}
+              </span>
+            )
+          })
+        }
+      </div>
+    )
+  })();
+
   return (
     <div
       className={Classnames(
@@ -81,12 +186,15 @@ const Carousel = ({
       >
         {
           React.Children.map<any, any>(children, (child, childIndex) => {
-            const newItemPosition = slideItemIndex.indexOf(childIndex + 1) - centerPoint;
+            // const newItemPosition = slideItemIndex.indexOf(childIndex + 1) - centerPoint;
             const style = {
               ...child.props.style,
-              left: `${newItemPosition}00%`,
-              zIndex: (stepAction.current === 1 ? -newItemPosition : newItemPosition) + childrenCount,
-            }
+              left: `${childIndex + 1 - step}00%`,
+              // zIndex: (stepAction.current === 1 ? -newItemPosition : newItemPosition) + childrenCount,
+            };
+
+            // if ([0, 1, -1].includes(newItemPosition))
+              style.transition = 'left 1s';
             return (
               React.cloneElement(child, {
                 ...child.props,
@@ -100,26 +208,8 @@ const Carousel = ({
           })
         }
       </div>
-      <span
-        className={styles['sezy-carousel-prev']}
-        onClick={() => (isInfinity || step > 1) && newStep(step, -1)}
-      >
-        {$prev || <ChevronIcon
-          direction='left'
-          size={size}
-          isDisabled={!isInfinity && step === 1}
-        />}
-      </span>
-      <span
-        className={styles['sezy-carousel-next']}
-        onClick={() => (isInfinity || step < React.Children.count(children)) && newStep(step, 1)}
-      >
-        {$next || <ChevronIcon
-          direction='right'
-          size={size}
-          isDisabled={!isInfinity && step === React.Children.count(children)}
-        />}
-      </span>
+      {navigations}
+      {dots}
     </div>
   )
 }

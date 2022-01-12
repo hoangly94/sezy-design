@@ -31,6 +31,7 @@ export interface SelectIProps {
   isLoading?: boolean,
   isSearchable?: boolean,
   isMulti?: boolean,
+  limitScrollItems?: number,
   placement?: 't' | 'tr' | 'tl' | 'r' | 'rt' | 'rb' | 'b' | 'br' | 'bf' | 'l' | 'lt' | 'lb',
   trigger?: 'hover' | 'click',
   className?: string,
@@ -52,6 +53,7 @@ const Select = ({
   isLoading = false,
   isSearchable = false,
   isMulti = false,
+  limitScrollItems = 10,
   placement = 'bf',
   trigger,
   className,
@@ -68,14 +70,30 @@ const Select = ({
   const { ref: clickOutsideRef, isClickOutside, setClickOutside } = useClickOutside({ ref: valueInputRef });
   const { ref: hoverRef, isHovered, setHovered } = useHover();
   const labelInputRef: React.MutableRefObject<any> = React.useRef(null);
+  const optionListRef: React.MutableRefObject<any> = React.useRef(null);
   const isAllChecked = React.useRef(false);
   const [selectedOptions, setSelectedOptions] = React.useState<TSelectedItem[]>(selectedItems);
+  const [limitItems, setLimitItems] = React.useState(limitScrollItems);
   const [options, setOptions] = React.useState<React.ReactElement<OptionIProps>[]>(children);
   const numberOfItems = React.Children.count(children);
 
   React.useEffect(() => {
+    optionListRef?.current && (optionListRef.current.scrollTo(0, 0));
     setOptions(children);
   }, [children])
+
+  React.useEffect(() => {
+    optionListRef.current?.addEventListener("scroll", onOptionScroll);
+    return () => {
+      optionListRef.current?.removeEventListener("scroll", onOptionScroll);
+    };
+  }, [optionListRef, limitItems]);
+
+  const onOptionScroll = (e) => {
+    if ((e.target.scrollTop + e.target.offsetHeight) >= e.target.scrollHeight - 2) {
+      setLimitItems(((limitItems / limitScrollItems) + 1) * limitScrollItems);
+    }
+  }
 
   const labelMap = Object.assign({
     allOptions: 'All',
@@ -123,6 +141,8 @@ const Select = ({
           const value = child.props.value;
           const filteredMultiChoicesMap = isMulti && selectedOptions.filter(item => item.value !== value);
           const isChecked = isMulti && filteredMultiChoicesMap.length < selectedOptions.length;
+          if (index >= limitItems)
+            return;
           return (
             React.cloneElement(child, {
               ...child?.props,
@@ -156,11 +176,14 @@ const Select = ({
         })
       }
     </>
-  }, [options]);
+  }, [options, limitItems]);
 
-  const localSearch = e => setOptions(children?.filter(child => {
-    return ((child.props.label ?? child.props.children as string))?.toLowerCase().startsWith(e.target.value?.toLowerCase())
-  }));
+  const localSearch = e => {
+    optionListRef?.current && (optionListRef.current.scrollTo(0, 0));
+    setOptions(children?.filter(child => {
+      return ((child.props.label ?? child.props.children as string))?.toLowerCase().startsWith(e.target.value?.toLowerCase())
+    }))
+  };
 
   const clickMultiChoicesTag = (selectedOptions, value) => e => {
     const filteredMultiChoicesMap = selectedOptions.filter(item => item.value !== value);
@@ -214,6 +237,7 @@ const Select = ({
           />
         }
         <List
+          ref={optionListRef}
           type={type}
           size={size}
           {...ListProps}
@@ -244,6 +268,7 @@ const toButtonSize = {
   m: 's',
   l: 'm',
 }
+
 export default Select
 
 

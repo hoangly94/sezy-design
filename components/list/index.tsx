@@ -21,26 +21,24 @@ const List = ({
   onClick,
   children,
   ...otherProps
-}: ListIProps) => {
-
-  const listProps = {
-    ...otherProps,
-    className: Classnames(
-      styles['sezy-list'],
-      styles['sezy-list-' + type],
-      styles['sezy-list-' + size],
-      className,
-    ),
-  }
-
+}: ListIProps, ref) => {
   return (
-    <div {...listProps}>
+    <div
+      ref={ref}
+      {...otherProps}
+      className={Classnames(
+        styles['sezy-list'],
+        styles['sezy-list-' + type],
+        styles['sezy-list-' + size],
+        className,
+      )}
+    >
       {children}
     </div>
   )
 }
 
-export default List
+export default React.forwardRef(List)
 
 
 

@@ -99,6 +99,20 @@ const App = (): React.ReactElement => {
       <br />
       <Datepicker size='l' />
       <div>---Carousel---</div>
+      <Carousel
+        {...{ style: { width: '800px', height: '400px' } }}
+        dot={{ sharp: 'bar', playtimeEffect: true, placement: 't' }}
+        navigation={{ type: 'full' }}
+        // autoPlayTime={2}
+      >
+        <div style={{ background: 'black' }} />
+        <div style={{ background: 'yellow' }} />
+        <div style={{ background: 'red' }} />
+        <div style={{ background: 'blue' }} />
+        <div style={{ background: '#bb9393' }} />
+        {/* <div style={{ background: 'pink' }} />
+        <div style={{ background: 'gray' }} /> */}
+      </Carousel>
       <Carousel {...{ style: { width: '800px', height: '400px' } }}>
         <div style={{ background: 'red' }} />
         <div style={{ background: 'blue' }} />
@@ -203,6 +217,20 @@ const App = (): React.ReactElement => {
           <Option value='14'>a14</Option>
           <Option value='15'>a15</Option>
           <Option value='16'>a16</Option>
+          <Option value='17'>a17</Option>
+          <Option value='18'>a18</Option>
+          <Option value='19'>a19</Option>
+          <Option value='20'>a20</Option>
+          <Option value='21'>a21</Option>
+          <Option value='22'>a22</Option>
+          <Option value='23'>a23</Option>
+          <Option value='24'>a24</Option>
+          <Option value='25'>a25</Option>
+          <Option value='26'>a26</Option>
+          <Option value='27'>a27</Option>
+          <Option value='28'>a28</Option>
+          <Option value='29'>a29</Option>
+          <Option value='30'>a30</Option>
         </Select>
       </Row>
       +

@@ -57,7 +57,7 @@
 }
 .sezy-select-active .sezy-select-options {
   visibility: visible;
-  max-height: 28rem;
+  max-height: 20rem;
   /* animation: 1.8s delay-overflow;
   animation-fill-mode: forwards; */
   transition: max-height 0.2s ease-in-out;

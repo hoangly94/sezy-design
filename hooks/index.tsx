@@ -4,6 +4,7 @@ import useHover from './useHover';
 import useCookie from './useCookie';
 import useForceRender from './useForceRender';
 import useWindowDimensions from './useWindowDimensions';
+import useInterval from './useInterval';
 
 export {
   useConfirmationDialog,
@@ -12,4 +13,5 @@ export {
   useCookie,
   useForceRender,
   useWindowDimensions,
+  useInterval,
 };

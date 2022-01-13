@@ -9,7 +9,15 @@
     border-radius: inherit;
   } */
   & > *:first-child > div {
-    overflow: hidden;
+    & {
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+    & > div {
+      display: flex;
+      align-items: center;
+    }
   }
 }
 .sezy-select-options-wrapper {

@@ -3,6 +3,7 @@ import Classnames from 'classnames';
 import Button from '../button';
 import styles from './_styles.module.css';
 import Chevron from '../icon/solid/chevron';
+import DoubleChevron from '../icon/solid/doubleChevron';
 
 export interface PaginationIProps {
   type?: 'outline' | 'flat',
@@ -87,11 +88,21 @@ const Pagination = ({
     pageClick(currentPage - 1, e);
   }
 
+  const firstPageClick = e => {
+    pageClick(1, e);
+  }
+  
+  const lastPageClick = e => {
+    pageClick(maxPage, e);
+  }
+
   return (
     <div {...paginationProps}>
-      {!!total && <Chevron direction='left' size={toIconSize[size] as any} isDisabled={isFirst} onClick={prevClick} />}
+      {hasFirstLast && !!total && <DoubleChevron className={styles['sezy-pagination-2prev']} direction='left' size={toIconSize[size] as any} isDisabled={isFirst} onClick={firstPageClick} />}
+      {!!total && <Chevron className={styles['sezy-pagination-prev']} direction='left' size={toIconSize[size] as any} isDisabled={isFirst} onClick={prevClick} />}
       {itemElements}
-      {!!total && <Chevron direction='right' size={toIconSize[size] as any} isDisabled={isLast} onClick={nextClick} />}
+      {!!total && <Chevron className={styles['sezy-pagination-next']} direction='right' size={toIconSize[size] as any} isDisabled={isLast} onClick={nextClick} />}
+      {hasFirstLast && !!total && <DoubleChevron className={styles['sezy-pagination-2next']} direction='right' size={toIconSize[size] as any} isDisabled={isLast} onClick={lastPageClick} />}
     </div>
   )
 }

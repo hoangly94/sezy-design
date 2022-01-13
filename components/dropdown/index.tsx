@@ -10,8 +10,8 @@ export interface DropdownIProps {
   type?: 'flat' | 'outline',
   size?: 's' | 'm' | 'l',
   label?: string,
-  isDisabled?: boolean,
   href?: string,
+  isDisabled?: boolean,
   isLoading?: boolean,
   leftIcon?: React.ReactNode,
   caretIcon?: React.ReactNode,
@@ -27,8 +27,8 @@ const Dropdown = ({
   type = 'outline',
   size = 'm',
   label,
-  isDisabled = false,
   href = '',
+  isDisabled = false,
   isLoading = false,
   leftIcon,
   caretIcon,
@@ -40,8 +40,7 @@ const Dropdown = ({
   ...otherProps
 }: DropdownIProps) => {
   const { ref: clickOutsideRef, isClickOutside, setClickOutside } = useClickOutside({});
-  const { ref: hoverRef, isHovered, setHovered } = useHover();
-
+  // const { ref: hoverRef, isHovered, setHovered } = useHover();
   const dropdownProps = {
     ...otherProps,
     className: Classnames(
@@ -50,17 +49,22 @@ const Dropdown = ({
       styles['sezy-dropdown-' + size],
       styles['sezy-dropdown-placement-' + placement],
       isDisabled && styles['sezy-dropdown-disabled'],
-      !(isLoading || isDisabled) && ((!trigger && (isHovered || !isClickOutside)) || (trigger === 'hover' && isHovered) || (trigger === 'click' && !isClickOutside)) && styles['sezy-dropdown-active'],
+      !(isLoading || isDisabled) && trigger === 'click' && !isClickOutside && styles['sezy-dropdown-active'],
+      !(isLoading || isDisabled) && trigger === 'hover' && isClickOutside && styles['sezy-dropdown-hover'],
       className,
     ),
     onClick: (e) => !isDisabled && !isLoading && onClick && onClick(e),
   }
-  const caretIconElement = caretIcon || <Caret size={dropdownSizeToCaretSize[size] as any} />;
 
-  const clonedChildren: any = React.Children.toArray(children);
+  const clonedChildren: any = React.Children.toArray(React.Children.map<any, any>(children, child => (
+    React.cloneElement(child, {
+      ...child?.props,
+    })
+  ))
+  );
   const button = clonedChildren.shift();
   return (
-    <div {...dropdownProps} ref={hoverRef}>
+    <div {...dropdownProps}>
       <div ref={clickOutsideRef}>
         {
           React.cloneElement(button, {
@@ -82,6 +86,10 @@ const Dropdown = ({
         className={Classnames(styles['sezy-dropdown-list'])}
         type={type}
         size={size}
+        onClick={() => {
+          console.log('=============');
+          setClickOutside(false)
+        }}
       >
         {clonedChildren}
       </List>

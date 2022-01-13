@@ -25,10 +25,13 @@
   background-color: #00000010;
 }
 
-.sezy-dropdown-active > .sezy-dropdown-list {
-  visibility: visible;
-  max-height: 1000px;
-  transition: max-height 1s ease-in-out;
+.sezy-dropdown-hover:hover,
+.sezy-dropdown-active {
+  & > .sezy-dropdown-list {
+    visibility: visible;
+    max-height: 1000px;
+    transition: max-height 1s ease-in-out;
+  }
 }
 /* 
 .sezy-dropdown-outline {

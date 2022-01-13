@@ -189,6 +189,7 @@ const Select = ({
     const filteredMultiChoicesMap = selectedOptions.filter(item => item.value !== value);
     isAllChecked.current = numberOfItems === filteredMultiChoicesMap.length;
     setSelectedOptions([...filteredMultiChoicesMap]);
+    onChange && onChange(filteredMultiChoicesMap);
   }
 
   return (

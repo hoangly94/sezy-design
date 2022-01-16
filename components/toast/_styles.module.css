@@ -1,0 +1,51 @@
+.sezy-toast {
+  position:fixed;
+  z-index:999;
+  &>div{
+    border-radius: var(--border-radius);
+  }
+}
+.sezy-toast- {
+  &t{
+    top:2%;
+    left:50%;
+    transform:translateX(-50%);
+  }
+}
+
+.sezy-toast- {
+  &dark{
+    background: #000000cd;
+    color:white;
+  }
+}
+
+.sezy-toast- {
+  &s {
+    &>div{
+      height: 1.5rem;
+      line-height: 1.5rem;
+      padding: 0 0.65rem;
+      font-size: 0.75rem;
+      margin-top: 0.3rem;
+    }
+  }
+  &m {
+    &>div{
+      height: 2rem;
+      line-height: 2rem;
+      padding: 0 0.8rem;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+  }
+  &l {
+    &>div{
+      height: 2.5rem;
+      line-height: 2.5rem;
+      padding: 0 0.95rem;
+      font-size: 1.05rem;
+      margin-top: 0.7rem;
+    }
+  }
+}

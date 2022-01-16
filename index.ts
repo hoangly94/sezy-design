@@ -36,5 +36,7 @@ export type { DatepickerIProps } from './components/datepicker';
 export { default as Datepicker } from './components/datepicker';
 export type { LabelIProps } from './components/label';
 export { default as Label } from './components/label';
+export type { ToastIProps } from './components/toast';
+export { default as Toast } from './components/toast';
 
 export { Shimmer } from './components/effect';

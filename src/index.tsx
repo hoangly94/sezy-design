@@ -26,7 +26,7 @@ import Badge from "../components/badge";
 import Avatar from "../components/avatar";
 import Carousel from "../components/carousel";
 import Datepicker from "../components/datepicker";
-import Message from "../components/message";
+import Toast from "../components/toast";
 
 const App = (): React.ReactElement => {
   const backgroundStyle = { style: { background: '#49d5ff' } };
@@ -90,6 +90,9 @@ const App = (): React.ReactElement => {
   
     return(
       <>
+      <div>---Toast---</div>
+      <button onClick={()=>Toast.text('aaaaaaaa')}>Toast</button>
+      <button onClick={()=>Toast.dark('aaaaaaaa')}>Toast Dark</button>
         <div>---Datepicker---</div>
         <Datepicker size='s'
           InputProps={{
@@ -426,7 +429,6 @@ const App = (): React.ReactElement => {
         <Breadcrumb
           mapper={breadcrumbsMapper}
         />
-        <button onClick={()=>Singleton.text()}>aaaa</button>
       </>
     )
 }

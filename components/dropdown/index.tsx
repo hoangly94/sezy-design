@@ -87,7 +87,6 @@ const Dropdown = ({
         type={type}
         size={size}
         onClick={() => {
-          console.log('=============');
           setClickOutside(false)
         }}
       >

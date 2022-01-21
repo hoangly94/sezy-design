@@ -25,7 +25,7 @@ export interface InputIProps {
   $AutoComplete?: AutoCompleteIProps,
   className?: string,
   onClick?: React.MouseEventHandler,
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  onChange?: (e: any) => void,
   onBlur?: React.MouseEventHandler,
   onFocus?: React.MouseEventHandler,
   onKeyUp?: React.KeyboardEventHandler,
@@ -62,16 +62,17 @@ const Input = ({
   ...otherProps
 }: InputIProps, ref) => {
   const [showClearButton, setShowClearButton] = React.useState(false);
+  const showHideClearButton = () => {
+    !isDisabled && onChange && onChange(ref?.current)
+    isClearable && ref?.current?.value?.length ? !showClearButton && setShowClearButton(true) : setShowClearButton(false);
+  }
+  React.useEffect(showHideClearButton, [ref?.current?.value]);
 
   const clearValue = (e) => {
     if (ref?.current) {
       ref.current.value = '';
       setShowClearButton(false);
     }
-  }
-  const showHideClearButton = () => {
-    isClearable && ref?.current?.value?.length ? !showClearButton && setShowClearButton(true) : setShowClearButton(false);
-
   }
 
   const inputProps = {
@@ -81,7 +82,7 @@ const Input = ({
       className,
     ),
     placeholder,
-    onChange: (e) => !isDisabled && showHideClearButton() && onChange && onChange(e),
+    onChange: () => !isDisabled && showHideClearButton() && onChange && onChange(ref?.current),
     onBlur: (e) => !isDisabled && onBlur && onBlur(e),
     onFocus: (e) => !isDisabled && onFocus && onFocus(e),
     onKeyUp: (e) => !isDisabled && onKeyUp && onKeyUp(e),

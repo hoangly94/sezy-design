@@ -47,7 +47,6 @@ const Carousel = ({
   ...otherProps
 }: CarouselIProps) => {
   const [step, setStep] = React.useState(deafultStep);
-
   const intervalProps = {
     callbackFn: () => setNewStep(step, 1),
     seconds: autoPlayTime,
@@ -65,6 +64,17 @@ const Carousel = ({
   React.useEffect(() => {
     setStep(step);
   }, [deafultStep]);
+
+  const prevClick = () => (isInfinity || step > 1) && setNewStep(step, -1);
+  const nextClick = () => (isInfinity || step < childrenCount) && setNewStep(step, 1);
+
+  const itemsRef: any = React.useRef(null);
+  const onFullClick = (e) => {
+    if (navigation?.type === 'full') {
+      (e.clientX - itemsRef.current?.offsetLeft) < itemsRef.current?.offsetWidth / 2 ? prevClick() : nextClick();
+    }
+  }
+
   const stepAction = React.useRef(0);
 
   const setNewStep = (step: number, add: number) => {
@@ -87,25 +97,10 @@ const Carousel = ({
 
   // const slideItemIndex = _.range(childrenCount).map((v, i) => (((childrenCount + (step - centerRange) + i) - 1) % childrenCount) + 1);
 
-  const leftChild = step - 1 ? step - 1 : childrenCount;
-
-  const prevClick = () => (isInfinity || step > 1) && setNewStep(step, -1);
-  const nextClick = () => (isInfinity || step < childrenCount) && setNewStep(step, 1);
 
   const navigations = (() => {
     if (navigation?.type === 'full') {
-      return (
-        <>
-          <span
-            className={styles['sezy-carousel-full-prev']}
-            onClick={prevClick}
-          />
-          <span
-            className={styles['sezy-carousel-full-next']}
-            onClick={nextClick}
-          />
-        </>
-      )
+      return;
     }
     return (
       <>
@@ -153,7 +148,6 @@ const Carousel = ({
                   styles[`sezy-carousel-dot-${dot?.size ?? 'm'}`],
                 ])}
                 onClick={() => {
-                  console.log(index);
                   setStep(index + 1)
                 }}
               >
@@ -179,9 +173,11 @@ const Carousel = ({
       {...otherProps}
     >
       <div
+        ref={itemsRef}
         className={Classnames(
           styles['sezy-carousel-items'],
         )}
+        onClick={onFullClick}
         {...otherProps}
       >
         {
@@ -194,7 +190,7 @@ const Carousel = ({
             };
 
             // if ([0, 1, -1].includes(newItemPosition))
-              style.transition = 'left 1s';
+            style.transition = 'left 1s';
             return (
               React.cloneElement(child, {
                 ...child.props,

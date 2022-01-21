@@ -31,7 +31,7 @@ export interface DatepickerIProps {
   className?: string,
   InputProps?: InputIProps,
   TableProps?: TableIProps,
-  onChange?: ({ date, dateFrom }: { date: moment.Moment, dateFrom?: moment.Moment }) => void,
+  onChange?: ({ date, dateFrom }: { date?: moment.Moment, dateFrom?: moment.Moment }) => void,
 }
 const Datepicker = ({
   type = 'flat',
@@ -94,17 +94,25 @@ const Datepicker = ({
       ref={clickOutsideRef}
       {...otherProps}
     >
-    <Input
-      type={type}
-      size={size}
-      postfix={<Calendar size={size} />}
-      placeholder={labelMap?.placeholder}
-      isLoading={isLoading}
-      isReadOnly={true}
-      {...InputProps}
-      ref={inputRef}
-      onClick={() => setClickOutside(false)}
-    />
+      <Input
+        ref={inputRef}
+        type={type}
+        size={size}
+        postfix={<Calendar size={size} />}
+        placeholder={labelMap?.placeholder}
+        isLoading={isLoading}
+        isReadOnly={true}
+        {...InputProps}
+        isClearable={true}
+        onClick={() => setClickOutside(false)}
+        onChange={e => {
+          if(!e.value.length){
+            const defaultDates = [moment(), moment()];
+            setSelectedDates(defaultDates);
+            onChange && onChange({});
+          }
+        }}
+      />
       <div className={Classnames(
         styles['sezy-datepicker-box'],
         !isClickOutside && styles['sezy-datepicker-open'],

@@ -25,7 +25,6 @@ type TableData = Object & {
   render?: Function,
 }
 
-
 export interface TableIProps {
   type?: 'flat' | 'outline' | 'nude',
   size?: 's' | 'm' | 'l',

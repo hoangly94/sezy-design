@@ -2,7 +2,6 @@ import React from 'react';
 import Classnames from 'classnames';
 import styles from './_styles.module.css';
 import Delete from '../icon/solid/delete';
-import AutoComplete, { AutoCompleteIProps } from '../autoComplete';
 import ThreeDotsLoader from '../icon/solid/threeDotsLoader';
 
 export interface InputIProps {
@@ -22,14 +21,13 @@ export interface InputIProps {
   postfix?: React.ReactNode,
   errorText?: string,
   errorPlacement?: 't' | 'r' | 'b' | 'l',
-  $AutoComplete?: AutoCompleteIProps,
   className?: string,
-  onClick?: React.MouseEventHandler,
+  onClick?: (e: any) => void,
   onChange?: (e: any) => void,
-  onBlur?: React.MouseEventHandler,
-  onFocus?: React.MouseEventHandler,
-  onKeyUp?: React.KeyboardEventHandler,
-  onKeyPress?: React.KeyboardEventHandler,
+  onBlur?: (e: any) => void,
+  onFocus?: (e: any) => void,
+  onKeyUp?: (e: any) => void,
+  onKeyPress?: (e: any) => void,
   children?: React.ReactNode,
 }
 
@@ -50,7 +48,6 @@ const Input = ({
   postfix,
   errorText,
   errorPlacement = 'b',
-  $AutoComplete,
   className,
   onClick,
   onChange,
@@ -83,10 +80,10 @@ const Input = ({
     ),
     placeholder,
     onChange: () => !isDisabled && showHideClearButton() && onChange && onChange(ref?.current),
-    onBlur: (e) => !isDisabled && onBlur && onBlur(e),
-    onFocus: (e) => !isDisabled && onFocus && onFocus(e),
-    onKeyUp: (e) => !isDisabled && onKeyUp && onKeyUp(e),
-    onKeyPress: (e) => !isDisabled && onKeyPress && onKeyPress(e),
+    onBlur: () => !isDisabled && onBlur && onBlur(ref?.current),
+    onFocus: () => !isDisabled && onFocus && onFocus(ref?.current),
+    onKeyUp: () => !isDisabled && onKeyUp && onKeyUp(ref?.current),
+    onKeyPress: () => !isDisabled && onKeyPress && onKeyPress(ref?.current),
   }
 
   const inputElement = (() => {

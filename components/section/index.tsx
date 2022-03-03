@@ -20,8 +20,8 @@ const Section = ({
   }
 
   return (
-    <section>
-      <div {...sectionProps}>
+    <section {...sectionProps}>
+      <div>
         {children}
       </div>
     </section >

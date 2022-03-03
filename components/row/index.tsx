@@ -47,17 +47,30 @@ const Row = ({
     }
   };
   return (
-    <div {...props}>
-      {React.Children.map<React.ReactNode, any>(children, child => (
-        React.cloneElement(child, {
-          style: {
-            padding: '0 ' + (isNaN(gaps[0]) ? gaps[0] : gaps[0] + 'rem'),
-            rowGap: '0 ' + (isNaN(gaps[1]) ? gaps[1] : gaps[1] + 'rem'),
-            ...child?.props?.style,
-          }
-        })
-      ))}
-    </div>
+    <div {...props}
+      style={{
+        marginLeft: '-' + (isNaN(gaps[0]) ? gaps[0] : gaps[0] + 'rem'),
+        marginRight: '-' + (isNaN(gaps[0]) ? gaps[0] : gaps[0] + 'rem'),
+        rowGap: '0 ' + (isNaN(gaps[1]) ? gaps[1] : gaps[1] + 'rem'),
+      }}
+    >
+      {
+        React.Children.map<React.ReactNode, any>(children, child => (
+          <child.type
+            {...child.props}
+            style={{
+              paddingLeft: (isNaN(gaps[0]) ? gaps[0] : gaps[0] + 'rem'),
+              paddingRight: (isNaN(gaps[0]) ? gaps[0] : gaps[0] + 'rem'),
+              ...child?.props?.style,
+            }}
+          >
+            <div>
+              {child.props.children}
+            </div>
+          </child.type>
+        ))
+      }
+    </div >
   )
 }
 

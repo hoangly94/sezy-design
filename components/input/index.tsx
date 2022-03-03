@@ -76,7 +76,6 @@ const Input = ({
     ...otherProps,
     className: Classnames(
       styles['sezy-input'],
-      className,
     ),
     placeholder,
     onChange: () => !isDisabled && showHideClearButton() && onChange && onChange(ref?.current),
@@ -120,6 +119,7 @@ const Input = ({
           styles['sezy-input-error-' + errorPlacement],
           styles['sezy-input-' + size],
           styles['sezy-input-' + type],
+          className
         )
       }
       {...{ disabled: isDisabled }}

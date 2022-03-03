@@ -5,6 +5,10 @@
 }
 .sezy-row > *{
   box-sizing: border-box;
+
+  &>*{
+    display:block;
+  }
 }
 
 

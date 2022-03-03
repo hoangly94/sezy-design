@@ -115,8 +115,6 @@ const App = (): React.ReactElement => {
         <div style={{ background: 'red' }} />
         <div style={{ background: 'blue' }} />
         <div style={{ background: '#bb9393' }} />
-        {/* <div style={{ background: 'pink' }} />
-        <div style={{ background: 'gray' }} /> */}
       </Carousel>
       <Carousel {...{ style: { width: '800px', height: '400px' } }}>
         <div style={{ background: 'red' }} />
@@ -124,8 +122,6 @@ const App = (): React.ReactElement => {
         <div style={{ background: '#bb9393' }} />
         <div style={{ background: 'black' }} />
         <div style={{ background: 'yellow' }} />
-        {/* <div style={{ background: 'pink' }} />
-        <div style={{ background: 'gray' }} /> */}
       </Carousel>
       <div>---Badge---</div>
       <Badge>
@@ -273,8 +269,8 @@ const App = (): React.ReactElement => {
         </Select>
         <Select placeholder='Select' isMulti={true} isSearchable={true}>
           <Option value='111111' label='aaaaaaaaaaa'>a1</Option>
-          <Option value='222222'>a2</Option>
-          <Option value='3333333'>a3</Option>
+          <Option value='222222'>b2</Option>
+          <Option value='3333333'>b3</Option>
           <Option value='44444444444'>a4</Option>
           <Option value='5'>a5</Option>
           <Option value='6'>a6</Option>
@@ -287,10 +283,10 @@ const App = (): React.ReactElement => {
           <Option value='14'>a14</Option>
           <Option value='15'>a15</Option>
           <Option value='16'>a16</Option>
-          <Option value='17'>a17</Option>
-          <Option value='18'>a18</Option>
-          <Option value='19'>a19</Option>
-          <Option value='20'>a20</Option>
+          <Option value='17'>b17</Option>
+          <Option value='18'>b18</Option>
+          <Option value='19'>b19</Option>
+          <Option value='20'>b20</Option>
           <Option value='21'>a21</Option>
           <Option value='22'>a22</Option>
           <Option value='23'>a23</Option>
@@ -301,6 +297,7 @@ const App = (): React.ReactElement => {
           <Option value='28'>a28</Option>
           <Option value='29'>a29</Option>
           <Option value='30'>a30</Option>
+          <Option value='31'>b234</Option>
         </Select>
       </Row>
       +
@@ -498,61 +495,18 @@ const App = (): React.ReactElement => {
   )
 }
 
-
-
 const breadcrumbsMapper = {
-  'authority': {
+  'aaaaaa': {
     path: '',
-    name: 'Quản lý Ủy quyền',
-    'registration': { path: '/authority/registration', name: 'Đăng ký Ủy quyền', },
-    'approval': { path: '/authority/approval', name: 'Kiểm soát Ủy quyền', },
+    name: 'aaaaaaaa',
+    'aaaaaaaa1': { path: '/aaaaaaaa1', name: 'aaaaaaaa1', },
+    'aaaaaaaa2': { path: '/aaaaaaaa2', name: 'aaaaaaaa2', },
   },
-  'pyc': {
+  'bbbbbb': {
     path: '',
-    name: 'Quản lý PYC Điều Quỹ',
-    'registration': { path: '/pyc/registration', name: 'Đăng ký', },
-    'approval': { path: '/pyc/approval', name: 'Kiểm soát & Phê duyệt', },
-  },
-  'route-management': {
-    path: '',
-    name: 'Quản lý Lộ trình',
-    'normal': { path: '/route-management/normal', name: 'Lộ trình Bình thường', },
-    'urgent': { path: '/route-management/urgent', name: 'Lộ trình Khẩn cấp', },
-  },
-  'route-tracking': {
-    path: '',
-    name: 'Theo dõi Lộ trình',
-    'car1': { path: '/route-tracking/car1', name: 'PTVC là xe chuyên dùng', },
-    'car2': { path: '/route-tracking/car2', name: 'PTVC KHÁC xe chuyên dùng', },
-  },
-  'category': {
-    path: '',
-    name: 'Danh mục',
-    'area': { path: '/category/area', name: 'Danh mục cụm', },
-    'atm-cdm': { path: '/category/atm-cdm', name: 'Danh mục ATM/CDM', },
-    'currency': { path: '/category/currency', name: 'Danh mục tiền tệ', },
-    'function': { path: '/category/function', name: 'Danh mục chức năng', },
-    'nhnn-tctd': { path: '/category/nhnn-tctd', name: 'Danh mục TCTD/NHNN', },
-    'orgs': { path: '/category/orgs', name: 'Danh mục đơn vị', },
-    'pers': { path: '/category/pers', name: 'Danh mục nhân viên', },
-    'priority': { path: '/category/priority', name: 'Danh mục mức độ ưu tiên', },
-    'region': { path: '/category/region', name: 'Danh mục vùng', },
-    'title': { path: '/category/title', name: 'Danh mục chức danh nhân viên', },
-    'vehicle': { path: '/category/vehicle', name: 'Danh mục xe', },
-  },
-  'report': {
-    path: '',
-    name: 'Báo cáo KPP',
-    'orgs': { path: '/report/orgs', name: 'BC Số lần điều quỹ NV Áp tải', },
-    'special': { path: '/report/special', name: 'BC Sổ theo dõi VC HĐB', },
-  },
-  'user': {
-    path: '',
-    name: 'Người dùng',
-    'change-password': { path: '/user/change-password', name: 'Đổi mật khẩu', },
-    'assign-role': { path: '/user/assign-role', name: 'Phân quyền', },
-    'reset-password': { path: '/user/reset-password', name: 'Đặt lại mật khẩu', },
-    'register': { path: '/user/register', name: 'Đăng ký', },
+    name: 'bbbbbb',
+    'bbbbbb1': { path: '/bbbbbb1', name: 'bbbbbb1', },
+    'bbbbbb2': { path: '/bbbbbb2', name: 'bbbbbb2', },
   },
 }
 

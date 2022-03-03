@@ -1,10 +1,10 @@
 .sezy-label {
   & {
     display: inline-block;
-    color: var(--label-color);
+    color: var(--text-color);
   }
   & > svg {
-    fill: var(--label-color);
+    fill: var(--text-color);
   }
 }
 

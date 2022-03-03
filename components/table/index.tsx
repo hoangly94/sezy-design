@@ -31,12 +31,14 @@ export interface TableIProps {
   columns?: TableColumn[],
   data?: TableData[],
   labels?: TLabel,
+  hasHeader?: boolean,
   isLoading?: boolean,
   className?: string,
 }
 const Table = ({
   type = 'outline',
   size = 'm',
+  hasHeader = true,
   isLoading = false,
   columns,
   labels,
@@ -55,31 +57,33 @@ const Table = ({
       styles['sezy-table'],
       styles['sezy-table-' + type],
       styles['sezy-table-' + size],
-      className,
     ),
   }
 
   return (
     <div className={Classnames(
       styles['sezy-table-wrapper'],
+      className
     )}>
       <table {...tableProps}>
-        <thead>
-          <tr>
-            {columns?.map((c, index) => {
-              return (
-                <th
-                  key={keyPrefix + 'h.' + (c.key ?? `${c.index}.${index}`)}
-                  style={{
-                    textAlign: c.align
-                  }}
-                >
-                  {c.label}
-                </th>
-              );
-            })}
-          </tr>
-        </thead>
+        {
+          hasHeader && <thead>
+            <tr>
+              {columns?.map((c, index) => {
+                return (
+                  <th
+                    key={keyPrefix + 'h.' + (c.key ?? `${c.index}.${index}`)}
+                    style={{
+                      textAlign: c.align
+                    }}
+                  >
+                    {c.label}
+                  </th>
+                );
+              })}
+            </tr>
+          </thead>
+        }
         <tbody>
           {data?.map((r, rowIndex) => {
             return (

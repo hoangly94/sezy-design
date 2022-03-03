@@ -18,7 +18,7 @@ type TSelectedItem = {
 }
 type TLabel = {
   allOptions?: string,
-  searchPlacholder?: string,
+  searchPlaceholder?: string,
 }
 
 export interface SelectIProps {
@@ -97,7 +97,7 @@ const Select = ({
 
   const labelMap = Object.assign({
     allOptions: 'All',
-    searchPlacholder: 'Search...'
+    searchPlaceholder: 'Search...'
   }, labels);
 
   const selectProps = {
@@ -160,7 +160,7 @@ const Select = ({
                       value,
                     });
                   setSelectedOptions([...filteredMultiChoicesMap]);
-                  isAllChecked.current = numberOfItems === filteredMultiChoicesMap.length;
+                  // isAllChecked.current = numberOfItems === filteredMultiChoicesMap.length;
                   onChange && onChange(filteredMultiChoicesMap);
                 }
                 else {
@@ -179,9 +179,10 @@ const Select = ({
   }, [options, limitItems]);
 
   const localSearch = e => {
+    console.log(e.value);
     optionListRef?.current && (optionListRef.current.scrollTo(0, 0));
-    setOptions(children?.filter(child => {
-      return ((child.props.label ?? child.props.children as string))?.toLowerCase().startsWith(e.target.value?.toLowerCase())
+    e.value && setOptions(children?.filter(child => {
+      return ((child.props.label ?? child.props.children as string))?.toLowerCase().startsWith(e.value?.toLowerCase())
     }))
   };
 
@@ -233,8 +234,8 @@ const Select = ({
             type={type}
             ref={searchInputRef}
             size={size}
-            placeholder={labelMap.searchPlacholder}
-            onKeyUp={e => onSearchChange ? onSearchChange((e.target as HTMLInputElement).value) : localSearch(e)}
+            placeholder={labelMap.searchPlaceholder}
+            onKeyUp={e => onSearchChange ? onSearchChange(e.value) : localSearch(e)}
           />
         }
         <List

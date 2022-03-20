@@ -87,77 +87,11 @@
 .sezy-datepicker- {
   &s {
     & .sezy-datepicker-active-to:before {
-      height: 1.5rem;
-      width: 1.5rem;
+      height: 2.4rem;
+      width: 2.4rem;
     }
     & td {
-      height: 2rem;
-    }
-    & .sezy-datepicker-menu {
-      margin: 0.6rem 0;
-    }
-    & .sezy-datepicker-monthyear {
-      margin-right: 0.3rem;
-    }
-    & .sezy-datepicker-monthyear-picker {
-      height: calc(100% - 4.5rem);
-      padding: 1rem;
-    }
-    & .sezy-datepicker-monthyear-picker > * {
-      border-radius: 0.2rem;
-      height: 2rem;
-      line-height: 2rem;
-    }
-    & .sezy-datepicker-prevnext {
-      margin-left: 0.6rem;
-    }
-    & .sezy-datepicker-box {
-      padding: 0.6rem;
-    }
-    & .sezy-datepicker-table {
-      width: 16rem;
-    }
-  }
-  &m {
-    & .sezy-datepicker-active-to:before {
-      height: 1.6rem;
-      width: 1.6rem;
-    }
-    & td {
-      height: 2.5rem;
-    }
-    & .sezy-datepicker-menu {
-      margin: 0.8rem 0;
-    }
-    & .sezy-datepicker-monthyear {
-      margin-right: 0.4rem;
-    }
-    & .sezy-datepicker-monthyear-picker {
-      height: calc(100% - 5.5rem);
-      padding: 0.8rem;
-    }
-    & .sezy-datepicker-monthyear-picker > * {
-      border-radius: 0.25rem;
-      height: 2.5rem;
-      line-height: 2.5rem;
-    }
-    & .sezy-datepicker-prevnext {
-      margin-left: 0.8rem;
-    }
-    & .sezy-datepicker-box {
-      padding: 0.8rem;
-    }
-    & .sezy-datepicker-table {
-      width: 20rem;
-    }
-  }
-  &l {
-    & .sezy-datepicker-active-to:before {
-      height: 2.1rem;
-      width: 2.1rem;
-    }
-    & td {
-      height: 3rem;
+      height: 3.2rem;
     }
     & .sezy-datepicker-menu {
       margin: 1rem 0;
@@ -166,13 +100,13 @@
       margin-right: 0.5rem;
     }
     & .sezy-datepicker-monthyear-picker {
-      height: calc(100% - 6.5rem);
+      height: calc(100% - 4.5rem);
       padding: 1rem;
     }
     & .sezy-datepicker-monthyear-picker > * {
       border-radius: 0.3rem;
-      height: 3rem;
-      line-height: 3rem;
+      height: 3.2rem;
+      line-height: 3.2rem;
     }
     & .sezy-datepicker-prevnext {
       margin-left: 1rem;
@@ -181,7 +115,73 @@
       padding: 1rem;
     }
     & .sezy-datepicker-table {
-      width: 24rem;
+      width: 25rem;
+    }
+  }
+  &m {
+    & .sezy-datepicker-active-to:before {
+      height: 2.5rem;
+      width: 2.5rem;
+    }
+    & td {
+      height: 4rem;
+    }
+    & .sezy-datepicker-menu {
+      margin: 1.3rem 0;
+    }
+    & .sezy-datepicker-monthyear {
+      margin-right: 0.6rem;
+    }
+    & .sezy-datepicker-monthyear-picker {
+      height: calc(100% - 5.5rem);
+      padding: 1.3rem;
+    }
+    & .sezy-datepicker-monthyear-picker > * {
+      border-radius: 0.4rem;
+      height: 4rem;
+      line-height: 4rem;
+    }
+    & .sezy-datepicker-prevnext {
+      margin-left: 1.3rem;
+    }
+    & .sezy-datepicker-box {
+      padding: 1.3rem;
+    }
+    & .sezy-datepicker-table {
+      width: 32rem;
+    }
+  }
+  &l {
+    & .sezy-datepicker-active-to:before {
+      height: 3.4rem;
+      width: 3.4rem;
+    }
+    & td {
+      height: 4.8rem;
+    }
+    & .sezy-datepicker-menu {
+      margin: 1.6rem 0;
+    }
+    & .sezy-datepicker-monthyear {
+      margin-right: 0.8rem;
+    }
+    & .sezy-datepicker-monthyear-picker {
+      height: calc(100% - 6.5rem);
+      padding: 1rem;
+    }
+    & .sezy-datepicker-monthyear-picker > * {
+      border-radius: 0.5rem;
+      height: 4.8rem;
+      line-height: 4.8rem;
+    }
+    & .sezy-datepicker-prevnext {
+      margin-left: 1rem;
+    }
+    & .sezy-datepicker-box {
+      padding: 1rem;
+    }
+    & .sezy-datepicker-table {
+      width: 38rem;
     }
   }
 }

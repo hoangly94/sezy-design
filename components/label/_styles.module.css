@@ -11,25 +11,25 @@
 /* Size */
 .sezy-label-s {
   & {
-    font-size: 0.875rem;
+    font-size: 1.4rem;
   }
   & > svg {
-    margin-right: 0.1rem;
+    margin-right: 0.15rem;
   }
 }
 .sezy-label-m {
   & {
-    font-size: 1rem;
+    font-size: 1.6rem;
   }
   & > svg {
-    margin-right: 0.2rem;
+    margin-right: 0.3rem;
   }
 }
 .sezy-label-l {
   & {
-    font-size: 1.125rem;
+    font-size: 1.8rem;
   }
   & > svg {
-    margin-right: 0.3rem;
+    margin-right: 0.5rem;
   }
 }

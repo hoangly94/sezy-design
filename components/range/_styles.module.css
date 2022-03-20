@@ -1,0 +1,39 @@
+.sezy-range-wrapper {
+  position:relative;
+}
+
+.sezy-range-label {
+  position:absolute;
+  top:50%;
+  transform:translate(-50%,-125%)
+}
+
+.sezy-range {
+  height:0.4rem;
+  margin:0.5rem 0;
+  border-radius:1rem;
+  background: var(--range-background);
+  display:flex;
+  align-items:center;
+}
+
+
+/* .sezy-range-bar {
+  height:0.5rem;
+  background: var(--range-bar-background);
+}
+
+.sezy-range-node {
+  position:relative;
+}
+.sezy-range-node:after {
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  width:1rem;
+  height:1rem;
+  border-radius:50%;
+  background: var(--range-node-background);
+  transform:translate(-50%,-50%);
+} */

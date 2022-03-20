@@ -26,19 +26,19 @@
 .sezy-pagination-s {
   &>button{
     margin: 0 0.1rem;
-    width: 1.5rem;
+    width: 2.4rem;
   }
   &>.sezy-pagination-2prev,&>.sezy-pagination-prev{
-    margin-right:0.3rem;
+    margin-right:0.5rem;
   }
   &>.sezy-pagination-next,&>.sezy-pagination-2next{
-    margin-left:0.3rem;
+    margin-left:0.5rem;
   }
 }
 .sezy-pagination-m {
   &>button{
     margin: 0 0.1rem;
-    width: 2rem;
+    width: 3.2rem;
   }
   &>.sezy-pagination-2prev,&>.sezy-pagination-prev{
     margin-right:0.5rem;
@@ -50,12 +50,12 @@
 .sezy-pagination-l {
   &>button{
     margin: 0 0.1rem;
-    width: 2.5rem;
+    width: 4rem;
   }
   &>.sezy-pagination-2prev,&>.sezy-pagination-prev{
-    margin-right:0.8rem;
+    margin-right:1.3rem;
   }
   &>.sezy-pagination-next,&>.sezy-pagination-2next{
-    margin-left:0.8rem;
+    margin-left:1.3rem;
   }
 }

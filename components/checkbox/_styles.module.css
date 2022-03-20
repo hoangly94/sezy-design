@@ -36,28 +36,28 @@
 .sezy-checkbox- {
   &s {
     & {
-      height: 1rem;
-      line-height: 1rem;
-      width: 1rem;
-      font-size: 0.75rem;
+      height: 1.6rem;
+      line-height: 1.6rem;
+      width: 1.6rem;
+      font-size: 1.2rem;
       text-align: center;
     }
   }
   &m {
     & {
-      height: 1.25rem;
-      line-height: 1.25rem;
-      width: 1.25rem;
-      font-size: 0.9rem;
+      height: 2rem;
+      line-height: 2rem;
+      width: 2rem;
+      font-size: 1.4rem;
       text-align: center;
     }
   }
   &l {
     & {
-      height: 1.5rem;
-      line-height: 1.5rem;
-      width: 1.5rem;
-      font-size: 1.05rem;
+      height: 2.4rem;
+      line-height: 2.4rem;
+      width: 2.4rem;
+      font-size: 1.7em;
       text-align: center;
     }
   }

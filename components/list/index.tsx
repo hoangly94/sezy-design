@@ -14,7 +14,7 @@ export interface ListIProps {
 
 const List = ({
   type = 'flat',
-  size,
+  size = 'm',
   href = '',
   isLoading = false,
   className,

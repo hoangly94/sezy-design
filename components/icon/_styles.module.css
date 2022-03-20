@@ -16,30 +16,30 @@
 }
 .sezy-icon- {
   &s2 {
-    width: 0.25rem;
+    width: 0.4rem;
   }
   &s1 {
-    width: 0.5rem;
+    width: 0.8rem;
   }
   &s {
-    width: 0.75rem;
+    width: 1.2rem;
   }
   &m {
-    width: 1rem;
+    width: 1.6rem;
   }
   &l {
-    width: 1.25rem;
-  }
-  &l1 {
-    width: 1.5rem;
-  }
-  &l2 {
-    width: 1.75rem;
-  }
-  &l3 {
     width: 2rem;
   }
+  &l1 {
+    width: 2.4rem;
+  }
+  &l2 {
+    width: 2.8rem;
+  }
+  &l3 {
+    width: 3.2rem;
+  }
   &l4 {
-    width: 2.25rem;
+    width: 3.6rem;
   }
 }

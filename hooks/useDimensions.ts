@@ -10,7 +10,7 @@ const useDimensions = (wrapperRef) => {
   });
 
   useEffect(() => {
-    const element = wrapperRef.current?.attrs?.container;
+    const element = wrapperRef.current?.attrs?.container || wrapperRef.current;
     element && setDimensions({
       offsetWidth: element.offsetWidth,
       offsetHeight: element.offsetHeight,

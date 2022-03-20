@@ -1,14 +1,8 @@
 .sezy-effect-shimmer {
-  background: #f6f7f8;
-  background-image: linear-gradient(
-    to right,
-    #f6f7f8 0%,
-    #edeef1 20%,
-    #f6f7f8 40%,
-    #f6f7f8 100%
-  );
+  background: var(--shimmer-background);
+  background-image: var(--shimmer-background-image);
   background-repeat: no-repeat;
-  background-size: 800px 104px;
+  background-size: 200% 100%;
   display: inline-block;
   position: relative;
 
@@ -21,10 +15,10 @@
 
 @-webkit-keyframes placeholderShimmer {
   0% {
-    background-position: -468px 0;
+    background-position: -48rem 0;
   }
 
   100% {
-    background-position: 468px 0;
+    background-position: 48rem 0;
   }
 }

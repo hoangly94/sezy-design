@@ -3,15 +3,17 @@ import styles from './_styles.module.css';
 
 
 export interface CheckboxIProps {
+  isLoading:boolean,
   children: React.ReactNode,
 }
 
 const Shimmer = ({
+  isLoading = false,
   children
 }: CheckboxIProps) => {
   return React.Children.map<any, any>(children, child => React.cloneElement(child, {
     ...child.props,
-    className: styles['sezy-effect-shimmer']
+    className: isLoading && styles['sezy-effect-shimmer']
   })
   )
 }

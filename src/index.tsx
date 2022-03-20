@@ -18,7 +18,7 @@ import Pagination from "../components/pagination";
 import Table from "../components/table";
 import UserIcon from "../components/icon/solid/user";
 
-import { Button } from '../';
+import { Button, Shimmer } from '../';
 import Option from "../components/select/option";
 import Tag from "../components/tag";
 import Switch from "../components/switch";
@@ -27,6 +27,7 @@ import Avatar from "../components/avatar";
 import Carousel from "../components/carousel";
 import Datepicker from "../components/datepicker";
 import Toast from "../components/toast";
+import Range from "../components/range";
 
 const App = (): React.ReactElement => {
   const backgroundStyle = { style: { background: '#49d5ff' } };
@@ -90,6 +91,11 @@ const App = (): React.ReactElement => {
 
   return (
     <>
+      <Range ref={React.useRef(null)} labelRef={React.useRef(null)} min={0} max={10} value={60}/>
+      <div>---Effect Shimmer---</div>
+      <Shimmer isLoading={true}>
+        <div style={{width:'200px',height:'200px'}}></div>
+      </Shimmer>
       <div>---Toast---</div>
       <button onClick={() => Toast.text('Toast')}>Toast</button>
       <button onClick={() => Toast.dark('Toast Dark')}>Toast Dark</button>

@@ -19,41 +19,41 @@
 .sezy-badge- {
   &s {
     & {
-      height: 0.9rem;
-      line-height: 0.9rem;
-      border-radius: 0.9rem;
-      min-width: 0.9rem;
-      font-size: 0.6rem;
-      padding: 0 0.2rem;
-    }
-    & > span {
-      margin: 0 -0.2rem 0 0.2rem;
-    }
-  }
-  &m {
-    & {
-      height: 1.1rem;
-      line-height: 1.1rem;
-      border-radius: 1.1rem;
-      min-width: 1.1rem;
-      font-size: 0.7rem;
-      padding: 0 0.3rem;
+      min-width: 1.4rem;
+      height: 1.4rem;
+      line-height: 1.4rem;
+      border-radius: 1.4rem;
+      font-size: 1rem;
+      padding: 0px 0.2rem;
     }
     & > span {
       margin: 0 -0.3rem 0 0.3rem;
     }
   }
-  &l {
+  &m {
     & {
-      height: 1.3rem;
-      line-height: 1.3rem;
-      border-radius: 1.3rem;
-      min-width: 1.3rem;
-      padding: 0 0.35rem;
-      font-size: 0.8rem;
+      min-width: 1.8rem;
+      height: 1.8rem;
+      line-height: 1.8rem;
+      border-radius: 1.8rem;
+      font-size: 1.1rem;
+      padding: 0px 0.4rem;
     }
     & > span {
-      margin: 0 -0.4rem 0 0.4rem;
+      margin: 0 -0.5rem 0 0.5rem;
+    }
+  }
+  &l {
+    & {
+      min-width: 2rem;
+      height: 2rem;
+      line-height: 2rem;
+      border-radius: 2rem;
+      font-size: 1.3rem;
+      padding: 0px 0.6rem;
+    }
+    & > span {
+      margin: 0 -0.6rem 0 0.6rem;
     }
   }
 }

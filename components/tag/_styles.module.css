@@ -38,8 +38,8 @@
     & {
       height: 1rem;
       line-height: 1rem;
-      padding: 0 0.5rem;
-      font-size: 0.6rem;
+      padding: 0 0.9rem;
+      font-size: 1rem;
     }
     & > span {
       margin: 0 -0.1rem 0 0.1rem;
@@ -47,32 +47,32 @@
   }
   &s {
     & {
-      height: 1.5rem;
-      line-height: 1.5rem;
-      padding: 0 0.65rem;
-      font-size: 0.75rem;
+      height: 2.4rem;
+      line-height: 2.4rem;
+      padding: 0 1.2rem;
+      font-size: 1.2rem;
     }
     & > span {
-      margin: 0 -0.2rem 0 0.2rem;
+      margin: 0 -0.32rem 0 0.3rem;
     }
   }
   &m {
     & {
-      height: 2rem;
-      line-height: 2rem;
-      padding: 0 0.8rem;
-      font-size: 0.9rem;
+      height: 3.2rem;
+      line-height: 3.2rem;
+      padding: 0 1.3rem;
+      font-size: 1.4rem;
     }
     & > span {
-      margin: 0 -0.3rem 0 0.3rem;
+      margin: 0 -0.5rem 0 0.5rem;
     }
   }
   &l {
     & {
-      height: 2.5rem;
-      line-height: 2.5rem;
-      padding: 0 0.95rem;
-      font-size: 1.05rem;
+      height: 4rem;
+      line-height: 4rem;
+      padding: 0 1.5rem;
+      font-size: 1.7em;
     }
     & > span {
       margin: 0 -0.4rem 0 0.4rem;

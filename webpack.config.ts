@@ -122,9 +122,9 @@ export default {
     publicPath: '/',
     historyApiFallback: true,
     compress: true,
-    port: 5324,
-    watchContentBase: true,
-    open: true,
+    port: 5325,
+    // watchContentBase: true,
+    // open: true,
   },
 };
 

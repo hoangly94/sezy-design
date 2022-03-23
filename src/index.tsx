@@ -28,6 +28,7 @@ import Carousel from "../components/carousel";
 import Datepicker from "../components/datepicker";
 import Toast from "../components/toast";
 import Range from "../components/range";
+import Tooltip from "../components/tooltip";
 
 const App = (): React.ReactElement => {
   const backgroundStyle = { style: { background: '#49d5ff' } };
@@ -91,14 +92,35 @@ const App = (): React.ReactElement => {
 
   return (
     <>
-      <Range ref={React.useRef(null)} labelRef={React.useRef(null)} min={0} max={10} value={60}/>
       <div>---Effect Shimmer---</div>
       <Shimmer isLoading={true}>
-        <div style={{width:'200px',height:'200px'}}></div>
+        <div style={{ width: '200px', height: '200px' }}></div>
       </Shimmer>
       <div>---Toast---</div>
       <button onClick={() => Toast.text('Toast')}>Toast</button>
       <button onClick={() => Toast.dark('Toast Dark')}>Toast Dark</button>
+      <div>---Tooltip---</div>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <Tooltip content="aaaasd sdf sdf dsf asdf asdf sdf sdf asd asd" size='s'>
+        <span>Tooltip size S</span>
+      </Tooltip>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <Tooltip content="aaaasd sdf sdf dsf asdf asdf sdf sdf asd asd" size='m'>
+        <span>Tooltip size M</span>
+      </Tooltip>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <Tooltip content="aaaasd sdf sdf dsf asdf asdf sdf sdf asd asd" size='l'>
+        <span>Tooltip size L</span>
+      </Tooltip>
       <div>---Datepicker---</div>
       <Datepicker size='s'
         InputProps={{
@@ -492,6 +514,9 @@ const App = (): React.ReactElement => {
       <Input placeholder="Input With Prefix" postfix={<UserIcon />} isClearable={true} ref={React.useRef(null)} />
       <Input placeholder="Input Disabled" isDisabled={true} />
       <Input placeholder="Input Loading" isLoading={true} />
+
+      <div>---Input Range---</div>
+      <Range ref={React.useRef(null)} labelRef={React.useRef(null)} min={0} max={10} value={60} />
 
       <div>---Breadcrumb---</div>
       <Breadcrumb

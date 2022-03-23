@@ -1,0 +1,105 @@
+.sezy-tooltip-wrapper {
+  position:relative;
+  display:inline-block;
+}
+.sezy-tooltip {
+  min-width:20rem;
+  position:absolute;
+  background:#181818;
+  color:#fff;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  display:none;
+}
+.sezy-tooltip-wrapper:hover>.sezy-tooltip{
+  display:block;
+}
+.sezy-tooltip::before{
+  content: '';
+  position:absolute;
+  border-style: solid;
+  border-width: 5px 5px 0 5px;
+  border-color: #181818 transparent transparent transparent;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 100%);
+}
+.sezy-tooltip-{
+  &s{
+    padding: 0.7rem;
+    border-radius:0.2rem;
+    top:-0.8rem;
+  }
+  &m{
+    padding: 0.8rem;
+    border-radius:0.3rem;
+    top:-1rem;
+  }
+  &l{
+    padding: 0.9rem;
+    border-radius:0.4rem;
+    top:-1.2rem;
+  }
+}
+.sezy-tooltip-placement- {
+  &t {
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -100%);
+  }
+  &tr {
+    top: 0;
+    right: 0;
+    transform: translate(0, -100%);
+  }
+  &tl {
+    top: 0;
+    left: 0%;
+    transform: translate(0, -100%);
+  }
+  &r {
+    top: 50%;
+    right: 0;
+    transform: translate(100%, -50%);
+  }
+  &rt {
+    top: 0;
+    right: 0;
+    transform: translate(100%, 0);
+  }
+  &rb {
+    bottom: 0;
+    right: 0;
+    transform: translate(100%, 0);
+  }
+  &b {
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 100%);
+  }
+  &br {
+    bottom: 0;
+    right: 0;
+    transform: translate(0, 100%);
+  }
+  &bl {
+    left: 0;
+    right: 0;
+    transform: translate(0, 100%);
+  }
+  &l {
+    top: 50%;
+    left: 0;
+    transform: translate(-100%, -50%);
+  }
+  &lt {
+    top: 0;
+    left: 0;
+    transform: translate(-100%, 0);
+  }
+  &lb {
+    bottom: 0;
+    left: 0;
+    transform: translate(-100%, 0);
+  }
+}

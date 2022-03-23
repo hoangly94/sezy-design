@@ -123,8 +123,8 @@ export default {
     historyApiFallback: true,
     compress: true,
     port: 5325,
-    // watchContentBase: true,
-    // open: true,
+    watchContentBase: true,
+    open: true,
   },
 };
 

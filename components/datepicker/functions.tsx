@@ -53,7 +53,12 @@ export const getMonthYearPicker = (condition, fn) => {
 
 export const toTableData = (currentDate: moment.Moment, onClickCell, selectedDates: moment.Moment[]) => {
   const firstDateOfMonth = currentDate.clone().startOf('month');
-  const lastDateOfMonth = currentDate.clone().endOf('month');
+  const lastDateOfMonth = currentDate.clone().endOf('month').set({ 
+    hour:0,
+    minute:0,
+    second:0,
+    millisecond:0
+  });
   const firstLeft = firstDateOfMonth.day();
   const lastLeft = lastDateOfMonth.day();
 

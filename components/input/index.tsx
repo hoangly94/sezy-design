@@ -135,12 +135,6 @@ const Input = ({
   )
 }
 
-const selectSizeToLoadingSize = {
-  s: 's',
-  m: 'm',
-  l: 'l',
-}
-
 const mapType = valueType => {
   if (valueType === 'textValue')
     return 'hidden';

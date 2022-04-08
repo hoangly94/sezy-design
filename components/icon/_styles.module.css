@@ -11,9 +11,9 @@
     user-select: none;
   }
 }
-.sezy-icon > * {
+/* .sezy-icon > * {
   fill: inherit;
-}
+} */
 .sezy-icon- {
   &s2 {
     width: 0.4rem;

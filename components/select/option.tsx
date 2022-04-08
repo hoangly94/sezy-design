@@ -6,7 +6,8 @@ import _ from 'lodash';
 
 export interface OptionIProps {
   label?: string,
-  value: string | number,
+  value: string,
+  active?: boolean,
   onClick?: React.MouseEventHandler,
   onChange?: Function,
   children?: React.ReactNode,
@@ -16,6 +17,7 @@ export interface OptionIProps {
 const Option = ({
   onClick,
   onChange,
+  active = false,
   children,
   className,
   ...otherProps

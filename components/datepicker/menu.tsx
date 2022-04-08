@@ -45,6 +45,8 @@ const DatepickerMenu = ({
         setCurrentYearPicker(currentYearPicker.clone().add(value * 1000, 'years'));
         break;
       default:
+        console.log('==========');
+        console.log(value);
         setCurrentDate(currentDate.clone().add(value, 'M'));
     }
 
@@ -128,7 +130,7 @@ const DatepickerMenu = ({
           )}
           onClick={() => setShownMonthYearPicker('month')}
         >
-          {labels.months && labels.months[+currentYearPicker.format('MM') - 1]}
+          {labels.months && labels.months[+currentDate.format('MM') - 1]}
         </Label>
         <Label
           size={size}

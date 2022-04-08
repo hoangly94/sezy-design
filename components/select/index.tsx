@@ -5,10 +5,8 @@ import List, { ListIProps } from '../list';
 import Input, { InputIProps } from '../input';
 import { useClickOutside, useHover } from '../../hooks';
 import Caret from '../icon/solid/caret';
-import ThreeDotsLoader from '../icon/solid/threeDotsLoader';
-import Button from '../button';
 import Checkbox from '../checkbox';
-import Option, { OptionIProps } from './option';
+import { OptionIProps } from './option';
 import _ from 'lodash';
 import Tag from '../tag';
 
@@ -114,6 +112,28 @@ const Select = ({
     onClick: (e) => !isDisabled && !isLoading && onClick && onClick(e),
   }
 
+
+  const setDefaultInput = (value: string, label: string) => {
+    valueInputRef?.current && (valueInputRef.current.value = value ?? '');
+    labelInputRef?.current && (labelInputRef.current.value = label ?? '');
+
+  };
+  
+  const setDefaultValue = () => {
+    options.forEach((option) => {
+      // console.log(option.props);
+      setDefaultInput(option.props.value, '' + (option.props.label || option.props.children));
+    })
+  }
+  setDefaultValue();
+
+  const clickOption = (value: string, label: string) => {
+    setDefaultInput(value, label);
+    setClickOutside(true);
+    setHovered(false);
+    onChange && onChange(value);
+  }
+
   const toOptionElements = React.useCallback((selectedOptions) => {
     return <>
       {
@@ -164,11 +184,7 @@ const Select = ({
                   onChange && onChange(filteredMultiChoicesMap);
                 }
                 else {
-                  valueInputRef?.current && (valueInputRef.current.value = value ?? '');
-                  labelInputRef?.current && (labelInputRef.current.value = htmlChildren ?? '');
-                  setClickOutside(true);
-                  setHovered(false);
-                  onChange && onChange(value);
+                  clickOption(value, htmlChildren);
                 }
               },
             })
@@ -179,7 +195,6 @@ const Select = ({
   }, [options, limitItems]);
 
   const localSearch = e => {
-    console.log(e.value);
     optionListRef?.current && (optionListRef.current.scrollTo(0, 0));
     e.value && setOptions(children?.filter(child => {
       return ((child.props.label ?? child.props.children as string))?.toLowerCase().startsWith(e.value?.toLowerCase())
@@ -259,6 +274,8 @@ const Select = ({
     </div>
   )
 }
+
+
 const toCaretSize = {
   s: 's2',
   m: 's1',

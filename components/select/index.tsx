@@ -78,6 +78,7 @@ const Select = ({
   React.useEffect(() => {
     optionListRef?.current && (optionListRef.current.scrollTo(0, 0));
     setOptions(children);
+    setDefaultValue();
   }, [children])
 
   React.useEffect(() => {
@@ -112,20 +113,16 @@ const Select = ({
     onClick: (e) => !isDisabled && !isLoading && onClick && onClick(e),
   }
 
-
   const setDefaultInput = (value: string, label: string) => {
     valueInputRef?.current && (valueInputRef.current.value = value ?? '');
     labelInputRef?.current && (labelInputRef.current.value = label ?? '');
-
   };
   
   const setDefaultValue = () => {
     options.forEach((option) => {
-      // console.log(option.props);
-      setDefaultInput(option.props.value, '' + (option.props.label || option.props.children));
+      option.props.active &&  setDefaultInput(option.props.value, '' + (option.props.label || option.props.children));
     })
   }
-  setDefaultValue();
 
   const clickOption = (value: string, label: string) => {
     setDefaultInput(value, label);

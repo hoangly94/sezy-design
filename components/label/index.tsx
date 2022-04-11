@@ -3,7 +3,7 @@ import Classnames from 'classnames';
 import styles from './_styles.module.css';
 
 export interface LabelIProps {
-  size?: 's' | 'm' | 'l',
+  size?: 's' | 'm' | 'l' | 'xl' | '2xl',
   text?: string,
   icon?: React.ReactNode,
   className?: string,

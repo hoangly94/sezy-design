@@ -33,3 +33,19 @@
     margin-right: 0.5rem;
   }
 }
+.sezy-label-xl {
+  & {
+    font-size: 2.4rem;
+  }
+  & > svg {
+    margin-right: 0.6rem;
+  }
+}
+.sezy-label-2xl {
+  & {
+    font-size: 3rem;
+  }
+  & > svg {
+    margin-right: 0.8rem;
+  }
+}

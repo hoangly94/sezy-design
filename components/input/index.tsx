@@ -9,6 +9,7 @@ export interface InputIProps {
   tagType?: 'input' | 'textarea' | 'div',
   valueType?: 'text' | 'textValue' | 'password' | 'email' | 'number' | 'phone',
   size?: 's' | 'm' | 'l',
+  name?: string,
   href?: string,
   placeholder?: string,
   textRef?: React.MutableRefObject<any>, // Only use for Type textValue
@@ -36,6 +37,7 @@ const Input = ({
   tagType = 'input',
   valueType = 'text',
   size = 'm',
+  name,
   href = '',
   placeholder = '',
   textRef,
@@ -60,7 +62,7 @@ const Input = ({
 }: InputIProps, ref) => {
   const [showClearButton, setShowClearButton] = React.useState(false);
   const showHideClearButton = () => {
-    !isDisabled && onChange && onChange(ref?.current)
+    // !isDisabled && onChange && onChange({name:name || '', target:ref?.current})
     isClearable && ref?.current?.value?.length ? !showClearButton && setShowClearButton(true) : setShowClearButton(false);
   }
   React.useEffect(showHideClearButton, [ref?.current?.value]);
@@ -77,12 +79,13 @@ const Input = ({
     className: Classnames(
       styles['sezy-input'],
     ),
+    name,
     placeholder,
-    onChange: () => !isDisabled && showHideClearButton() && onChange && onChange(ref?.current),
-    onBlur: () => !isDisabled && onBlur && onBlur(ref?.current),
-    onFocus: () => !isDisabled && onFocus && onFocus(ref?.current),
-    onKeyUp: () => !isDisabled && onKeyUp && onKeyUp(ref?.current),
-    onKeyPress: () => !isDisabled && onKeyPress && onKeyPress(ref?.current),
+    onChange: (e) => !isDisabled && onChange && onChange(e),
+    onBlur: (e) => !isDisabled && onBlur && onBlur(e),
+    onFocus: (e) => !isDisabled && onFocus && onFocus(e),
+    onKeyUp: (e) => !isDisabled && onKeyUp && onKeyUp(e),
+    onKeyPress: (e) => !isDisabled && onKeyPress && onKeyPress(e),
   }
 
   const inputElement = (() => {

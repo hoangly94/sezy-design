@@ -98,18 +98,6 @@ const App = (): React.ReactElement => {
         <Option value='3333333'>a3</Option>
         <Option value='44444444444'>a4</Option>
       </Select>
-
-      <Datepicker
-        size='l'
-        labels={{
-          placeholder: 'Chọn thời gian'
-        }}
-        dateFormat='DD/MM/YYYY'
-        InputProps={{
-          type: 'nude'
-        }}
-        onChange={({ date }) => console.log(date)}
-      />
     </>
   )
 }

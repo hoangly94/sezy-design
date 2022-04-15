@@ -1,0 +1,29 @@
+.sezy-drawer {
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:999;
+  display:none;
+}
+.sezy-drawer-active {
+  display:block;
+}
+.sezy-drawer-background {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: #000;
+  opacity:0.38;
+}
+.sezy-drawer-content {
+  position:absolute;
+  top:0;
+  left:0;
+  width:80%;
+  height:100%;
+  background: #fff;
+}

@@ -29,6 +29,7 @@ import Datepicker from "../components/datepicker";
 import Toast from "../components/toast";
 import Range from "../components/range";
 import Tooltip from "../components/tooltip";
+import Drawer from "../components/drawer";
 
 const App = (): React.ReactElement => {
   const backgroundStyle = { style: { background: '#49d5ff' } };
@@ -89,6 +90,7 @@ const App = (): React.ReactElement => {
     },
   ]
   const [a, setA] = React.useState(<Option value='111111'>a1</Option>);
+  const [active, setActive] = React.useState(false);
 
   return (
     <>
@@ -98,6 +100,10 @@ const App = (): React.ReactElement => {
         <Option value='3333333'>a3</Option>
         <Option value='44444444444'>a4</Option>
       </Select>
+      <button onClick={(()=>setActive(true))}>bbbbbbbbbbbbbbbb</button>
+      <Drawer isActive={active} onClickClose={() => setActive(false)}>
+        <div style={{width:'400px',height:'100%','background':'white'}}>aaaaaa</div>
+      </Drawer>
     </>
   )
 }

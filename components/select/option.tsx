@@ -29,6 +29,7 @@ const Option = ({
       )}
       onClick={onClick}
       {...otherProps}
+      {...{active}}
     >
       {children}
     </div>

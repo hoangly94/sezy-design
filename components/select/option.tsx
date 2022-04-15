@@ -29,7 +29,7 @@ const Option = ({
       )}
       onClick={onClick}
       {...otherProps}
-      {...{active}}
+      {...{active: active.toString()}}
     >
       {children}
     </div>

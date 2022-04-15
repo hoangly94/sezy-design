@@ -42,5 +42,7 @@ export type { RangeIProps } from './components/range';
 export { default as Range } from './components/range';
 export type { DrawerIProps } from './components/drawer';
 export { default as Drawer } from './components/drawer';
+export type { ModalIProps } from './components/modal';
+export { default as Modal } from './components/modal';
 
 export { Shimmer } from './components/effect';

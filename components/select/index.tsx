@@ -112,7 +112,6 @@ const Select = ({
     ),
     onClick: (e) => !isDisabled && !isLoading && onClick && onClick(e),
   }
-
   const setDefaultInput = (value: string, label: string) => {
     valueInputRef?.current && (valueInputRef.current.value = value ?? '');
     labelInputRef?.current && (labelInputRef.current.value = label ?? '');

@@ -10,6 +10,7 @@ export interface TagIProps {
   isClearable?: boolean,
   className?: string,
   onClick?: React.MouseEventHandler,
+  onClearClick?: React.MouseEventHandler,
   children?: React.ReactNode,
 }
 
@@ -21,6 +22,7 @@ const Tag = ({
   isClearable = false,
   className,
   onClick,
+  onClearClick,
   children,
   ...otherProps
 }: TagIProps) => {
@@ -48,7 +50,7 @@ const Tag = ({
   return (
     <span {...tagProps}>
       {children}
-      {isClearable && <span>&#10005;</span>}
+      {isClearable && <span onClick={onClearClick}>&#10005;</span>}
     </span>
   )
 }

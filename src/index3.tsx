@@ -364,7 +364,7 @@ const App = (): React.ReactElement => {
       <Pagination total={100} defaultPage={2} />
       <Pagination total={100} hasFirstLast={true} />
       <div>---Select---</div>
-      <Select placeholder='Select'>
+      {/* <Select placeholder='Select'>
         <Option value='111111'>a1</Option>
         <Option value='222222'>a2</Option>
         <Option value='3333333'>a3</Option>
@@ -399,7 +399,7 @@ const App = (): React.ReactElement => {
         <Option value='222222'>a2</Option>
         <Option value='3333333'>a3</Option>
         <Option value='44444444444'>a4</Option>
-      </Select>
+      </Select> */}
       <div>---Row---</div>
       <Row gaps={[1, 1]} gutter={{ xs: 1 }}>
         <a {...backgroundStyle}>1</a>

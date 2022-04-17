@@ -44,5 +44,7 @@ export type { DrawerIProps } from './components/drawer';
 export { default as Drawer } from './components/drawer';
 export type { ModalIProps } from './components/modal';
 export { default as Modal } from './components/modal';
+export type { TimepickerIProps } from './components/timepicker';
+export { default as Timepicker } from './components/timepicker';
 
 export { Shimmer } from './components/effect';

@@ -109,7 +109,10 @@ const Input = ({
         )
       case 'textarea':
         return (
-          <textarea />
+          <textarea
+            {...inputProps}
+            ref={ref}
+          >{children}</textarea>
         )
     }
   })();

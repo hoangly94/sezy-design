@@ -14,8 +14,8 @@ const useClickOutside = ({
   !ref && (ref = useRef(null));
 
   const handleClickOutside = event => {
-    if (!(exludeChildren && ref.current.contains(event.target)))
-      setClickOutside(!(!ref.current || ref.current.contains(event.target)));
+    if (!(exludeChildren && ref.current?.contains(event.target)))
+      setClickOutside(!(!ref.current || ref.current?.contains(event.target)));
   };
 
   useEffect(() => {

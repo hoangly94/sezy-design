@@ -22,13 +22,15 @@ const Timepicker = ({
 }: TimepickerIProps) => {
   const timeList = getTimeList(startTime, endTime, interval);
   return (
-    <Select>
+    <Select
+      {...otherProps}
+    >
       {
         timeList.map((time, index) => {
           const label = time.format(hourFormatMap[hourFomat]);
           return (<Option
             key={`timepicker_option_${index}`}
-            value={time.format('hh:mm:ss')}
+            value={time.format('HH:mm:ss')}
           >
             {label}
           </Option>)
@@ -40,7 +42,7 @@ const Timepicker = ({
 
 const hourFormatMap = {
   12: 'hh:mm A',
-  24: 'hh:mm:ss',
+  24: 'HH:mm',
 }
 const getTimeList = (startTime: moment.Moment, endTime: moment.Moment, interval: string) => {
   const intervalData = interval.slice(0, -1);

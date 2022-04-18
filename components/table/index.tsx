@@ -16,13 +16,14 @@ type TableColumn = {
   filter?: Object,
   sort?: Object,
   search?: Object,
-  align?: 'center' | 'left' | 'right'
-  valign?: 'middle' | 'top' | 'bottom'
+  align?: 'center' | 'left' | 'right',
+  valign?: 'middle' | 'top' | 'bottom',
 }
 
 type TableData = Object & {
   key?: string,
   render?: Function,
+  onClick?: React.MouseEventHandler,
 }
 
 export interface TableIProps {
@@ -89,6 +90,9 @@ const Table = ({
             return (
               <tr
                 key={keyPrefix + `br.${rowIndex}.`}
+                {
+                ...r
+                }
               >
                 {columns?.map((c, colIndex) => {
                   const cell = r[c.index];
@@ -108,13 +112,13 @@ const Table = ({
               </tr>
             );
           })}
-          {
+          {/* {
             !data?.length && (<tr>
               <td align="center" rowSpan={4} colSpan={columns?.length} >
                 {labelMap.emptyData}
               </td>
             </tr>)
-          }
+          } */}
         </tbody>
       </table >
       {isLoading && <div className={styles['sezy-table-loading']}><ThreeDotsLoader size={sizeToLoadingSize[size] as any} /></div>}

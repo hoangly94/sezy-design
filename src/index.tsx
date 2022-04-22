@@ -31,6 +31,7 @@ import Range from "../components/range";
 import Tooltip from "../components/tooltip";
 import Drawer from "../components/drawer";
 import Timepicker from "../components/timepicker";
+import Progress from "../components/progress";
 
 const App = (): React.ReactElement => {
   const backgroundStyle = { style: { background: '#49d5ff' } };
@@ -102,79 +103,80 @@ const App = (): React.ReactElement => {
         <Option value='44444444444'>a4</Option>
       </Select>
 
-        <Select placeholder='Select' isSearchable={true} isMulti={true} >
-          <Option value='111111' label='aaaaaaaaaaa1'>
-            <div>
-              <div>a1</div>
-              <div>a1</div>
-            </div>
-          </Option>
-          <Option value='111111' label='aaaaaaaaaaa1'>
-            <div>
-              <div>a2</div>
-              <div>a2</div>
-            </div>
-          </Option>
-          <Option value='111111' label='aaaaaaaaaaa1'>
-            <div>
-              <div>a3</div>
-              <div>a3</div>
-            </div>
-          </Option>
-          <Option value='111111' label='aaaaaaaaaaa1'>
-            <div>
-              <div>a4</div>
-              <div>a4</div>
-            </div>
-          </Option>
-          <Option value='111111' label='aaaaaaaaaaa1'>
-            <div>
-              <div>a5</div>
-              <div>a5</div>
-            </div>
-          </Option>
-          <Option value='111111' label='aaaaaaaaaaa1'>
-            <div>
-              <div>a6</div>
-              <div>a6</div>
-            </div>
-          </Option>
-          <Option value='111111' label='aaaaaaaaaaa1'>
-            <div>
-              <div>a7</div>
-              <div>a7</div>
-            </div>
-          </Option>
-          <Option value='111111' label='aaaaaaaaaaa1'>
-            <div>
-              <div>a8</div>
-              <div>a8</div>
-            </div>
-          </Option>
-          <Option value='111111' label='aaaaaaaaaaa1'>
-            <div>
-              <div>a9</div>
-              <div>a9</div>
-            </div>
-          </Option>
-          <Option value='111111' label='aaaaaaaaaaa1'>
-            <div>
-              <div>a10</div>
-              <div>a10</div>
-            </div>
-          </Option>
-          <Option value='111111' label='aaaaaaaaaaa1'>
-            <div>
-              <div>a11</div>
-              <div>a11</div>
-            </div>
-          </Option>
-        </Select>
-      <button onClick={(()=>setActive(true))}>bbbbbbbbbbbbbbbb</button>
+      <Select placeholder='Select' isSearchable={true} isMulti={true} >
+        <Option value='111111' label='aaaaaaaaaaa1'>
+          <div>
+            <div>a1</div>
+            <div>a1</div>
+          </div>
+        </Option>
+        <Option value='111111' label='aaaaaaaaaaa1'>
+          <div>
+            <div>a2</div>
+            <div>a2</div>
+          </div>
+        </Option>
+        <Option value='111111' label='aaaaaaaaaaa1'>
+          <div>
+            <div>a3</div>
+            <div>a3</div>
+          </div>
+        </Option>
+        <Option value='111111' label='aaaaaaaaaaa1'>
+          <div>
+            <div>a4</div>
+            <div>a4</div>
+          </div>
+        </Option>
+        <Option value='111111' label='aaaaaaaaaaa1'>
+          <div>
+            <div>a5</div>
+            <div>a5</div>
+          </div>
+        </Option>
+        <Option value='111111' label='aaaaaaaaaaa1'>
+          <div>
+            <div>a6</div>
+            <div>a6</div>
+          </div>
+        </Option>
+        <Option value='111111' label='aaaaaaaaaaa1'>
+          <div>
+            <div>a7</div>
+            <div>a7</div>
+          </div>
+        </Option>
+        <Option value='111111' label='aaaaaaaaaaa1'>
+          <div>
+            <div>a8</div>
+            <div>a8</div>
+          </div>
+        </Option>
+        <Option value='111111' label='aaaaaaaaaaa1'>
+          <div>
+            <div>a9</div>
+            <div>a9</div>
+          </div>
+        </Option>
+        <Option value='111111' label='aaaaaaaaaaa1'>
+          <div>
+            <div>a10</div>
+            <div>a10</div>
+          </div>
+        </Option>
+        <Option value='111111' label='aaaaaaaaaaa1'>
+          <div>
+            <div>a11</div>
+            <div>a11</div>
+          </div>
+        </Option>
+      </Select>
+      <button onClick={(() => setActive(true))}>bbbbbbbbbbbbbbbb</button>
       <Drawer isActive={active} onClickClose={() => setActive(false)}>
-        <div style={{width:'400px',height:'100%','background':'white'}}>aaaaaa</div>
+        <div style={{ width: '400px', height: '100%', 'background': 'white' }}>aaaaaa</div>
       </Drawer>
-      <Timepicker/>
+      <Timepicker />
+      <Progress value={40}/>
     </>
   )
 }

@@ -29,6 +29,9 @@ import Datepicker from "../components/datepicker";
 import Toast from "../components/toast";
 import Range from "../components/range";
 import Tooltip from "../components/tooltip";
+import Drawer from "../components/drawer";
+import Timepicker from "../components/timepicker";
+import Progress from "../components/progress";
 
 const App = (): React.ReactElement => {
   const backgroundStyle = { style: { background: '#49d5ff' } };
@@ -89,9 +92,19 @@ const App = (): React.ReactElement => {
     },
   ]
   const [a, setA] = React.useState(<Option value='111111'>a1</Option>);
+  const [drawerActive, setDrawerActive] = React.useState(false);
 
   return (
     <>
+
+      <div>---Drawer---</div>
+      <Drawer isActive={drawerActive} onClickClose={() => setDrawerActive(false)}>
+        <div style={{ width: '400px', height: '100%', 'background': 'white' }}>aaaaaa</div>
+      </Drawer>
+      <div>---Timepicker---</div>
+      <Timepicker />
+      <div>---Progress---</div>
+      <Progress />
       <div>---Effect Shimmer---</div>
       <Shimmer isLoading={true}>
         <div style={{ width: '200px', height: '200px' }}></div>
@@ -100,24 +113,24 @@ const App = (): React.ReactElement => {
       <button onClick={() => Toast.text('Toast')}>Toast</button>
       <button onClick={() => Toast.dark('Toast Dark')}>Toast Dark</button>
       <div>---Tooltip---</div>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
+      <br />
+      <br />
+      <br />
+      <br />
       <Tooltip content="aaaasd sdf sdf dsf asdf asdf sdf sdf asd asd" size='s'>
         <span>Tooltip size S</span>
       </Tooltip>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
+      <br />
+      <br />
+      <br />
+      <br />
       <Tooltip content="aaaasd sdf sdf dsf asdf asdf sdf sdf asd asd" size='m'>
         <span>Tooltip size M</span>
       </Tooltip>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
+      <br />
+      <br />
+      <br />
+      <br />
       <Tooltip content="aaaasd sdf sdf dsf asdf asdf sdf sdf asd asd" size='l'>
         <span>Tooltip size L</span>
       </Tooltip>

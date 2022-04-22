@@ -46,5 +46,9 @@ export type { ModalIProps } from './components/modal';
 export { default as Modal } from './components/modal';
 export type { TimepickerIProps } from './components/timepicker';
 export { default as Timepicker } from './components/timepicker';
+export type { ProgressIProps } from './components/progress';
+export { default as Progress } from './components/progress';
+export type { TooltipIProps } from './components/tooltip';
+export { default as Tooltip } from './components/tooltip';
 
 export { Shimmer } from './components/effect';

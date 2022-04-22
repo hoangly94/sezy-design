@@ -1,0 +1,16 @@
+.sezy-progress{
+  position:relative;
+  height:2rem;
+  background:var(--progress-background);
+  text-align: left;
+}
+.sezy-progress-bar{
+  height:100%;
+  background:var(--progress-bar-background);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.sezy-progress-value{
+  color:var(--progress-value-color);
+}

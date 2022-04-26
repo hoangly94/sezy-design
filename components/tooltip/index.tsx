@@ -6,7 +6,7 @@ import _ from 'lodash';
 
 export interface TooltipIProps {
   size?: 's' | 'm' | 'l',
-  content?: string,
+  content?: string | React.ReactElement,
   isDisabled?: boolean,
   // placement?: 't' | 'tr' | 'tl' | 'r' | 'rt' | 'rb' | 'b' | 'br' | 'bf' | 'l' | 'lt' | 'lb',
   className?: string,

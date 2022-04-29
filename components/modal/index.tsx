@@ -6,6 +6,7 @@ export interface ModalIProps {
   // type?: 'outline' | 'flat',
   size?: 's' | 'm' | 'l',
   isVisible?: boolean,
+  setVisible?: (boolean) => void,
   className?: string,
   children?: React.ReactNode,
 }
@@ -14,6 +15,7 @@ const Modal = ({
   // type = 'flat',
   size = 'm',
   isVisible = false,
+  setVisible,
   className,
   children,
   ...otherProps
@@ -29,7 +31,7 @@ const Modal = ({
         display: isVisible ? 'block' : 'none'
       }}
     >
-      <div></div>
+      <div onClick={() => setVisible && setVisible(false)}></div>
       <div>{children}</div>
     </div>
   )

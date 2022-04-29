@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import Classnames from 'classnames';
 import _ from 'lodash';
 import styles from './_styles.module.css';
@@ -18,6 +18,7 @@ type TableColumn = {
   search?: Object,
   align?: 'center' | 'left' | 'right',
   valign?: 'middle' | 'top' | 'bottom',
+  styles: CSSProperties,
 }
 
 type TableData = Object & {
@@ -36,6 +37,7 @@ export interface TableIProps {
   isLoading?: boolean,
   className?: string,
 }
+
 const Table = ({
   type = 'outline',
   size = 'm',
@@ -75,7 +77,8 @@ const Table = ({
                   <th
                     key={keyPrefix + 'h.' + (c.key ?? `${c.index}.${index}`)}
                     style={{
-                      textAlign: c.align
+                      textAlign: c.align,
+                      ...(c.styles || []),
                     }}
                   >
                     {c.label}

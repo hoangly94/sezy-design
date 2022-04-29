@@ -1,9 +1,6 @@
 import React from 'react';
 import Classnames from 'classnames';
 import styles from './_styles.module.css';
-import { Link } from "react-router-dom";
-import ThreeDotsLoader from '../icon/solid/threeDotsLoader';
-
 
 export interface ProgressIProps {
   type?: 'outline' | 'flat' | 'nude',

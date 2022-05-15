@@ -23,6 +23,7 @@ export interface DatepickerIProps {
   type?: 'flat' | 'outline',
   size?: TSize,
   labels?: TLabel,
+  placeholder?: string,
   dateFormat?: string,
   defaultDate?: [moment.Moment, moment.Moment]
   yearRange?: [number, number],
@@ -37,6 +38,7 @@ const Datepicker = ({
   type = 'flat',
   size = 'm',
   labels,
+  placeholder='Date...',
   dateFormat = 'YYYY/MM/DD',
   defaultDate = [moment(), moment()],
   hasRange = true,
@@ -48,7 +50,7 @@ const Datepicker = ({
   ...otherProps
 }: DatepickerIProps) => {
   const labelMap = Object.assign({
-    placeholder: 'Date...',
+    placeholder,
     weekDays: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
     months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
   }, labels);

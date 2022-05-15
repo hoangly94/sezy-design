@@ -180,7 +180,7 @@ const Select = ({
                   onChange && onChange(filteredMultiChoicesMap);
                 }
                 else {
-                  clickOption(value, htmlChildren);
+                  clickOption(value, label ?? htmlChildren);
                 }
               },
             })

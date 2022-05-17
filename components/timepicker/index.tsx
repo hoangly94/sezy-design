@@ -30,11 +30,10 @@ const Timepicker = ({
       {
         timeList.map((time, index) => {
           const label = time.format(hourFormatMap[hourFomat]);
-          console.log(time.format());
           return (<Option
             key={`timepicker_option_${index}`}
             value={time.format('HH:mm:ss')}
-            active={defaultTime && defaultTime.isSame(time)}
+            active={defaultTime && defaultTime.format('HH:mm:ss') === time.format('HH:mm:ss')}
           >
             {label}
           </Option>)
@@ -54,7 +53,7 @@ const getTimeList = (startTime: moment.Moment, endTime: moment.Moment, interval:
   // if (intervalType === 'm')
   const timeList: moment.Moment[] = [];
 
-  while (startTime < endTime) {
+  while (startTime <= endTime) {
     timeList.push(startTime.clone());
     startTime.add(intervalData, 'minutes')
   }

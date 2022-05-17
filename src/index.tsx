@@ -100,9 +100,8 @@ const App = (): React.ReactElement => {
 
       <Timepicker
         defaultTime={moment('2022-05-17T22:30:00+07:00')}
-        startTime={moment('2022-05-17T10:30:00+07:00')}
-        endTime={moment('2022-05-17T22:30:00+07:00')}
-
+        startTime={moment('07:00', 'HH:mm')}
+        endTime={moment('18:00', 'HH:mm')}
       />
       <Datepicker
         defaultDate={[moment('2022-05-18T10:50:19+07:00'), moment('2022-05-20T10:50:19+07:00')]}

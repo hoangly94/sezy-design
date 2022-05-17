@@ -4,6 +4,7 @@ import "../css/variables.css";
 
 import React from "react";
 import ReactDOM from "react-dom";
+import moment from 'moment'
 // import Button from '../components/button'
 import List from '../components/list'
 import Dropdown from '../components/dropdown'
@@ -96,11 +97,15 @@ const App = (): React.ReactElement => {
 
   return (
     <>
+
+      <Datepicker
+        defaultDate={[moment('2022-05-18T10:50:19+07:00'), moment('2022-05-20T10:50:19+07:00')]}
+      />
       <Select placeholder='Select' type='nude'>
-        <Option value='111111' label='aaaaaaaa'>a1</Option>
-        <Option value='222222' active>a2</Option>
-        <Option value='3333333'>a3</Option>
-        <Option value='44444444444'>a4</Option>
+        <Option value='111111' label='aaaaaaaa' active={false}>a1</Option>
+        <Option value='222222' active={true}>a2</Option>
+        <Option value='3333333' active={false}>a3</Option>
+        <Option value='44444444444' active={false}>a4</Option>
       </Select>
 
       <Select placeholder='Select' isSearchable={true} isMulti={true} >
@@ -176,7 +181,7 @@ const App = (): React.ReactElement => {
         <div style={{ width: '400px', height: '100%', 'background': 'white' }}>aaaaaa</div>
       </Drawer>
       <Timepicker />
-      <Progress value={40}/>
+      <Progress value={40} />
     </>
   )
 }

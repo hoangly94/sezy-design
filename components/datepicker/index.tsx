@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Classnames from 'classnames'
 import styles from './_styles.module.css'
 import { useClickOutside } from '../../hooks'
@@ -59,11 +59,15 @@ const Datepicker = ({
   } = useClickOutside({ exludeChildren: true });
   const [currentDate, setCurrentDate] = useState(defaultDate[1]);
   // const [currentDate, setCurrentDate] = useState(moment('2022/05/05'));
-  const [selectedDates, setSelectedDates] = useState([moment(), moment()]);
+  const [selectedDates, setSelectedDates] = useState(defaultDate);
   const [isShownMonthYearPicker, setShownMonthYearPicker] = useState<TMonthYearPicker>(null);
   const [currentYearPicker, setCurrentYearPicker] = useState(defaultDate[1]);
 
   const inputRef: any = React.useRef(null);
+
+  useEffect(() => {
+    inputRef.current.value = currentDate.format(dateFormat)
+  }, [])
 
   const tableColumns = labelMap?.weekDays?.map((label, index) => ({
     index: 'd' + index,
@@ -106,9 +110,9 @@ const Datepicker = ({
         isClearable={true}
         onClick={() => setClickOutside(false)}
         onChange={e => {
-          if(!e.value.length){
+          if (!e.value.length) {
             const defaultDates = [moment(), moment()];
-            setSelectedDates(defaultDates);
+            setSelectedDates(defaultDates as any);
             onChange && onChange({});
           }
         }}

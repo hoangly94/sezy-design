@@ -116,10 +116,10 @@ const Select = ({
     valueInputRef?.current && (valueInputRef.current.value = value ?? '');
     labelInputRef?.current && (labelInputRef.current.value = label ?? '');
   };
-  
+
   const setDefaultValue = () => {
     options.forEach((option) => {
-      option.props.active &&  setDefaultInput(option.props.value, '' + (option.props.label || option.props.children));
+      option.props.active && setDefaultInput(option.props.value, '' + (option.props.label || option.props.children));
     })
   }
 

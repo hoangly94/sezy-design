@@ -7,6 +7,7 @@ import moment from 'moment';
 
 
 export interface TimepickerIProps extends SelectIProps {
+  defaultTime?: moment.Moment,
   startTime?: moment.Moment,
   endTime?: moment.Moment,
   interval?: string,
@@ -14,6 +15,7 @@ export interface TimepickerIProps extends SelectIProps {
 }
 
 const Timepicker = ({
+  defaultTime,
   startTime = moment().startOf('day'),
   endTime = moment().endOf('day'),
   interval = '30m',
@@ -28,9 +30,11 @@ const Timepicker = ({
       {
         timeList.map((time, index) => {
           const label = time.format(hourFormatMap[hourFomat]);
+          console.log(time.format());
           return (<Option
             key={`timepicker_option_${index}`}
             value={time.format('HH:mm:ss')}
+            active={defaultTime && defaultTime.isSame(time)}
           >
             {label}
           </Option>)

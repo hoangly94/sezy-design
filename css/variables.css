@@ -57,8 +57,9 @@
   --progress-background: #E9ECF0;
   --progress-bar-background: var(--primary-color);
   --progress-value-color: #fff;
-}
 
+  --input-error-border-color: red;
+}
 
 html[data-theme="dark"] {
   --primary-color: #49d5ff;

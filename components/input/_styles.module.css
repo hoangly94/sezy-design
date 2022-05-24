@@ -148,3 +148,7 @@
   fill: #888888;
   cursor: pointer;
 }
+
+.sezy-input-error {
+  border: 1px solid var(--input-error-border-color) !important;
+}

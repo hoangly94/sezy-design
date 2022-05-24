@@ -22,12 +22,14 @@ type TLabel = {
 export interface SelectIProps {
   type?: 'flat' | 'outline' | 'nude',
   size?: 's' | 'm' | 'l',
+  name?: string,
   labels?: TLabel,
   selectedItems?: TSelectedItem[]
   placeholder?: string,
   isDisabled?: boolean,
   isLoading?: boolean,
   isSearchable?: boolean,
+  hasError?: boolean,
   isMulti?: boolean,
   limitScrollItems?: number,
   placement?: 't' | 'tr' | 'tl' | 'r' | 'rt' | 'rb' | 'b' | 'br' | 'bf' | 'l' | 'lt' | 'lb',
@@ -44,6 +46,7 @@ export interface SelectIProps {
 const Select = ({
   type = 'outline',
   size = 'm',
+  name = '',
   labels,
   selectedItems = [],
   placeholder = '',
@@ -51,6 +54,7 @@ const Select = ({
   isLoading = false,
   isSearchable = false,
   isMulti = false,
+  hasError = false,
   limitScrollItems = 10,
   placement = 'bf',
   trigger,
@@ -127,7 +131,12 @@ const Select = ({
     setDefaultInput(value, label);
     setClickOutside(true);
     setHovered(false);
-    onChange && onChange(value);
+    onChange && onChange({
+      target: {
+        name,
+        value
+      }
+    });
   }
 
   const toOptionElements = React.useCallback((selectedOptions) => {
@@ -218,6 +227,7 @@ const Select = ({
         valueType='textValue'
         ref={clickOutsideRef}
         textRef={labelInputRef}
+        hasError={hasError}
       >
         <div className={styles['sezy-select-tags']} data-placeholder={placeholder}>
           {

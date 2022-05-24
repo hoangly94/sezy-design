@@ -97,7 +97,7 @@ const App = (): React.ReactElement => {
 
   return (
     <>
-
+      <Input hasError={true} />
       <Timepicker
         defaultTime={moment('2022-05-17T22:30:00+07:00')}
         startTime={moment('07:00', 'HH:mm')}

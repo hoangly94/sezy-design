@@ -17,6 +17,7 @@ export interface InputIProps {
   isDisabled?: boolean,
   isLoading?: boolean,
   isClearable?: boolean,
+  hasError?: boolean,
   isReadOnly?: boolean,
   prefix?: React.ReactNode,
   postfix?: React.ReactNode,
@@ -46,6 +47,7 @@ const Input = ({
   isLoading = false,
   isClearable = false,
   isReadOnly = false,
+  hasError = false,
   prefix,
   postfix,
   errorText,
@@ -125,6 +127,7 @@ const Input = ({
           styles['sezy-input-error-' + errorPlacement],
           styles['sezy-input-' + size],
           styles['sezy-input-' + type],
+          hasError && styles['sezy-input-error'],
           className
         )
       }

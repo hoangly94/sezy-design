@@ -29,6 +29,7 @@ export interface DatepickerIProps {
   yearRange?: [number, number],
   hasRange?: boolean,
   isLoading?: boolean,
+  isClearable?: boolean,
   className?: string,
   InputProps?: InputIProps,
   TableProps?: TableIProps,
@@ -43,6 +44,7 @@ const Datepicker = ({
   defaultDate = [moment(), moment()],
   hasRange = true,
   isLoading = false,
+  isClearable = false,
   className,
   onChange,
   InputProps,
@@ -109,7 +111,7 @@ const Datepicker = ({
         isLoading={isLoading}
         isReadOnly={true}
         {...InputProps}
-        isClearable={true}
+        isClearable={isClearable}
         onClick={() => setClickOutside(false)}
         onChange={e => {
           if (!e.value.length) {

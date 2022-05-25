@@ -28,6 +28,7 @@ export interface DatepickerIProps {
   defaultDate?: [moment.Moment, moment.Moment]
   yearRange?: [number, number],
   hasRange?: boolean,
+  isDisabled?: boolean,
   isLoading?: boolean,
   isClearable?: boolean,
   className?: string,
@@ -39,10 +40,11 @@ const Datepicker = ({
   type = 'flat',
   size = 'm',
   labels,
-  placeholder='Date...',
+  placeholder = 'Date...',
   dateFormat = 'YYYY/MM/DD',
   defaultDate = [moment(), moment()],
   hasRange = true,
+  isDisabled = false,
   isLoading = false,
   isClearable = false,
   className,
@@ -108,6 +110,7 @@ const Datepicker = ({
         size={size}
         postfix={<Calendar size={size} />}
         placeholder={labelMap?.placeholder}
+        isDisabled={isDisabled}
         isLoading={isLoading}
         isReadOnly={true}
         {...InputProps}

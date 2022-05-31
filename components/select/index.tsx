@@ -10,13 +10,19 @@ import { OptionIProps } from './option';
 import _ from 'lodash';
 import Tag from '../tag';
 
-type TSelectedItem = {
+interface ISelectedItem {
   text: string | number,
   value: string | number,
 }
-type TLabel = {
+
+interface TLabel {
   allOptions?: string,
   searchPlaceholder?: string,
+}
+
+interface IDefault {
+  label: string,
+  value: string,
 }
 
 export interface SelectIProps {
@@ -24,7 +30,8 @@ export interface SelectIProps {
   size?: 's' | 'm' | 'l',
   name?: string,
   labels?: TLabel,
-  selectedItems?: TSelectedItem[]
+  defaultValue?: string | IDefault,
+  selectedItems?: ISelectedItem[]
   placeholder?: string,
   isDisabled?: boolean,
   isLoading?: boolean,
@@ -48,6 +55,7 @@ const Select = ({
   size = 'm',
   name = '',
   labels,
+  defaultValue,
   selectedItems = [],
   placeholder = '',
   isDisabled = false,
@@ -55,7 +63,7 @@ const Select = ({
   isSearchable = false,
   isMulti = false,
   hasError = false,
-  limitScrollItems = 10,
+  limitScrollItems = 0,
   placement = 'bf',
   trigger,
   className,
@@ -74,15 +82,28 @@ const Select = ({
   const labelInputRef: React.MutableRefObject<any> = React.useRef(null);
   const optionListRef: React.MutableRefObject<any> = React.useRef(null);
   const isAllChecked = React.useRef(false);
-  const [selectedOptions, setSelectedOptions] = React.useState<TSelectedItem[]>(selectedItems);
+  const [selectedOptions, setSelectedOptions] = React.useState<ISelectedItem[]>(selectedItems);
   const [limitItems, setLimitItems] = React.useState(limitScrollItems);
   const [options, setOptions] = React.useState<React.ReactElement<OptionIProps>[]>(children);
   const numberOfItems = React.Children.count(children);
 
   React.useEffect(() => {
+    defaultValue && setDefaultInput.apply(
+      this,
+      defaultValue?.['label']
+        ? [
+          defaultValue?.['value'],
+          defaultValue?.['label'],
+        ] : [
+          defaultValue,
+          defaultValue,
+        ]
+    );
+  }, [defaultValue, defaultValue?.['value'], defaultValue?.['label']])
+
+  React.useEffect(() => {
     optionListRef?.current && (optionListRef.current.scrollTo(0, 0));
     setOptions(children);
-    setDefaultValue();
   }, [children])
 
   React.useEffect(() => {
@@ -121,11 +142,11 @@ const Select = ({
     labelInputRef?.current && (labelInputRef.current.value = label ?? '');
   };
 
-  const setDefaultValue = () => {
-    options.forEach((option) => {
-      option.props.active && setDefaultInput(option.props.value, '' + (option.props.label || option.props.children));
-    })
-  }
+  // const setDefaultValue = () => {
+  //   options.forEach((option) => {
+  //     option.props.active && setDefaultInput(option.props.value, '' + (option.props.label || option.props.children));
+  //   })
+  // }
 
   const clickOption = (value: string, label: string) => {
     setDefaultInput(value, label);
@@ -166,7 +187,7 @@ const Select = ({
           const value = child.props.value;
           const filteredMultiChoicesMap = isMulti && selectedOptions.filter(item => item.value !== value);
           const isChecked = isMulti && filteredMultiChoicesMap.length < selectedOptions.length;
-          if (index >= limitItems)
+          if (limitItems && index >= limitItems)
             return;
           return (
             React.cloneElement(child, {

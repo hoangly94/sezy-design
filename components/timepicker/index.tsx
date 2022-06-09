@@ -23,21 +23,26 @@ const Timepicker = ({
   ...otherProps
 }: TimepickerIProps) => {
   const timeList = getTimeList(startTime, endTime, interval);
+
+  const options = timeList.map((time, index) => {
+    const label = time.format(hourFormatMap[hourFomat]);
+    return (
+      <Option
+        key={`timepicker_option_${index}`}
+        value={time.format('HH:mm:ss')}
+        active={defaultTime && defaultTime.format('HH:mm:ss') === time.format('HH:mm:ss')}
+      >
+        {label}
+      </Option>
+    )
+  });
+
   return (
     <Select
       {...otherProps}
     >
       {
-        timeList.map((time, index) => {
-          const label = time.format(hourFormatMap[hourFomat]);
-          return (<Option
-            key={`timepicker_option_${index}`}
-            value={time.format('HH:mm:ss')}
-            active={defaultTime && defaultTime.format('HH:mm:ss') === time.format('HH:mm:ss')}
-          >
-            {label}
-          </Option>)
-        })
+        options
       }
     </Select>
   )
@@ -47,17 +52,16 @@ const hourFormatMap = {
   12: 'hh:mm A',
   24: 'HH:mm',
 }
-const getTimeList = (startTime: moment.Moment, endTime: moment.Moment, interval: string) => {
+
+function getTimeList(startTime: moment.Moment, endTime: moment.Moment, interval: string) {
   const intervalData = interval.slice(0, -1);
   const intervalType = interval.slice(-1);
-  // if (intervalType === 'm')
   const timeList: moment.Moment[] = [];
-
-  while (startTime <= endTime) {
-    timeList.push(startTime.clone());
-    startTime.add(intervalData, 'minutes')
+  let newStartTime = startTime.clone();
+  while (newStartTime <= endTime) {
+    timeList.push(newStartTime.clone());
+    newStartTime = newStartTime.add(intervalData, 'minutes').clone();
   }
-
   return timeList
 }
 

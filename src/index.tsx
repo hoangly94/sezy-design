@@ -97,13 +97,13 @@ const App = (): React.ReactElement => {
 
   return (
     <>
-      <Input hasError={true} />
+      {/* <Input hasError={true} /> */}
       <Timepicker
         defaultTime={moment('2022-05-17T22:30:00+07:00')}
-        startTime={moment('07:00', 'HH:mm')}
+        startTime={moment('09:00', 'HH:mm')}
         endTime={moment('18:00', 'HH:mm')}
       />
-      <Datepicker
+      {/* <Datepicker
         defaultDate={[moment('2022-05-18T10:50:19+07:00'), moment('2022-05-20T10:50:19+07:00')]}
       />
       <Select placeholder='Select' type='nude'>
@@ -186,7 +186,7 @@ const App = (): React.ReactElement => {
         <div style={{ width: '400px', height: '100%', 'background': 'white' }}>aaaaaa</div>
       </Drawer>
       <Timepicker />
-      <Progress value={40} />
+      <Progress value={40} /> */}
     </>
   )
 }

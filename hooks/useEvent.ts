@@ -1,0 +1,22 @@
+import React, { useEffect } from 'react'
+
+interface IProps {
+  event: 'keyup' | 'keydown' | 'click' | 'change' | 'mouseover' | 'mouseout',
+  callback: EventListenerOrEventListenerObject,
+  condition?: Array<any>,
+}
+
+const useEvent = ({
+  event,
+  callback,
+  condition
+}: IProps) => {
+  useEffect(() => {
+    document.addEventListener(event, callback);
+    return () => {
+      document.removeEventListener(event, callback, true);
+    };
+  }, condition || []);
+}
+
+export default useEvent;

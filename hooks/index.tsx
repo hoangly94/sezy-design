@@ -7,3 +7,4 @@ export { default as useWindowDimensions } from './useWindowDimensions';
 export { default as useDimensions } from './useDimensions';
 export { default as useInterval } from './useInterval';
 export { default as useEvent } from './useEvent';
+export { default as usePortal } from './usePortal';

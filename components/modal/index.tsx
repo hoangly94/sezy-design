@@ -1,6 +1,7 @@
 import React from 'react';
 import Classnames from 'classnames';
 import styles from './_styles.module.css';
+import { useEvent } from '../../hooks';
 
 export interface ModalIProps {
   // type?: 'outline' | 'flat',
@@ -20,6 +21,8 @@ const Modal = ({
   children,
   ...otherProps
 }: ModalIProps) => {
+  useEvent('keyup', handleExitKeyUp(setVisible));
+  
   return (
     <div
       {...otherProps}
@@ -28,13 +31,19 @@ const Modal = ({
         className,
       )}
       style={{
-        display: isVisible ? 'block' : 'none'
+        display: isVisible ? 'block' : 'none',
       }}
     >
-      <div onClick={() => setVisible && setVisible(false)}></div>
+      <div onClick={() => setVisible?.(false)}></div>
       <div>{children}</div>
     </div>
   )
+}
+
+const handleExitKeyUp = (setVisible?: (boolean) => void) => (e) => {
+  if (e.key === 'Escape') {
+    setVisible?.(false)
+  }
 }
 
 export default Modal

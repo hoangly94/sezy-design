@@ -6,11 +6,11 @@ interface IProps {
   condition?: Array<any>,
 }
 
-const useEvent = ({
-  event,
-  callback,
-  condition
-}: IProps) => {
+const useEvent = (
+  event: 'keyup' | 'keydown' | 'click' | 'change' | 'mouseover' | 'mouseout',
+  callback: EventListenerOrEventListenerObject,
+  condition?: Array<any>,
+) => {
   useEffect(() => {
     document.addEventListener(event, callback);
     return () => {

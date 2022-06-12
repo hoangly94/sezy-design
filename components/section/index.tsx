@@ -1,5 +1,6 @@
 import React from 'react';
 import Classnames from 'classnames';
+import styles from './_styles.module.css';
 import ThreeDotsLoader from '../icon/solid/threeDotsLoader';
 
 export interface SectionIProps {
@@ -15,6 +16,7 @@ const Section = ({
   const sectionProps = {
     ...otherProps,
     className: Classnames(
+      styles['sezy-section'],
       className,
     ),
   }

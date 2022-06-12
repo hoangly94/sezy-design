@@ -1,0 +1,6 @@
+.sezy-section{
+    &>div{
+        margin: auto;
+        width: var(--main-width);
+    }
+}

@@ -36,6 +36,7 @@ export interface TableIProps {
   hasHeader?: boolean,
   isLoading?: boolean,
   className?: string,
+  onScroll?: any,
 }
 
 const Table = ({
@@ -47,6 +48,7 @@ const Table = ({
   labels,
   data,
   className,
+  onScroll,
   ...otherProps
 }: TableIProps) => {
   const labelMap = Object.assign({
@@ -64,10 +66,13 @@ const Table = ({
   }
 
   return (
-    <div className={Classnames(
-      styles['sezy-table-wrapper'],
-      className
-    )}>
+    <div
+      className={Classnames(
+        styles['sezy-table-wrapper'],
+        className
+      )}
+      onScroll={onScroll}
+      >
       <table {...tableProps}>
         {
           hasHeader && <thead>
